@@ -222,8 +222,7 @@ class _CarsState extends State<Cars> {
                   left: 5,
                   right: 5,
                 ),
-                child: Expanded(
-                    child: GridView.count(
+                child: GridView.count(
                   shrinkWrap: true,
                   crossAxisCount: 2,
                   crossAxisSpacing: 20,
@@ -461,7 +460,7 @@ class _CarsState extends State<Cars> {
                           }),
                     );
                   }),
-                )))
+                ))
           ]),
         ),
       ),

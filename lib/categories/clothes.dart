@@ -223,8 +223,7 @@ class _ClothesState extends State<Clothes> {
                   left: 5,
                   right: 5,
                 ),
-                child: Expanded(
-                    child: GridView.count(
+                child: GridView.count(
                   shrinkWrap: true,
                   crossAxisCount: 2,
                   crossAxisSpacing: 20,
@@ -452,7 +451,7 @@ class _ClothesState extends State<Clothes> {
                           }),
                     );
                   }),
-                )))
+                ))
           ]),
         ),
       ),

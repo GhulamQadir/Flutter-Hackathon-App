@@ -215,13 +215,12 @@ class _ElectronicsState extends State<Electronics> {
                   left: 5,
                   right: 5,
                 ),
-                child: Expanded(
-                    child: GridView.count(
+                child: GridView.count(
                   shrinkWrap: true,
                   crossAxisCount: 2,
                   crossAxisSpacing: 20,
                   mainAxisSpacing: 20,
-                  physics: NeverScrollableScrollPhysics(),
+                  // physics: NeverScrollableScrollPhysics(),
                   children: List.generate(electronicsPrizes.length, (index) {
                     return Center(
                       child: OpenContainer(
@@ -451,7 +450,7 @@ class _ElectronicsState extends State<Electronics> {
                           }),
                     );
                   }),
-                )))
+                ))
           ]),
         ),
       ),
