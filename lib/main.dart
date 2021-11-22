@@ -14,8 +14,10 @@ import 'package:flutterhackathon/screens/cart.dart';
 import 'package:flutterhackathon/screens/favorites.dart';
 import 'package:flutterhackathon/screens/home.dart';
 import 'package:flutterhackathon/screens/loading_screen.dart';
+import 'package:flutterhackathon/screens/place_order.dart';
 import 'package:flutterhackathon/screens/user_profile.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+
 import 'auth/login.dart';
 
 void main() {
@@ -23,7 +25,7 @@ void main() {
 
   runApp(MyApp());
 
-  HttpOverrides.global = MyHttpOverrides();
+  // HttpOverrides.global = MyHttpOverrides();
 
   // configLoading();
 }
@@ -80,6 +82,7 @@ class MyApp extends StatelessWidget {
               "/mobiles": (context) => Mobiles(),
               "/clothes": (context) => Clothes(),
               "/grocery": (context) => Grocery(),
+              "/place-order": (context) => PlaceOrder(),
             },
           );
         }
@@ -92,11 +95,11 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHttpOverrides extends HttpOverrides {
-  @override
-  HttpClient createHttpClient(SecurityContext context) {
-    return super.createHttpClient(context)
-      ..badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
-  }
-}
+// class MyHttpOverrides extends HttpOverrides {
+//   @override
+//   HttpClient createHttpClient(SecurityContext context) {
+//     return super.createHttpClient(context)
+//       ..badCertificateCallback =
+//           (X509Certificate cert, String host, int port) => true;
+//   }
+// }

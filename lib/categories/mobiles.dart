@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, missing_required_param, dead_code, unused_label, avoid_unnecessary_containers
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, missing_required_param, dead_code, unused_label, avoid_unnecessary_containers, avoid_print
 
 import 'package:animations/animations.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -67,6 +67,14 @@ class _MobilesState extends State<Mobiles> {
     Navigator.of(context).pushNamed("/home");
   }
 
+  var increment = 0;
+
+  cartAdded() {
+    setState(() {
+      increment++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -88,7 +96,11 @@ class _MobilesState extends State<Mobiles> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 20, right: 10),
                   child: Icon(Icons.shopping_cart),
-                ))
+                )),
+            Padding(
+              padding: const EdgeInsets.only(top: 10, right: 20),
+              child: Text('$increment'),
+            )
           ],
         ),
         drawer: Theme(
@@ -320,31 +332,37 @@ class _MobilesState extends State<Mobiles> {
                                         ),
                                         GestureDetector(
                                             onTap: () async {
-                                              var name = mobileName[index];
-                                              var image = mobileImage[index];
-                                              var prize = mobilePrize[index];
-                                              var descrip = description[index];
+                                              try {
+                                                var name = mobileName[index];
+                                                var image = mobileImage[index];
+                                                var prize = mobilePrize[index];
+                                                var descrip =
+                                                    description[index];
 
-                                              FirebaseFirestore db =
-                                                  FirebaseFirestore.instance;
+                                                FirebaseFirestore db =
+                                                    FirebaseFirestore.instance;
 
-                                              FirebaseAuth.instance
-                                                          .currentUser ==
-                                                      null
-                                                  ? goToLoginScreen()
-                                                  : await db
-                                                      .collection("users")
-                                                      .doc(FirebaseAuth.instance
-                                                          .currentUser.uid)
-                                                      .collection("myCart")
-                                                      .add({
-                                                      "name": name,
-                                                      "image": image,
-                                                      "prize": prize,
-                                                      "description": descrip
-                                                    });
-                                              EasyLoading.showSuccess(
-                                                  'Added to your cart!');
+                                                FirebaseAuth.instance
+                                                            .currentUser ==
+                                                        null
+                                                    ? goToLoginScreen()
+                                                    : await db
+                                                        .collection("users")
+                                                        .doc(FirebaseAuth
+                                                            .instance
+                                                            .currentUser
+                                                            .uid)
+                                                        .collection("myCart")
+                                                        .add({
+                                                        "name": name,
+                                                        "image": image,
+                                                        "prize": prize,
+                                                        "description": descrip
+                                                      });
+                                                cartAdded();
+                                              } catch (e) {
+                                                print(e);
+                                              }
                                             },
                                             child: Center(
                                                 child: Icon(

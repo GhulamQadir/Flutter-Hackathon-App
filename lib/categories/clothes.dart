@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, missing_required_param, dead_code, unused_label, avoid_unnecessary_containers
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, missing_required_param, dead_code, unused_label, avoid_unnecessary_containers, avoid_print
 
 import 'package:animations/animations.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -68,6 +68,14 @@ class _ClothesState extends State<Clothes> {
     Navigator.of(context).pushNamed("/home");
   }
 
+  var increment = 0;
+
+  cartAdded() {
+    setState(() {
+      increment++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -89,7 +97,8 @@ class _ClothesState extends State<Clothes> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 20, right: 10),
                   child: Icon(Icons.shopping_cart),
-                ))
+                )),
+            Text('$increment')
           ],
         ),
         drawer: Theme(
@@ -344,8 +353,10 @@ class _ClothesState extends State<Clothes> {
                                                       "prize": prize,
                                                       "description": descrip
                                                     });
-                                              EasyLoading.showSuccess(
-                                                  'Added to your cart!');
+
+                                              print("Added to your cart");
+                                              cartAdded();
+                                              // });
                                             },
                                             child: Center(
                                                 child: Icon(

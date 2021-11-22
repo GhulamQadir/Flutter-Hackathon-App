@@ -34,7 +34,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       ),
       body: Center(
         child: Container(
-            child: StreamBuilder<QuerySnapshot<Object>>(
+            child: StreamBuilder<QuerySnapshot>(
           stream: postStream,
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
