@@ -146,7 +146,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                       Padding(
                         padding: const EdgeInsets.all(0),
                         child: Image.network(
-                          "https://www.nicepng.com/png/detail/423-4233550_current-logo-stop-and-shop-logo-png.png",
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6blxu_RNRCVZ2j7jsrDHfFKodBDwqklAPLDd7FAxl3CLZKe5KIl7469c2oTBnf6MdvzE&usqp=CAU",
                           height: 150,
                         ),
                       ),

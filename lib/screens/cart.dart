@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables, annotate_overrides, avoid_print, avoid_function_literals_in_foreach_calls
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables, annotate_overrides, avoid_print, avoid_function_literals_in_foreach_calls, sized_box_for_whitespace
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -38,12 +38,14 @@ class _CartScreenState extends State<CartScreen> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text("My Cart"),
+          title: Center(child: Text("My Cart")),
+          backgroundColor: Colors.purple,
         ),
         // floatingActionButton: FloatingActionButton(
         //   onPressed: getUserProducts,
         //   child: Text("place order"),
         // ),
+        backgroundColor: Color(0xfff0f0f0),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         body: Center(
           child: Container(
@@ -151,54 +153,133 @@ class _CartScreenState extends State<CartScreen> {
 
                         return SingleChildScrollView(
                           child: Column(children: [
-                            ElevatedButton(
-                                onPressed: placeAnOrder,
-                                child: Text("Place order")),
-                            Row(
+                            SizedBox(
+                              height: 20,
+                            ),
+                            // ElevatedButton(
+                            //     onPressed: placeAnOrder,
+                            //     child: Text("Place order")),
+                            // Row(
+                            //   children: [
+                            //     SizedBox(
+                            //       width: 10,
+                            //     ),
+                            //     Container(
+                            //       height: 50,
+                            //       width: 60,
+                            //       decoration: BoxDecoration(
+                            //           image: DecorationImage(
+                            //               image: NetworkImage(data["image"]))),
+                            //     ),
+                            //     SizedBox(
+                            //       width: 30,
+                            //     ),
+                            //     Text(
+                            //       data["name"],
+                            //       style: TextStyle(
+                            //           fontSize: 17,
+                            //           fontWeight: FontWeight.w400),
+                            //     ),
+                            //     SizedBox(
+                            //       width: 30,
+                            //     ),
+                            //     Text(
+                            //       data["prize"],
+                            //       style: TextStyle(
+                            //           fontSize: 17,
+                            //           fontWeight: FontWeight.w400),
+                            //     ),
+                            //     SizedBox(
+                            //       width: 5,
+                            //     ),
+                            //     IconButton(
+                            //       onPressed: removeProduct,
+                            //       icon: Icon(
+                            //         Icons.remove_circle_outline,
+                            //         color: Colors.yellow[500],
+                            //       ),
+                            //     ),
+
+                            //   ],
+                            // ),
+                            Stack(
                               children: [
-                                SizedBox(
-                                  width: 10,
-                                ),
                                 Container(
-                                  height: 50,
-                                  width: 60,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          image: NetworkImage(data["image"]))),
+                                  // height: MediaQuery.of(context).size.height,
+                                  height: 100,
+                                  width: 340,
+                                  child: Card(
+                                    margin: EdgeInsets.only(top: 5),
+                                    elevation: 5,
+                                    // color: Color(0xfff0f0f0),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(15),
+                                          bottomRight: Radius.circular(20)),
+                                    ),
+                                  ),
                                 ),
-                                SizedBox(
-                                  width: 30,
+                                Positioned(
+                                  left: 10,
+                                  top: 15,
+                                  child: Container(
+                                    height: 70,
+                                    width: 110,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        image: DecorationImage(
+                                            image:
+                                                NetworkImage(data["image"]))),
+                                  ),
                                 ),
-                                Text(
-                                  data["name"],
-                                  style: TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w400),
+                                Positioned(
+                                  top: 22,
+                                  left: 130,
+                                  child: Text(
+                                    data["name"],
+                                    style: TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
-                                SizedBox(
-                                  width: 30,
+                                Positioned(
+                                  top: 11,
+                                  left: 260,
+                                  child: IconButton(
+                                    onPressed: removeProduct,
+                                    icon: Icon(
+                                      Icons.remove_circle_outline,
+                                      color: Colors.purple[300],
+                                    ),
+                                  ),
                                 ),
-                                Text(
-                                  data["prize"],
-                                  style: TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w400),
+                                Positioned(
+                                  top: 11,
+                                  left: 295,
+                                  child: IconButton(
+                                    onPressed: placeAnOrder,
+                                    icon: Icon(
+                                      Icons.check_circle_outline_outlined,
+                                      color: Colors.purple[300],
+                                    ),
+                                  ),
                                 ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                IconButton(
-                                  onPressed: removeProduct,
-                                  icon: Icon(
-                                    Icons.remove_circle_outline,
-                                    color: Colors.yellow[500],
+                                Positioned(
+                                  top: 50,
+                                  left: 130,
+                                  child: Text(
+                                    data["prize"],
+                                    style: TextStyle(
+                                        color: Colors.grey[500],
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500),
                                   ),
                                 ),
                               ],
                             ),
-                            SizedBox(
-                              height: 20,
-                            ),
+                            // SizedBox(
+                            //   height: 20,
+                            // ),
                           ]),
                         );
                       }).toList(),
@@ -209,11 +290,11 @@ class _CartScreenState extends State<CartScreen> {
             ],
           )),
         ),
-        floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed("/grocery");
-            },
-            child: Text("Buy now")),
+        // floatingActionButton: FloatingActionButton(
+        //     onPressed: () {
+        //       Navigator.of(context).pushNamed("/grocery");
+        //     },
+        //     child: Text("Buy now")),
       ),
     );
   }
