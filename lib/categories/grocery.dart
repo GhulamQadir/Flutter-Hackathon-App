@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, missing_required_param, dead_code, unused_label, avoid_unnecessary_containers
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, missing_required_param, dead_code, unused_label, avoid_unnecessary_containers, curly_braces_in_flow_control_structures
 
 import 'package:animations/animations.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -31,12 +31,12 @@ class _GroceryState extends State<Grocery> {
   ];
 
   var groceryPrize = [
-    "1600",
-    "100",
-    "180",
-    "700",
-    "500",
-    "80",
+    1600,
+    100,
+    180,
+    700,
+    500,
+    80,
   ];
 
   var description = [
@@ -68,6 +68,23 @@ class _GroceryState extends State<Grocery> {
     Navigator.of(context).pushNamed("/home");
   }
 
+  final firebaseUser = FirebaseAuth.instance.currentUser;
+
+  FirebaseFirestore db = FirebaseFirestore.instance;
+
+  int length;
+
+  getLength() async {
+    db
+        .collection('users')
+        .doc(firebaseUser.uid)
+        .collection("myCart")
+        .get()
+        .then((myDocuments) {
+      length = myDocuments.docs.length;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -87,9 +104,23 @@ class _GroceryState extends State<Grocery> {
                     ? goToLoginScreen
                     : goToCart,
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 10),
+                  padding: const EdgeInsets.only(left: 20),
                   child: Icon(Icons.shopping_cart),
-                ))
+                )),
+            FutureBuilder(
+                future: getLength(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState != ConnectionState.done)
+                    return Text("Loading please wait ");
+
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 9, right: 20),
+                    child: Text(
+                      '$length',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  );
+                }),
           ],
         ),
         drawer: Theme(

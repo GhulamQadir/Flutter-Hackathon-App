@@ -52,8 +52,9 @@ class _PlaceOrderState extends State<PlaceOrder> {
   }
 
   Future<void> getAddressFromLatLong(Position position) async {
-    List<Placemark> placeMark =
-        await placemarkFromCoordinates(position.latitude, position.longitude);
+    List<Placemark> placeMark = await placemarkFromCoordinates(
+        position.latitude, position.longitude,
+        localeIdentifier: 'en');
     print(placeMark);
 
     // Placemark place = placeMark;

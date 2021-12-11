@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, missing_required_param, dead_code, unused_label, avoid_unnecessary_containers, avoid_print
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, missing_required_param, dead_code, unused_label, avoid_unnecessary_containers, avoid_print, curly_braces_in_flow_control_structures
 
 import 'package:animations/animations.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -30,12 +30,12 @@ class _MobilesState extends State<Mobiles> {
   ];
 
   var mobilePrize = [
-    "16000",
-    "11000",
-    "17000",
-    "180000",
-    "210000",
-    "16000",
+    16000,
+    11000,
+    17000,
+    180000,
+    210000,
+    16000,
   ];
 
   var description = [
@@ -67,11 +67,20 @@ class _MobilesState extends State<Mobiles> {
     Navigator.of(context).pushNamed("/home");
   }
 
-  var increment = 0;
+  final firebaseUser = FirebaseAuth.instance.currentUser;
 
-  cartAdded() {
-    setState(() {
-      increment++;
+  FirebaseFirestore db = FirebaseFirestore.instance;
+
+  int length;
+
+  getLength() async {
+    db
+        .collection('users')
+        .doc(firebaseUser.uid)
+        .collection("myCart")
+        .get()
+        .then((myDocuments) {
+      length = myDocuments.docs.length;
     });
   }
 
@@ -94,13 +103,25 @@ class _MobilesState extends State<Mobiles> {
                     ? goToLoginScreen
                     : goToCart,
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 10),
+                  padding: const EdgeInsets.only(
+                    left: 20,
+                  ),
                   child: Icon(Icons.shopping_cart),
                 )),
-            Padding(
-              padding: const EdgeInsets.only(top: 10, right: 20),
-              child: Text('$increment'),
-            )
+            FutureBuilder(
+                future: getLength(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState != ConnectionState.done)
+                    return Text("Loading please wait ");
+
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 9, right: 20),
+                    child: Text(
+                      '$length',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  );
+                }),
           ],
         ),
         drawer: Theme(
@@ -264,7 +285,7 @@ class _MobilesState extends State<Mobiles> {
                                         image: DecorationImage(
                                           fit: BoxFit.fill,
                                           image:
-                                              NetworkImage(mobilePrize[index]),
+                                              NetworkImage(mobileImage[index]),
                                         ),
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(8.0)),
@@ -359,7 +380,6 @@ class _MobilesState extends State<Mobiles> {
                                                         "prize": prize,
                                                         "description": descrip
                                                       });
-                                                cartAdded();
                                               } catch (e) {
                                                 print(e);
                                               }

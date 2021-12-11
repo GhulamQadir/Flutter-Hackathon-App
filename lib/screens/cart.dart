@@ -1,10 +1,9 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables, annotate_overrides, avoid_print, avoid_function_literals_in_foreach_calls, sized_box_for_whitespace
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables, annotate_overrides, avoid_print, avoid_function_literals_in_foreach_calls, sized_box_for_whitespace, must_call_super
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterhackathon/screens/place_order.dart';
-import 'package:flutterhackathon/screens/user_profile.dart';
 
 class CartScreen extends StatefulWidget {
   @override
@@ -12,8 +11,6 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  String name;
-  String image;
   final firebaseUser = FirebaseAuth.instance.currentUser;
 
   Stream cartStream;
@@ -28,8 +25,47 @@ class _CartScreenState extends State<CartScreen> {
     super.initState();
   }
 
-  ok() {
-    Navigator.of(context).pop();
+  // ok() {
+  //   Navigator.of(context).pop();
+  // }
+
+  //     Future getTotal() async {
+  // int sum = 0;
+  // FirebaseFirestore.instance.collection('Users/$userid/Cart').get().then(
+  //   (querySnapshot) {
+  //     querySnapshot.docs.forEach((result) {
+  //       for (var i = 1; i < result.data()['price'].toString().length; i++) {
+  //         sum = sum + result.data()['price'];
+  //       }
+  //     });
+  //     print('total : $sum');
+  //   },
+  // );
+  // }
+
+  double sum = 0;
+  double total = 0;
+
+  Future getTotal() async {
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(firebaseUser.uid)
+        .collection("myCart")
+        .get()
+        .then(
+      (querySnapshot) {
+        querySnapshot.docs.forEach((result) {
+          querySnapshot.docs.forEach((result) {
+            sum = sum + result.data()['price'];
+          });
+        });
+        setState(() {
+          total = sum;
+        });
+
+        print('total : $sum');
+      },
+    );
   }
 
   @override
@@ -51,11 +87,17 @@ class _CartScreenState extends State<CartScreen> {
           child: Container(
               child: Column(
             children: [
+              TextButton(onPressed: getTotal, child: Text("Total")),
               Flexible(
                 child: StreamBuilder<QuerySnapshot>(
                   stream: cartStream,
                   builder: (BuildContext context,
                       AsyncSnapshot<QuerySnapshot> snapshot) {
+                    var items = FirebaseFirestore.instance
+                        .collection('users')
+                        .doc(firebaseUser.uid)
+                        .collection("myCart")
+                        .get();
                     if (snapshot.hasError) {
                       return Text('Something went wrong');
                     }
@@ -115,24 +157,6 @@ class _CartScreenState extends State<CartScreen> {
                               MaterialPageRoute(
                                   builder: (context) => PlaceOrder()),
                             );
-                            // showDialog(
-                            //     context: context,
-                            //     builder: (BuildContext context) {
-                            //       return AlertDialog(
-                            //           content: Column(
-                            //         children: [
-                            //           Text(
-                            //             "Your order has been placed",
-                            //             style: TextStyle(
-                            //                 fontSize: 20,
-                            //                 fontWeight: FontWeight.w600),
-                            //           ),
-                            //           ElevatedButton(
-                            //               onPressed: ok, child: Text("Ok"))
-                            //         ],
-                            //       ));
-                            //     });
-
                           } catch (e) {
                             print(e.toString());
                           }
@@ -156,62 +180,14 @@ class _CartScreenState extends State<CartScreen> {
                             SizedBox(
                               height: 20,
                             ),
-                            // ElevatedButton(
-                            //     onPressed: placeAnOrder,
-                            //     child: Text("Place order")),
-                            // Row(
-                            //   children: [
-                            //     SizedBox(
-                            //       width: 10,
-                            //     ),
-                            //     Container(
-                            //       height: 50,
-                            //       width: 60,
-                            //       decoration: BoxDecoration(
-                            //           image: DecorationImage(
-                            //               image: NetworkImage(data["image"]))),
-                            //     ),
-                            //     SizedBox(
-                            //       width: 30,
-                            //     ),
-                            //     Text(
-                            //       data["name"],
-                            //       style: TextStyle(
-                            //           fontSize: 17,
-                            //           fontWeight: FontWeight.w400),
-                            //     ),
-                            //     SizedBox(
-                            //       width: 30,
-                            //     ),
-                            //     Text(
-                            //       data["prize"],
-                            //       style: TextStyle(
-                            //           fontSize: 17,
-                            //           fontWeight: FontWeight.w400),
-                            //     ),
-                            //     SizedBox(
-                            //       width: 5,
-                            //     ),
-                            //     IconButton(
-                            //       onPressed: removeProduct,
-                            //       icon: Icon(
-                            //         Icons.remove_circle_outline,
-                            //         color: Colors.yellow[500],
-                            //       ),
-                            //     ),
-
-                            //   ],
-                            // ),
                             Stack(
                               children: [
                                 Container(
-                                  // height: MediaQuery.of(context).size.height,
                                   height: 100,
                                   width: 340,
                                   child: Card(
                                     margin: EdgeInsets.only(top: 5),
                                     elevation: 5,
-                                    // color: Color(0xfff0f0f0),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.only(
                                           topLeft: Radius.circular(15),
@@ -268,7 +244,7 @@ class _CartScreenState extends State<CartScreen> {
                                   top: 50,
                                   left: 130,
                                   child: Text(
-                                    data["prize"],
+                                    data["prize"].toString(),
                                     style: TextStyle(
                                         color: Colors.grey[500],
                                         fontSize: 15,
@@ -280,6 +256,7 @@ class _CartScreenState extends State<CartScreen> {
                             // SizedBox(
                             //   height: 20,
                             // ),
+                            Text("kahd")
                           ]),
                         );
                       }).toList(),
@@ -290,11 +267,6 @@ class _CartScreenState extends State<CartScreen> {
             ],
           )),
         ),
-        // floatingActionButton: FloatingActionButton(
-        //     onPressed: () {
-        //       Navigator.of(context).pushNamed("/grocery");
-        //     },
-        //     child: Text("Buy now")),
       ),
     );
   }
