@@ -1,7 +1,8 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables, annotate_overrides, avoid_print, avoid_function_literals_in_foreach_calls, sized_box_for_whitespace, must_call_super
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables, annotate_overrides, avoid_print, avoid_function_literals_in_foreach_calls, sized_box_for_whitespace, must_call_super, curly_braces_in_flow_control_structures, missing_return
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterhackathon/screens/place_order.dart';
 
@@ -14,6 +15,25 @@ class _CartScreenState extends State<CartScreen> {
   final firebaseUser = FirebaseAuth.instance.currentUser;
 
   Stream cartStream;
+  int total = 0;
+  getTotal() async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(firebaseUser.uid)
+        .collection("myCart")
+        .get()
+        .then((querySnapshot) {
+      querySnapshot.docs.forEach((result) {
+        total = total + result.data()['prize'];
+
+        // print(total);
+        // print(total);
+        // setState(() {
+        //   sum = total;
+        // });
+      });
+    });
+  }
 
   void initState() {
     cartStream = FirebaseFirestore.instance
@@ -25,49 +45,6 @@ class _CartScreenState extends State<CartScreen> {
     super.initState();
   }
 
-  // ok() {
-  //   Navigator.of(context).pop();
-  // }
-
-  //     Future getTotal() async {
-  // int sum = 0;
-  // FirebaseFirestore.instance.collection('Users/$userid/Cart').get().then(
-  //   (querySnapshot) {
-  //     querySnapshot.docs.forEach((result) {
-  //       for (var i = 1; i < result.data()['price'].toString().length; i++) {
-  //         sum = sum + result.data()['price'];
-  //       }
-  //     });
-  //     print('total : $sum');
-  //   },
-  // );
-  // }
-
-  double sum = 0;
-  double total = 0;
-
-  Future getTotal() async {
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(firebaseUser.uid)
-        .collection("myCart")
-        .get()
-        .then(
-      (querySnapshot) {
-        querySnapshot.docs.forEach((result) {
-          querySnapshot.docs.forEach((result) {
-            sum = sum + result.data()['price'];
-          });
-        });
-        setState(() {
-          total = sum;
-        });
-
-        print('total : $sum');
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -77,17 +54,12 @@ class _CartScreenState extends State<CartScreen> {
           title: Center(child: Text("My Cart")),
           backgroundColor: Colors.purple,
         ),
-        // floatingActionButton: FloatingActionButton(
-        //   onPressed: getUserProducts,
-        //   child: Text("place order"),
-        // ),
         backgroundColor: Color(0xfff0f0f0),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         body: Center(
           child: Container(
               child: Column(
             children: [
-              TextButton(onPressed: getTotal, child: Text("Total")),
               Flexible(
                 child: StreamBuilder<QuerySnapshot>(
                   stream: cartStream,
@@ -163,13 +135,30 @@ class _CartScreenState extends State<CartScreen> {
                         }
 
                         removeProduct() async {
-                          final FirebaseUser =
+                          final firebaseUser =
                               FirebaseAuth.instance.currentUser;
                           FirebaseFirestore db = FirebaseFirestore.instance;
 
+                          int prodMin;
+
                           await db
                               .collection("users")
-                              .doc(FirebaseUser.uid)
+                              .doc(firebaseUser.uid)
+                              .collection("myCart")
+                              .doc(data["id"])
+                              .get()
+                              .then((value) {
+                            prodMin = value.data()['prize'];
+                            total = total - prodMin;
+                            print(total);
+                            setState(() {
+                              total = total - total;
+                            });
+                          });
+
+                          await db
+                              .collection("users")
+                              .doc(firebaseUser.uid)
                               .collection("myCart")
                               .doc(data["id"])
                               .delete();
@@ -253,16 +242,42 @@ class _CartScreenState extends State<CartScreen> {
                                 ),
                               ],
                             ),
-                            // SizedBox(
-                            //   height: 20,
-                            // ),
-                            Text("kahd")
                           ]),
                         );
                       }).toList(),
                     );
                   },
                 ),
+              ),
+
+              // Text("Total is: $total")
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Total: ',
+                    style: TextStyle(
+                        fontSize: 19,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black),
+                  ),
+                  FutureBuilder(
+                      future: getTotal(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState != ConnectionState.done)
+                          return CircularProgressIndicator(
+                            color: Colors.purple[300],
+                          );
+
+                        return Text(
+                          '$total',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey[500],
+                              fontWeight: FontWeight.w500),
+                        );
+                      }),
+                ],
               ),
             ],
           )),
@@ -271,5 +286,3 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 }
-
-class EasyLoading {}

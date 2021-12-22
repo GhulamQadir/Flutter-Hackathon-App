@@ -1,5 +1,5 @@
 // @dart=2.9
-// ignore_for_file: prefer_const_constructors, curly_braces_in_flow_control_structures, avoid_print, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors, avoid_unnecessary_containers, missing_required_param
+// ignore_for_file: prefer_const_constructors, curly_braces_in_flow_control_structures, avoid_print, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors, avoid_unnecessary_containers, missing_required_param, avoid_function_literals_in_foreach_calls, annotate_overrides
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -119,17 +119,33 @@ class _HomeState extends State<Home> {
 
   FirebaseFirestore db = FirebaseFirestore.instance;
 
-  int length;
+  int length = 0;
 
   getLength() async {
-    db
-        .collection('users')
-        .doc(firebaseUser.uid)
-        .collection("myCart")
-        .get()
-        .then((myDocuments) {
-      length = myDocuments.docs.length;
+    // db
+    //     .collection('users')
+    //     .doc(firebaseUser.uid)
+    //     .collection("myCart")
+    //     .get()
+    //     .then((myDocuments) {
+    //   length = myDocuments.docs.length;
+    // });
+
+    CollectionReference reference =
+        db.collection('users').doc(firebaseUser.uid).collection("myCart");
+    reference.snapshots().listen((querySnapshot) {
+      querySnapshot.docChanges.forEach((change) {
+        length = querySnapshot.docs.length;
+        setState(() {
+          length;
+        });
+      });
     });
+  }
+
+  void initState() {
+    getLength();
+    super.initState();
   }
 
   Widget _buildItemList(BuildContext context, int index) {
@@ -180,20 +196,28 @@ class _HomeState extends State<Home> {
                     ),
                     child: Icon(Icons.shopping_cart),
                   )),
-              FutureBuilder(
-                  future: getLength(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState != ConnectionState.done)
-                      return Text("Loading please wait ");
+              Padding(
+                padding: const EdgeInsets.only(top: 9, right: 20),
+                child: Text(
+                  '$length',
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+              // PURANA coDE HAAA !!!
+              // FutureBuilder(
+              //     future: getLength(),
+              //     builder: (context, snapshot) {
+              //       if (snapshot.connectionState != ConnectionState.done)
+              //         return Text("Loading please wait ");
 
-                    return Padding(
-                      padding: const EdgeInsets.only(top: 9, right: 20),
-                      child: Text(
-                        '$length',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                    );
-                  }),
+              //       return Padding(
+              //         padding: const EdgeInsets.only(top: 9, right: 20),
+              //         child: Text(
+              //           '$length',
+              //           style: TextStyle(color: Colors.black),
+              //         ),
+              //       );
+              //     }),
               GestureDetector(
                 onTap: FirebaseAuth.instance.currentUser == null
                     ? goToLoginScreen
@@ -582,6 +606,17 @@ class _HomeState extends State<Home> {
                   child: Text(
                     "Trending Products",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
+                  ),
+                ),
+                GridView(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    // crossAxisSpacing: 3,
+                    mainAxisSpacing: 20,
+                    childAspectRatio:
+                        300 / (MediaQuery.of(context).size.height / 1.5),
                   ),
                 ),
                 GridView.builder(
