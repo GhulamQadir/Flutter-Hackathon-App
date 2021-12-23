@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, missing_required_param, dead_code, unused_label, avoid_unnecessary_containers, curly_braces_in_flow_control_structures, avoid_function_literals_in_foreach_calls, annotate_overrides
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, missing_required_param, dead_code, unused_label, avoid_unnecessary_containers, curly_braces_in_flow_control_structures, avoid_function_literals_in_foreach_calls, annotate_overrides, avoid_print, deprecated_member_use
 
 import 'package:animations/animations.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -323,11 +323,46 @@ class _ElectronicsState extends State<Electronics> {
                                                     .doc(FirebaseAuth.instance
                                                         .currentUser.uid)
                                                     .collection("favorites")
-                                                    .add({
-                                                    "name": name,
-                                                    "image": image,
-                                                    "price": prize,
-                                                    "description": descrip
+                                                    .where("name",
+                                                        isEqualTo: name)
+                                                    .get()
+                                                    .then((value) {
+                                                    if (value.docs.isNotEmpty) {
+                                                      Scaffold.of(context)
+                                                          .showSnackBar(SnackBar(
+                                                              backgroundColor:
+                                                                  Colors.purple[
+                                                                      300],
+                                                              content: Text(
+                                                                  "Already added to favorites")));
+                                                      print(
+                                                          "Already added to favorites");
+                                                    } else {
+                                                      db
+                                                          .collection("users")
+                                                          .doc(FirebaseAuth
+                                                              .instance
+                                                              .currentUser
+                                                              .uid)
+                                                          .collection(
+                                                              "favorites")
+                                                          .add({
+                                                        "name": name,
+                                                        "image": image,
+                                                        "price": prize,
+                                                        "description": descrip
+                                                      });
+
+                                                      Scaffold.of(context)
+                                                          .showSnackBar(SnackBar(
+                                                              backgroundColor:
+                                                                  Colors.purple[
+                                                                      300],
+                                                              content: Text(
+                                                                  "Added to favorites")));
+                                                      print(
+                                                          "Added to favorites");
+                                                    }
                                                   });
                                           },
                                           child: Center(

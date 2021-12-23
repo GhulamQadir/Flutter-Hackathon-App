@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, missing_required_param, dead_code, unused_label, avoid_unnecessary_containers, annotate_overrides
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, missing_required_param, dead_code, unused_label, avoid_unnecessary_containers, annotate_overrides, avoid_print, unused_element, deprecated_member_use
 
 import 'package:animations/animations.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -55,6 +55,25 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                 String id = document.id;
                 data["id"] = id;
 
+                removeFromFavorites() async {
+                  final firebaseUser = FirebaseAuth.instance.currentUser;
+                  FirebaseFirestore db = FirebaseFirestore.instance;
+
+                  await db
+                      .collection("users")
+                      .doc(firebaseUser.uid)
+                      .collection("favorites")
+                      .doc(data["id"])
+                      .delete();
+
+                  Scaffold.of(context).showSnackBar(SnackBar(
+                    backgroundColor: Colors.purple[300],
+                    content: Text("Removed From Favorites"),
+                  ));
+
+                  print("removed from your favorites");
+                }
+
                 return SingleChildScrollView(
                   child: Column(
                     children: [
@@ -95,13 +114,18 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                                     BorderRadius.circular(15)),
                                             alignment: Alignment.topLeft,
                                             child: ListTile(
-                                              title: Text(
-                                                data["name"],
-                                                style: TextStyle(
-                                                  color: Colors.red,
+                                                title: Text(
+                                                  data["name"],
+                                                  style: TextStyle(
+                                                    color: Colors.red,
+                                                  ),
                                                 ),
-                                              ),
-                                            ),
+                                                trailing: GestureDetector(
+                                                  onTap: removeFromFavorites,
+                                                  child: Icon(
+                                                    Icons.delete,
+                                                  ),
+                                                )),
                                           ),
                                         ),
                                         Text(
@@ -121,24 +145,6 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                   child: SingleChildScrollView(
                                 child: Column(
                                   children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 20, left: 5, right: 5),
-                                      child: Text(
-                                        data["title"] ?? '',
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 5),
-                                      child: Container(
-                                          child: Text(
-                                        data["publishedAt"] ?? '',
-                                        style: TextStyle(fontSize: 15),
-                                      )),
-                                    ),
                                     Container(
                                       height: 250,
                                       width: MediaQuery.of(context).size.width,

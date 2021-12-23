@@ -608,17 +608,18 @@ class _HomeState extends State<Home> {
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
                   ),
                 ),
-                GridView(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    // crossAxisSpacing: 3,
-                    mainAxisSpacing: 20,
-                    childAspectRatio:
-                        300 / (MediaQuery.of(context).size.height / 1.5),
-                  ),
-                ),
+                // GridView(
+                //   shrinkWrap: true,
+                //   physics: NeverScrollableScrollPhysics(),
+                //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                //     crossAxisCount: 2,
+                //     // crossAxisSpacing: 3,
+                //     mainAxisSpacing: 20,
+                //     childAspectRatio:
+                //         300 / (MediaQuery.of(context).size.height / 1.5),
+                //   ),
+
+                // ),
                 GridView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
