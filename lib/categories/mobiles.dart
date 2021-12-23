@@ -415,6 +415,13 @@ class _MobilesState extends State<Mobiles> {
                                                         "prize": prize,
                                                         "description": descrip
                                                       });
+
+                                                Scaffold.of(context)
+                                                    .showSnackBar(SnackBar(
+                                                        backgroundColor:
+                                                            Colors.purple[300],
+                                                        content: Text(
+                                                            "Added to your cart")));
                                               } catch (e) {
                                                 print(e);
                                               }

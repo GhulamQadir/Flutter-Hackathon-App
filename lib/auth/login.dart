@@ -116,7 +116,8 @@ class _LoginState extends State<Login> {
             debugShowCheckedModeBanner: false,
             home: Scaffold(
               appBar: AppBar(
-                title: Text("Login"),
+                title: Center(child: Text("Login")),
+                backgroundColor: Colors.purple[500],
               ),
               body: SafeArea(
                   child: SingleChildScrollView(
@@ -124,16 +125,17 @@ class _LoginState extends State<Login> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        height: 15,
+                        height: 20,
                       ),
                       Center(
                         child: Container(
                           height: 150,
                           width: 200,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                      "https://mapolypress.files.wordpress.com/2018/04/news1.png"))),
+                          child: Icon(
+                            Icons.shopping_cart_outlined,
+                            color: Colors.purple[500],
+                            size: 150,
+                          ),
                         ),
                       ),
                       Form(
@@ -160,14 +162,13 @@ class _LoginState extends State<Login> {
                                   labelText: "Email",
                                   prefixIcon: Icon(
                                     Icons.email,
-                                    color: Colors.red[500],
+                                    color: Colors.purple[500],
                                   ),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(30.0),
                                     borderSide: BorderSide.none,
                                   ),
                                   filled: true,
-                                  fillColor: Color(0xffF8F0E3),
                                 ),
                               ),
                             ),
@@ -190,14 +191,13 @@ class _LoginState extends State<Login> {
                                   labelText: "Password",
                                   prefixIcon: Icon(
                                     Icons.lock,
-                                    color: Colors.red[500],
+                                    color: Colors.purple[500],
                                   ),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(30.0),
                                     borderSide: BorderSide.none,
                                   ),
                                   filled: true,
-                                  fillColor: Color(0xffF8F0E3),
                                 ),
                               ),
                             ),
@@ -221,7 +221,7 @@ class _LoginState extends State<Login> {
                                       style: ButtonStyle(
                                           backgroundColor:
                                               MaterialStateProperty.all<Color>(
-                                                  Colors.red[400]),
+                                                  Colors.purple[500]),
                                           shape: MaterialStateProperty.all<
                                               RoundedRectangleBorder>(
                                             RoundedRectangleBorder(
@@ -243,7 +243,7 @@ class _LoginState extends State<Login> {
                                           "Create one",
                                           style: TextStyle(
                                               fontSize: 16,
-                                              color: Colors.red[500]),
+                                              color: Colors.purple[500]),
                                         )),
                                   ],
                                 ),
@@ -266,7 +266,7 @@ class _LoginState extends State<Login> {
                                       style: ButtonStyle(
                                           backgroundColor:
                                               MaterialStateProperty.all<Color>(
-                                                  Colors.red[400]),
+                                                  Colors.purple[500]),
                                           shape: MaterialStateProperty.all<
                                               RoundedRectangleBorder>(
                                             RoundedRectangleBorder(

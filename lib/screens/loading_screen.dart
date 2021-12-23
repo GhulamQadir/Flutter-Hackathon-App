@@ -16,8 +16,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
     return Container(
         color: Colors.white,
         child: Center(
-            child: SpinKitDoubleBounce(
-          color: Colors.blue,
+            child: SpinKitCircle(
+          color: Colors.purple[500],
           size: 50,
         )
             // SpinKitChasingDots(

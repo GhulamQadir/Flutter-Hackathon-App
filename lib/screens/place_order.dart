@@ -18,7 +18,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   String location = "Null, press button";
-  String address = "search";
+  String address = "";
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -145,10 +145,11 @@ class _PlaceOrderState extends State<PlaceOrder> {
                   child: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.all(0),
-                        child: Image.network(
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6blxu_RNRCVZ2j7jsrDHfFKodBDwqklAPLDd7FAxl3CLZKe5KIl7469c2oTBnf6MdvzE&usqp=CAU",
-                          height: 150,
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Icon(
+                          Icons.shopping_cart_outlined,
+                          color: Colors.purple[500],
+                          size: 140,
                         ),
                       ),
                       Padding(

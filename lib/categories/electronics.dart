@@ -409,8 +409,12 @@ class _ElectronicsState extends State<Electronics> {
                                                       "prize": prize,
                                                       "description": descrip
                                                     });
-                                              EasyLoading.showSuccess(
-                                                  'Added to your cart!');
+                                              Scaffold.of(context).showSnackBar(
+                                                  SnackBar(
+                                                      backgroundColor:
+                                                          Colors.purple[300],
+                                                      content: Text(
+                                                          "Added to your cart")));
                                             },
                                             child: Center(
                                                 child: Icon(

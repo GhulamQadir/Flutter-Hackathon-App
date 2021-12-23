@@ -1,5 +1,5 @@
 // @dart=2.9
-// ignore_for_file: file_names, prefer_const_constructors, avoid_print, unnecessary_null_comparison, dead_code, use_key_in_widget_constructors
+// ignore_for_file: file_names, prefer_const_constructors, avoid_print, unnecessary_null_comparison, dead_code, use_key_in_widget_constructors, sized_box_for_whitespace
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -107,12 +107,16 @@ class _SignUpState extends State<SignUp> {
             home: Scaffold(
               appBar: AppBar(
                 title: Center(child: Text("Sign Up")),
+                backgroundColor: Colors.purple[500],
               ),
               body: SingleChildScrollView(
                 child: Form(
                   key: _formKey,
                   child: Column(
                     children: [
+                      SizedBox(
+                        height: 20,
+                      ),
                       GestureDetector(
                         onTap: pickImage,
                         child: Container(
@@ -144,14 +148,13 @@ class _SignUpState extends State<SignUp> {
                             labelText: "Username",
                             prefixIcon: Icon(
                               Icons.person,
-                              color: Colors.red[500],
+                              color: Colors.purple[500],
                             ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30.0),
                               borderSide: BorderSide.none,
                             ),
                             filled: true,
-                            fillColor: Color(0xffF8F0E3),
                           ),
                         ),
                       ),
@@ -174,14 +177,13 @@ class _SignUpState extends State<SignUp> {
                             labelText: "Email",
                             prefixIcon: Icon(
                               Icons.person,
-                              color: Colors.red[500],
+                              color: Colors.purple[500],
                             ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30.0),
                               borderSide: BorderSide.none,
                             ),
                             filled: true,
-                            fillColor: Color(0xffF8F0E3),
                           ),
                         ),
                       ),
@@ -204,14 +206,13 @@ class _SignUpState extends State<SignUp> {
                             labelText: "Password",
                             prefixIcon: Icon(
                               Icons.lock,
-                              color: Colors.red[500],
+                              color: Colors.purple[500],
                             ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30.0),
                               borderSide: BorderSide.none,
                             ),
                             filled: true,
-                            fillColor: Color(0xffF8F0E3),
                           ),
                         ),
                       ),
@@ -234,18 +235,42 @@ class _SignUpState extends State<SignUp> {
                             labelText: "Phone No",
                             prefixIcon: Icon(
                               Icons.phone,
-                              color: Colors.red[500],
+                              color: Colors.purple[500],
                             ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(30.0),
                               borderSide: BorderSide.none,
                             ),
                             filled: true,
-                            fillColor: Color(0xffF8F0E3),
                           ),
                         ),
                       ),
-                      ElevatedButton(onPressed: signUp, child: Text("Sign Up"))
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                          width: 150,
+                          child: TextButton(
+                              onPressed: signUp,
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Text(
+                                  "SignUp",
+                                  style: TextStyle(
+                                      fontSize: 18, color: Colors.white),
+                                ),
+                              ),
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.purple[500]),
+                                  shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(30)),
+                                  )))),
+                      // ElevatedButton(onPressed: signUp, child: Text("Sign Up"))
                     ],
                   ),
                 ),

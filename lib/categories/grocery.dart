@@ -12,31 +12,36 @@ class Grocery extends StatefulWidget {
 
 class _GroceryState extends State<Grocery> {
   var groceryName = [
-    "Monthly Pack",
-    "Tomatoes",
-    "Bananas",
+    "Apple",
+    "Banana",
+    "Pomegranate",
+    "Pear",
+    "Tomato",
+    "Potato",
+    "Onion",
+    "Lemon",
     "Cooking Oil",
+    "Salt",
     "Sugar",
-    "Red Chilli",
+    "Rice",
   ];
 
   var groceryImage = [
-    "https://media.istockphoto.com/photos/shopping-basket-with-fresh-food-grocery-supermarket-food-and-eats-picture-id1216828053?k=20&m=1216828053&s=612x612&w=0&h=mMGSO8bG8aN0gP4wyXC17WDIcf9zcqIxBd-WZto-yeg=",
-    "https://media.istockphoto.com/photos/shopping-basket-with-fresh-food-grocery-supermarket-food-and-eats-picture-id1216828053?k=20&m=1216828053&s=612x612&w=0&h=mMGSO8bG8aN0gP4wyXC17WDIcf9zcqIxBd-WZto-yeg=",
-    "https://media.istockphoto.com/photos/shopping-basket-with-fresh-food-grocery-supermarket-food-and-eats-picture-id1216828053?k=20&m=1216828053&s=612x612&w=0&h=mMGSO8bG8aN0gP4wyXC17WDIcf9zcqIxBd-WZto-yeg=",
+    "https://images.unsplash.com/photo-1606757389723-23c4bf501fba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+    "https://media.istockphoto.com/photos/banana-bunch-picture-id173242750?k=20&m=173242750&s=612x612&w=0&h=dgXrAP6otDeY5h6fhy-SRmW-2dFOCKx1_hNS1lLWF7Y=",
+    "https://media.istockphoto.com/photos/pomegranate-isolated-on-white-background-with-clipping-path-picture-id1152895164?k=20&m=1152895164&s=612x612&w=0&h=h9eJJ6Wuu8VDtOoVmp57u7AhvuZmmlQY2q-dqiyIOyU=",
+    "https://media.istockphoto.com/photos/green-yellow-pear-fruits-isolated-on-white-picture-id1131349074?k=20&m=1131349074&s=170667a&w=0&h=yYu38ztz24ONz4TiyVYoBZ1rXagA1wk_yZLaacweZgA=",
+    "https://thumbs.dreamstime.com/b/isolated-tomato-fresh-cut-tomatoes-white-background-170813951.jpg",
+    "https://media.istockphoto.com/photos/raw-potatoes-with-slices-picture-id496359598?b=1&k=20&m=496359598&s=170667a&w=0&h=obOXxUguEsuCok-7cHf6qOMhw-f8Bp06PKRRAqdASDc=",
+    "https://media.istockphoto.com/photos/red-onions-picture-id499146498?k=20&m=499146498&s=612x612&w=0&h=fe8fftS2SpmSlx_KAT_wOPIhlwO9SFelIwq0nmG8NmA=",
+    "https://media.istockphoto.com/photos/lemon-picture-id92280727?k=20&m=92280727&s=170667a&w=0&h=jAvNtCcW-pKyCfOV9QKYZSXB-QPXuiX_YNgYvFHz89c=",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJTdeoPWEgiUrtzG99VPyvzEC9Xm6cAIW3XsqNHkP9ky65YnBjcWimImxyqp_eYLgFU9U&usqp=CAU",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJTdeoPWEgiUrtzG99VPyvzEC9Xm6cAIW3XsqNHkP9ky65YnBjcWimImxyqp_eYLgFU9U&usqp=CAU",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJTdeoPWEgiUrtzG99VPyvzEC9Xm6cAIW3XsqNHkP9ky65YnBjcWimImxyqp_eYLgFU9U&usqp=CAU",
+    "https://digidukaan.s3.ap-south-1.amazonaws.com/683008235594262887.jpg",
+    "https://flavourfactory.africa/wp-content/uploads/2019/05/WHITESUGAR.png",
+    "https://media.istockphoto.com/photos/rice-on-a-white-background-picture-id1242507868?k=20&m=1242507868&s=170667a&w=0&h=Gzg9xBoCvjnrxDvq5MOeqs00NMzf92MI-m2_t6oennU="
   ];
 
-  var groceryPrize = [
-    1600,
-    100,
-    180,
-    700,
-    500,
-    80,
-  ];
+  var groceryPrize = [150, 90, 250, 130, 100, 70, 50, 200, 700, 30, 110, 140];
 
   var description = [
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
@@ -249,14 +254,13 @@ class _GroceryState extends State<Grocery> {
             Container(
                 margin: EdgeInsets.only(
                   top: 10,
-                  bottom: 10,
-                  left: 5,
-                  right: 5,
+                  left: 8,
+                  right: 8,
                 ),
                 child: GridView.count(
                   shrinkWrap: true,
                   crossAxisCount: 2,
-                  crossAxisSpacing: 20,
+                  crossAxisSpacing: 5,
                   mainAxisSpacing: 20,
                   physics: NeverScrollableScrollPhysics(),
                   children: List.generate(groceryPrize.length, (index) {
@@ -276,19 +280,29 @@ class _GroceryState extends State<Grocery> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      margin: EdgeInsets.only(bottom: 5),
                                       height: 90,
-                                      width: 160,
                                       decoration: BoxDecoration(
                                         image: DecorationImage(
                                           fit: BoxFit.fill,
                                           image:
                                               NetworkImage(groceryImage[index]),
                                         ),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(8.0)),
                                       ),
                                     ),
+                                    // Container(
+                                    //   margin: EdgeInsets.only(bottom: 5),
+                                    //   height: 90,
+                                    //   width: 160,
+                                    //   decoration: BoxDecoration(
+                                    //     image: DecorationImage(
+                                    //       fit: BoxFit.fill,
+                                    //       image:
+                                    //           NetworkImage(groceryImage[index]),
+                                    //     ),
+                                    //     borderRadius: BorderRadius.all(
+                                    //         Radius.circular(8.0)),
+                                    //   ),
+                                    // ),
                                     SizedBox(
                                       height: 5,
                                     ),
@@ -409,6 +423,13 @@ class _GroceryState extends State<Grocery> {
                                                       "prize": prize,
                                                       "description": descrip
                                                     });
+
+                                              Scaffold.of(context).showSnackBar(
+                                                  SnackBar(
+                                                      backgroundColor:
+                                                          Colors.purple[300],
+                                                      content: Text(
+                                                          "Added to your cart")));
                                             },
                                             child: Center(
                                                 child: Icon(

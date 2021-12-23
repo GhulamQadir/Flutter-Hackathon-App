@@ -25,12 +25,6 @@ class _CartScreenState extends State<CartScreen> {
         .then((querySnapshot) {
       querySnapshot.docs.forEach((result) {
         total = total + result.data()['prize'];
-
-        // print(total);
-        // print(total);
-        // setState(() {
-        //   sum = total;
-        // });
       });
     });
   }

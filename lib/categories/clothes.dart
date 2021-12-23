@@ -413,7 +413,12 @@ class _ClothesState extends State<Clothes> {
                                                       "description": descrip
                                                     });
 
-                                              print("Added to your cart");
+                                              Scaffold.of(context).showSnackBar(
+                                                  SnackBar(
+                                                      backgroundColor:
+                                                          Colors.purple[300],
+                                                      content: Text(
+                                                          "Added to your cart")));
                                             },
                                             child: Center(
                                                 child: Icon(
