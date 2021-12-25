@@ -23,6 +23,12 @@ class _ClothesState extends State<Clothes> {
 
   var clothesImage = [
     "https://cdn.shopify.com/s/files/1/0061/8944/9306/products/1_21dc147d-6a4a-49ce-a450-8c407a863165.jpg?v=1558597173",
+    "https://www.shahzebsaeed.com/wp-content/uploads/2019/11/sk-235_1-768x1024.jpg",
+    "https://cdn-skin.sanaullastore.com/media/catalog/product/e/d/edenrobe-mens-shalwar-kameez-emtks19s-40747-_1__1.jpg",
+    "https://i.pinimg.com/736x/b2/f6/3f/b2f63fa1468bfe20ecea53c36159c48c.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6piUJFSKg6MIv5GrRQuAOudbMgUfVj4f39GQ_u_OAioiDStJoSHLMrJ_oKYTfdyQXtZU&usqp=CAU",
+    "https://i.pinimg.com/originals/86/d5/ca/86d5cabee1b094c06ee2344d9a7f4454.jpg",
+    "https://www.phupo.com/wp-content/uploads/2019/04/danish-taimoor-unknown-facts-1-263x300.jpg",
     "https://i.pinimg.com/564x/e1/64/8d/e1648df93bbbbe3cf99298bacbcf5fb9.jpg",
     "https://i.pinimg.com/564x/e1/64/8d/e1648df93bbbbe3cf99298bacbcf5fb9.jpg",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSybYQQV1Nq_4AzGdP4cGC1v6fViQcMDCsSQQ&usqp=CAU",
@@ -262,7 +268,7 @@ class _ClothesState extends State<Clothes> {
                   crossAxisSpacing: 20,
                   mainAxisSpacing: 20,
                   physics: NeverScrollableScrollPhysics(),
-                  children: List.generate(clothesPrize.length, (index) {
+                  children: List.generate(clothesImage.length, (index) {
                     return Center(
                       child: OpenContainer(
                           transitionDuration: Duration(seconds: 1),
@@ -280,8 +286,8 @@ class _ClothesState extends State<Clothes> {
                                   children: [
                                     Container(
                                       margin: EdgeInsets.only(bottom: 5),
-                                      height: 90,
-                                      width: 160,
+                                      height: 152,
+                                      // width: 160,
                                       decoration: BoxDecoration(
                                         image: DecorationImage(
                                           fit: BoxFit.fill,
@@ -292,141 +298,141 @@ class _ClothesState extends State<Clothes> {
                                             Radius.circular(8.0)),
                                       ),
                                     ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              top: 3, left: 5),
-                                          child: Text(
-                                            clothesName[index],
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 20,
-                                        ),
-                                        GestureDetector(
-                                          onTap: () {
-                                            var name = clothesName[index];
-                                            var image = clothesImage[index];
-                                            var prize = clothesPrize[index];
-                                            var descrip = description[index];
+                                    // SizedBox(
+                                    //   height: 5,
+                                    // ),
+                                    // Row(
+                                    //   children: [
+                                    //     Padding(
+                                    //       padding: const EdgeInsets.only(
+                                    //           top: 3, left: 5),
+                                    //       child: Text(
+                                    //         clothesName[index],
+                                    //         style: TextStyle(
+                                    //             fontSize: 15,
+                                    //             fontWeight: FontWeight.w500),
+                                    //       ),
+                                    //     ),
+                                    //     SizedBox(
+                                    //       width: 20,
+                                    //     ),
+                                    //     GestureDetector(
+                                    //       onTap: () {
+                                    //         var name = clothesName[index];
+                                    //         var image = clothesImage[index];
+                                    //         var prize = clothesPrize[index];
+                                    //         var descrip = description[index];
 
-                                            FirebaseFirestore db =
-                                                FirebaseFirestore.instance;
+                                    //         FirebaseFirestore db =
+                                    //             FirebaseFirestore.instance;
 
-                                            FirebaseAuth.instance.currentUser ==
-                                                    null
-                                                ? goToLoginScreen()
-                                                    .pushNamed("/login")
-                                                : db
-                                                    .collection("users")
-                                                    .doc(FirebaseAuth.instance
-                                                        .currentUser.uid)
-                                                    .collection("favorites")
-                                                    .where("name",
-                                                        isEqualTo: name)
-                                                    .get()
-                                                    .then((value) {
-                                                    if (value.docs.isNotEmpty) {
-                                                      Scaffold.of(context)
-                                                          .showSnackBar(SnackBar(
-                                                              backgroundColor:
-                                                                  Colors.purple[
-                                                                      300],
-                                                              content: Text(
-                                                                  "Already added to favorites")));
-                                                      print(
-                                                          "Already added to favorites");
-                                                    } else {
-                                                      db
-                                                          .collection("users")
-                                                          .doc(FirebaseAuth
-                                                              .instance
-                                                              .currentUser
-                                                              .uid)
-                                                          .collection(
-                                                              "favorites")
-                                                          .add({
-                                                        "name": name,
-                                                        "image": image,
-                                                        "price": prize,
-                                                        "description": descrip
-                                                      });
+                                    //         FirebaseAuth.instance.currentUser ==
+                                    //                 null
+                                    //             ? goToLoginScreen()
+                                    //                 .pushNamed("/login")
+                                    //             : db
+                                    //                 .collection("users")
+                                    //                 .doc(FirebaseAuth.instance
+                                    //                     .currentUser.uid)
+                                    //                 .collection("favorites")
+                                    //                 .where("name",
+                                    //                     isEqualTo: name)
+                                    //                 .get()
+                                    //                 .then((value) {
+                                    //                 if (value.docs.isNotEmpty) {
+                                    //                   Scaffold.of(context)
+                                    //                       .showSnackBar(SnackBar(
+                                    //                           backgroundColor:
+                                    //                               Colors.purple[
+                                    //                                   300],
+                                    //                           content: Text(
+                                    //                               "Already added to favorites")));
+                                    //                   print(
+                                    //                       "Already added to favorites");
+                                    //                 } else {
+                                    //                   db
+                                    //                       .collection("users")
+                                    //                       .doc(FirebaseAuth
+                                    //                           .instance
+                                    //                           .currentUser
+                                    //                           .uid)
+                                    //                       .collection(
+                                    //                           "favorites")
+                                    //                       .add({
+                                    //                     "name": name,
+                                    //                     "image": image,
+                                    //                     "price": prize,
+                                    //                     "description": descrip
+                                    //                   });
 
-                                                      Scaffold.of(context)
-                                                          .showSnackBar(SnackBar(
-                                                              backgroundColor:
-                                                                  Colors.purple[
-                                                                      300],
-                                                              content: Text(
-                                                                  "Added to favorites")));
-                                                      print(
-                                                          "Added to favorites");
-                                                    }
-                                                  });
-                                          },
-                                          child: Center(
-                                            child: Icon(
-                                              Icons.favorite,
-                                              color: Colors.grey,
-                                              size: 17,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text("${clothesPrize[index]} Rs"),
-                                        SizedBox(
-                                          width: 40,
-                                        ),
-                                        GestureDetector(
-                                            onTap: () async {
-                                              var name = clothesName[index];
-                                              var image = clothesImage[index];
-                                              var prize = clothesPrize[index];
-                                              var descrip = description[index];
+                                    //                   Scaffold.of(context)
+                                    //                       .showSnackBar(SnackBar(
+                                    //                           backgroundColor:
+                                    //                               Colors.purple[
+                                    //                                   300],
+                                    //                           content: Text(
+                                    //                               "Added to favorites")));
+                                    //                   print(
+                                    //                       "Added to favorites");
+                                    //                 }
+                                    //               });
+                                    //       },
+                                    //       child: Center(
+                                    //         child: Icon(
+                                    //           Icons.favorite,
+                                    //           color: Colors.grey,
+                                    //           size: 17,
+                                    //         ),
+                                    //       ),
+                                    //     ),
+                                    //   ],
+                                    // ),
+                                    // Row(
+                                    //   children: [
+                                    //     Text("${clothesPrize[index]} Rs"),
+                                    //     SizedBox(
+                                    //       width: 40,
+                                    //     ),
+                                    //     GestureDetector(
+                                    //         onTap: () async {
+                                    //           var name = clothesName[index];
+                                    //           var image = clothesImage[index];
+                                    //           var prize = clothesPrize[index];
+                                    //           var descrip = description[index];
 
-                                              FirebaseFirestore db =
-                                                  FirebaseFirestore.instance;
+                                    //           FirebaseFirestore db =
+                                    //               FirebaseFirestore.instance;
 
-                                              FirebaseAuth.instance
-                                                          .currentUser ==
-                                                      null
-                                                  ? goToLoginScreen()
-                                                  : await db
-                                                      .collection("users")
-                                                      .doc(FirebaseAuth.instance
-                                                          .currentUser.uid)
-                                                      .collection("myCart")
-                                                      .add({
-                                                      "name": name,
-                                                      "image": image,
-                                                      "prize": prize,
-                                                      "description": descrip
-                                                    });
+                                    //           FirebaseAuth.instance
+                                    //                       .currentUser ==
+                                    //                   null
+                                    //               ? goToLoginScreen()
+                                    //               : await db
+                                    //                   .collection("users")
+                                    //                   .doc(FirebaseAuth.instance
+                                    //                       .currentUser.uid)
+                                    //                   .collection("myCart")
+                                    //                   .add({
+                                    //                   "name": name,
+                                    //                   "image": image,
+                                    //                   "prize": prize,
+                                    //                   "description": descrip
+                                    //                 });
 
-                                              Scaffold.of(context).showSnackBar(
-                                                  SnackBar(
-                                                      backgroundColor:
-                                                          Colors.purple[300],
-                                                      content: Text(
-                                                          "Added to your cart")));
-                                            },
-                                            child: Center(
-                                                child: Icon(
-                                              Icons.add_shopping_cart_outlined,
-                                              color: Colors.purple,
-                                            )))
-                                      ],
-                                    ),
+                                    //           Scaffold.of(context).showSnackBar(
+                                    //               SnackBar(
+                                    //                   backgroundColor:
+                                    //                       Colors.purple[300],
+                                    //                   content: Text(
+                                    //                       "Added to your cart")));
+                                    //         },
+                                    //         child: Center(
+                                    //             child: Icon(
+                                    //           Icons.add_shopping_cart_outlined,
+                                    //           color: Colors.purple,
+                                    //         )))
+                                    //   ],
+                                    // ),
                                   ],
                                 ),
                               ),
