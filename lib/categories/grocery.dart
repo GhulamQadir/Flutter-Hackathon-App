@@ -255,6 +255,7 @@ class _GroceryState extends State<Grocery> {
             ),
           )),
         ),
+        backgroundColor: Color(0xffededed),
         body: SingleChildScrollView(
           child: Column(children: [
             Padding(
@@ -284,8 +285,7 @@ class _GroceryState extends State<Grocery> {
                                   boxShadow: [
                                     BoxShadow(
                                         blurRadius: 15,
-                                        color: Color(0xffededed),
-                                        // color: Colors.white,
+                                        color: Colors.white,
                                         spreadRadius: 15)
                                   ],
                                 ),
@@ -450,13 +450,9 @@ class _GroceryState extends State<Grocery> {
                                         )
                                       ],
                                     ),
-                                    // SizedBox(
-                                    //   height: 7,
-                                    // ),
-
-                                    // SizedBox(
-                                    //   height: 10,
-                                    // )
+                                    SizedBox(
+                                      height: 7,
+                                    ),
                                   ],
                                 ),
                               );
