@@ -179,11 +179,11 @@ class _CartScreenState extends State<CartScreen> {
                                   ),
                                 ),
                                 Positioned(
-                                  left: 10,
+                                  left: 8,
                                   top: 15,
                                   child: Container(
                                     height: 70,
-                                    width: 110,
+                                    width: 95,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(20),
                                         image: DecorationImage(
@@ -193,7 +193,7 @@ class _CartScreenState extends State<CartScreen> {
                                 ),
                                 Positioned(
                                   top: 22,
-                                  left: 130,
+                                  left: 113,
                                   child: Text(
                                     data["name"],
                                     style: TextStyle(
@@ -203,7 +203,7 @@ class _CartScreenState extends State<CartScreen> {
                                 ),
                                 Positioned(
                                   top: 11,
-                                  left: 260,
+                                  left: 263,
                                   child: IconButton(
                                     onPressed: removeProduct,
                                     icon: Icon(
@@ -225,9 +225,9 @@ class _CartScreenState extends State<CartScreen> {
                                 ),
                                 Positioned(
                                   top: 50,
-                                  left: 130,
+                                  left: 120,
                                   child: Text(
-                                    data["prize"].toString(),
+                                    "${data["prize"]} PKR".toString(),
                                     style: TextStyle(
                                         color: Colors.grey[500],
                                         fontSize: 15,

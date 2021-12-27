@@ -13,29 +13,47 @@ class Cars extends StatefulWidget {
 
 class _CarsState extends State<Cars> {
   var carsNames = [
-    "Honda Civic",
-    "Toyota Corolla",
-    "Honda City",
-    "Toyota Vitz",
-    "Kia Sportage",
-    "Suzuki Alto"
+    "Honda Civic 2019",
+    "Toyota Corolla 2018",
+    "Honda City 2015",
+    "Kia Sportage 2021",
+    "Toyota Vitz 2014",
+    "Toyota Corolla 2011",
+    "Suzuki Alto 2017",
+    "Suzuki Swift 2017",
+    "Honda Civic 2020",
+    "Haval 2021",
+    "Toyota Cynos 1996",
+    "Toyota Paseo 1992",
   ];
   var carsImages = [
     "https://i.ytimg.com/vi/GwowU444Ky8/maxresdefault.jpg",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5tt2xqW7CXOFY1zqa_VQ7ooGDES2OSVZ1E9QaBjgiavRN0TIsYt5ntGvZ0bb_K_nETFk&usqp=CAU",
-    "https://i.ytimg.com/vi/LRcQdorxJTw/maxresdefault.jpg",
-    "https://global.toyota/pages/models/images/vitz/rendition/vitz_003_W610_H407.jpg",
-    "https://keyz.com.au/wp-content/uploads/2017/01/MY20-Kia-Sportage-870x490.png",
-    "https://keyz.com.au/wp-content/uploads/2017/01/MY20-Kia-Sportage-870x490.png",
+    "https://i.ytimg.com/vi/C9KdHSq9rPw/maxresdefault.jpg",
+    "https://stimg.cardekho.com/images/car-images/large/Honda/Honda-City/Golden-brown-metallic.jpg",
+    "https://www.iihs.org/api/ratings/model-year-images/2928/636/",
+    "https://www.batfa.com/photo-used-car-toyota-vitz-2014-silver.files/Vitz-2014-Silver-front.jpg",
+    "https://images.hgmsites.net/lrg/2011-toyota-corolla-4-door-sedan-auto-s-natl-angular-front-exterior-view_100345830_l.jpg",
+    "https://4.imimg.com/data4/TT/TT/GLADMIN-/src-cars-maruti-suzuki-alto-800-lx-500x500.jpg",
+    "https://pictures.topspeed.com/IMG/crop/201612/2017-suzuki-swift-21_1600x0w.jpg",
+    "https://autos.hamariweb.com/images/carimages/car_6916_777434.jpg",
+    "https://cache1.pakwheels.com/system/car_generation_pictures/5481/original/dgrdh7wz0povzt5qrzqe.jpg?1619178326",
+    "https://upload.wikimedia.org/wikipedia/commons/f/f6/Toyota_CYNOS_2nd.JPG",
+    "https://static.carthrottle.com/workspace/uploads/garage/31115_390898412594_3246223_n-5523455f7e08a.jpg",
   ];
 
   var carsPrizes = [
-    3900000,
+    3200000,
     2500000,
-    1800000,
-    1600000,
-    4800000,
+    2100000,
+    4650000,
+    2000000,
     1200000,
+    1900000,
+    1500000,
+    4150000,
+    6495000,
+    300000,
+    200000
   ];
 
   var description = [
@@ -248,151 +266,62 @@ class _CarsState extends State<Cars> {
         ),
         body: SingleChildScrollView(
           child: Column(children: [
-            Container(
-                margin: EdgeInsets.only(
-                  top: 10,
-                  bottom: 10,
-                  left: 5,
-                  right: 5,
-                ),
-                child: GridView.count(
-                  shrinkWrap: true,
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 20,
-                  physics: NeverScrollableScrollPhysics(),
-                  children: List.generate(carsPrizes.length, (index) {
-                    return Center(
-                      child: OpenContainer(
-                          transitionDuration: Duration(seconds: 1),
-                          transitionType: ContainerTransitionType.fadeThrough,
-                          closedBuilder: (context, action) {
-                            return Container(
-                              // height: 300,
-                              child: Card(
-                                elevation: 3,
-                                color: Color(0xfff8f8ff),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 10, right: 10, top: 20, bottom: 20),
+              child: GridView.count(
+                shrinkWrap: true,
+                crossAxisCount: 2,
+                crossAxisSpacing: 7,
+                mainAxisSpacing: 15,
+                childAspectRatio:
+                    310 / (MediaQuery.of(context).size.height / 1.5),
+                physics: NeverScrollableScrollPhysics(),
+                children: List.generate(carsPrizes.length, (index) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: OpenContainer(
+                            transitionDuration: Duration(seconds: 1),
+                            transitionType: ContainerTransitionType.fadeThrough,
+                            closedBuilder: (context, action) {
+                              return Container(
+                                decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                        blurRadius: 15,
+                                        color: Colors.white,
+                                        spreadRadius: 15)
+                                  ],
                                 ),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Container(
-                                      margin: EdgeInsets.only(bottom: 5),
-                                      height: 90,
-                                      width: 160,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          fit: BoxFit.fill,
-                                          image:
-                                              NetworkImage(carsImages[index]),
-                                        ),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(8.0)),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
-                                    Row(
+                                    Stack(
                                       children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              top: 3, left: 5),
-                                          child: Text(
-                                            carsNames[index],
-                                            style: TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w600),
-                                          ),
+                                        Container(
+                                          height: 260,
                                         ),
-                                        GestureDetector(
-                                          onTap: () {
-                                            var name = carsNames[index];
-                                            var image = carsImages[index];
-                                            var prize = carsPrizes[index];
-                                            var descrip = description[index];
-
-                                            FirebaseFirestore db =
-                                                FirebaseFirestore.instance;
-
-                                            FirebaseAuth.instance.currentUser ==
-                                                    null
-                                                ? goToLoginScreen()
-                                                    .pushNamed("/login")
-                                                : db
-                                                    .collection("users")
-                                                    .doc(FirebaseAuth.instance
-                                                        .currentUser.uid)
-                                                    .collection("favorites")
-                                                    .where("name",
-                                                        isEqualTo: name)
-                                                    .get()
-                                                    .then((value) {
-                                                    if (value.docs.isNotEmpty) {
-                                                      Scaffold.of(context)
-                                                          .showSnackBar(SnackBar(
-                                                              backgroundColor:
-                                                                  Colors.purple[
-                                                                      300],
-                                                              content: Text(
-                                                                  "Already added to favorites")));
-                                                      print(
-                                                          "Already added to favorites");
-                                                    } else {
-                                                      db
-                                                          .collection("users")
-                                                          .doc(FirebaseAuth
-                                                              .instance
-                                                              .currentUser
-                                                              .uid)
-                                                          .collection(
-                                                              "favorites")
-                                                          .add({
-                                                        "name": name,
-                                                        "image": image,
-                                                        "price": prize,
-                                                        "description": descrip
-                                                      });
-
-                                                      Scaffold.of(context)
-                                                          .showSnackBar(SnackBar(
-                                                              backgroundColor:
-                                                                  Colors.purple[
-                                                                      300],
-                                                              content: Text(
-                                                                  "Added to favorites")));
-
-                                                      print(
-                                                          "Added to favorites");
-                                                    }
-                                                  });
-                                          },
-                                          child: Center(
-                                            child: Icon(
-                                              Icons.favorite,
-                                              color: Colors.grey,
-                                              size: 17,
+                                        Positioned(
+                                          child: Container(
+                                            padding: EdgeInsets.only(left: 2),
+                                            height: 180,
+                                            decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                fit: BoxFit.fill,
+                                                image: NetworkImage(
+                                                    carsImages[index]),
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "${carsPrizes[index]} Rs",
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              color: Colors.purple),
-                                        ),
-                                        SizedBox(
-                                          width: 40,
-                                        ),
-                                        GestureDetector(
-                                            onTap: () async {
+                                        Positioned(
+                                          top: 10,
+                                          left: 5,
+                                          child: GestureDetector(
+                                            onTap: () {
                                               var name = carsNames[index];
                                               var image = carsImages[index];
                                               var prize = carsPrizes[index];
@@ -405,57 +334,198 @@ class _CarsState extends State<Cars> {
                                                           .currentUser ==
                                                       null
                                                   ? goToLoginScreen()
-                                                  : await db
+                                                      .pushNamed("/login")
+                                                  : db
                                                       .collection("users")
                                                       .doc(FirebaseAuth.instance
                                                           .currentUser.uid)
-                                                      .collection("myCart")
-                                                      .add({
-                                                      "name": name,
-                                                      "image": image,
-                                                      "prize": prize,
-                                                      "description": descrip,
+                                                      .collection("favorites")
+                                                      .where("name",
+                                                          isEqualTo: name)
+                                                      .get()
+                                                      .then((value) {
+                                                      if (value
+                                                          .docs.isNotEmpty) {
+                                                        Scaffold.of(context)
+                                                            .showSnackBar(SnackBar(
+                                                                backgroundColor:
+                                                                    Colors.purple[
+                                                                        300],
+                                                                content: Text(
+                                                                    "Already added to favorites")));
+                                                        print(
+                                                            "Already added to favorites");
+                                                      } else {
+                                                        db
+                                                            .collection("users")
+                                                            .doc(FirebaseAuth
+                                                                .instance
+                                                                .currentUser
+                                                                .uid)
+                                                            .collection(
+                                                                "favorites")
+                                                            .add({
+                                                          "name": name,
+                                                          "image": image,
+                                                          "price": prize,
+                                                          "description": descrip
+                                                        });
+
+                                                        Scaffold.of(context)
+                                                            .showSnackBar(SnackBar(
+                                                                backgroundColor:
+                                                                    Colors.purple[
+                                                                        300],
+                                                                content: Text(
+                                                                    "Added to favorites")));
+                                                        print(
+                                                            "Added to favorites");
+                                                      }
                                                     });
-                                              Scaffold.of(context).showSnackBar(
-                                                  SnackBar(
-                                                      backgroundColor:
-                                                          Colors.purple[300],
-                                                      content: Text(
-                                                          "Added to your cart")));
                                             },
-                                            child: Center(
-                                                child: Icon(
-                                              Icons.add_shopping_cart_outlined,
-                                              color: Colors.purple,
-                                            )))
+                                            child: Icon(
+                                              Icons.favorite,
+                                              color: Colors.grey,
+                                              size: 17,
+                                            ),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          top: 200,
+                                          left: 5,
+                                          child: Text(
+                                            carsNames[index],
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          left: 5,
+                                          top: 235,
+                                          child: Text(
+                                            "${carsPrizes[index]} PKR",
+                                            style: TextStyle(
+                                                color: Color(0xff46eb78)),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          left: 130,
+                                          top: 232,
+                                          child: GestureDetector(
+                                              onTap: () async {
+                                                var name = carsNames[index];
+                                                var image = carsImages[index];
+                                                var prize = carsPrizes[index];
+                                                var descrip =
+                                                    description[index];
+
+                                                FirebaseFirestore db =
+                                                    FirebaseFirestore.instance;
+
+                                                FirebaseAuth.instance
+                                                            .currentUser ==
+                                                        null
+                                                    ? goToLoginScreen()
+                                                    : await db
+                                                        .collection("users")
+                                                        .doc(FirebaseAuth
+                                                            .instance
+                                                            .currentUser
+                                                            .uid)
+                                                        .collection("myCart")
+                                                        .add({
+                                                        "name": name,
+                                                        "image": image,
+                                                        "prize": prize,
+                                                        "description": descrip
+                                                      });
+
+                                                Scaffold.of(context)
+                                                    .showSnackBar(SnackBar(
+                                                        backgroundColor:
+                                                            Colors.purple[300],
+                                                        content: Text(
+                                                            "Added to your cart")));
+                                              },
+                                              child: Center(
+                                                  child: Icon(
+                                                Icons
+                                                    .add_shopping_cart_outlined,
+                                                color: Colors.purple,
+                                              ))),
+                                        )
                                       ],
+                                    ),
+                                    SizedBox(
+                                      height: 7,
                                     ),
                                   ],
                                 ),
-                              ),
-                            );
-                          },
-                          openBuilder: (context, action) {
-                            return SafeArea(
-                              child: SingleChildScrollView(
-                                child: Column(
-                                  children: [
-                                    Image.network(
-                                      carsImages[index],
-                                      height: 250,
-                                      width: 300,
-                                    ),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Center(child: Text(carsNames[index])),
-                                        SizedBox(
-                                          width: 20,
-                                        ),
-                                        GestureDetector(
-                                          onTap: () {
+                              );
+                            },
+                            openBuilder: (context, action) {
+                              return SafeArea(
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    children: [
+                                      Image.network(
+                                        carsImages[index],
+                                        height: 250,
+                                        width: 300,
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Center(child: Text(carsNames[index])),
+                                          SizedBox(
+                                            width: 20,
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              var name = carsNames[index];
+                                              var image = carsImages[index];
+                                              var prize = carsPrizes[index];
+                                              var descrip = description[index];
+
+                                              FirebaseFirestore db =
+                                                  FirebaseFirestore.instance;
+
+                                              FirebaseAuth.instance
+                                                          .currentUser ==
+                                                      null
+                                                  ? goToLoginScreen()
+                                                      .pushNamed("/login")
+                                                  : db
+                                                      .collection("users")
+                                                      .doc(FirebaseAuth.instance
+                                                          .currentUser.uid)
+                                                      .collection("favorites")
+                                                      .add({
+                                                      "name": name,
+                                                      "image": image,
+                                                      "price": prize,
+                                                      "description": descrip,
+                                                    });
+                                            },
+                                            child: Center(
+                                              child: Icon(
+                                                Icons.favorite,
+                                                color: Colors.grey,
+                                                size: 15,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Text(description[index]),
+                                      TextButton(
+                                          onPressed: () async {
                                             var name = carsNames[index];
                                             var image = carsImages[index];
                                             var prize = carsPrizes[index];
@@ -467,73 +537,36 @@ class _CarsState extends State<Cars> {
                                             FirebaseAuth.instance.currentUser ==
                                                     null
                                                 ? goToLoginScreen()
-                                                    .pushNamed("/login")
-                                                : db
+                                                : await db
                                                     .collection("users")
                                                     .doc(FirebaseAuth.instance
                                                         .currentUser.uid)
-                                                    .collection("favorites")
+                                                    .collection("myCart")
                                                     .add({
                                                     "name": name,
                                                     "image": image,
-                                                    "price": prize,
-                                                    "description": descrip,
+                                                    "prize": prize,
+                                                    "description": descrip
                                                   });
+                                            EasyLoading.showSuccess(
+                                                'Added to your cart!');
                                           },
-                                          child: Center(
-                                            child: Icon(
-                                              Icons.favorite,
-                                              color: Colors.grey,
-                                              size: 15,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    Text(description[index]),
-                                    TextButton(
-                                        onPressed: () async {
-                                          var name = carsNames[index];
-                                          var image = carsImages[index];
-                                          var prize = carsPrizes[index];
-                                          var descrip = description[index];
-
-                                          FirebaseFirestore db =
-                                              FirebaseFirestore.instance;
-
-                                          FirebaseAuth.instance.currentUser ==
-                                                  null
-                                              ? goToLoginScreen()
-                                              : await db
-                                                  .collection("users")
-                                                  .doc(FirebaseAuth
-                                                      .instance.currentUser.uid)
-                                                  .collection("myCart")
-                                                  .add({
-                                                  "name": name,
-                                                  "image": image,
-                                                  "prize": prize,
-                                                  "description": descrip
-                                                });
-                                          EasyLoading.showSuccess(
-                                              'Added to your cart!');
-                                        },
-                                        child: Icon(
-                                          Icons.add_shopping_cart_outlined,
-                                          color: Colors.purple,
-                                          size: 25,
-                                        ))
-                                  ],
+                                          child: Icon(
+                                            Icons.add_shopping_cart_outlined,
+                                            color: Colors.purple,
+                                            size: 25,
+                                          ))
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            );
-                          }),
-                    );
-                  }),
-                ))
+                              );
+                            }),
+                      ),
+                    ],
+                  );
+                }),
+              ),
+            )
           ]),
         ),
       ),

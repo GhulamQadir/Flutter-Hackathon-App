@@ -300,7 +300,7 @@ class _GroceryState extends State<Grocery> {
                                         Positioned(
                                           child: Container(
                                             padding: EdgeInsets.only(left: 2),
-                                            height: 200,
+                                            height: 180,
                                             decoration: BoxDecoration(
                                               image: DecorationImage(
                                                 fit: BoxFit.fill,
@@ -384,7 +384,7 @@ class _GroceryState extends State<Grocery> {
                                           ),
                                         ),
                                         Positioned(
-                                          top: 215,
+                                          top: 200,
                                           left: 5,
                                           child: Text(
                                             groceryName[index],
@@ -395,7 +395,7 @@ class _GroceryState extends State<Grocery> {
                                         ),
                                         Positioned(
                                           left: 5,
-                                          top: 238,
+                                          top: 230,
                                           child: Text(
                                             "${groceryPrize[index]} PKR",
                                             style: TextStyle(
@@ -404,7 +404,7 @@ class _GroceryState extends State<Grocery> {
                                         ),
                                         Positioned(
                                           left: 130,
-                                          top: 230,
+                                          top: 224,
                                           child: GestureDetector(
                                               onTap: () async {
                                                 var name = groceryName[index];
@@ -449,9 +449,6 @@ class _GroceryState extends State<Grocery> {
                                               ))),
                                         )
                                       ],
-                                    ),
-                                    SizedBox(
-                                      height: 7,
                                     ),
                                   ],
                                 ),

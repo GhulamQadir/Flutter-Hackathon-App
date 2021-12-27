@@ -19,11 +19,6 @@ class _LoadingScreenState extends State<LoadingScreen> {
             child: SpinKitCircle(
           color: Colors.purple[500],
           size: 50,
-        )
-            // SpinKitChasingDots(
-            //   color: Colors.brown,
-            //   size: 50.0,
-            // ),
-            ));
+        )));
   }
 }
