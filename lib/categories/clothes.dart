@@ -57,13 +57,34 @@ class _ClothesState extends State<Clothes> {
     1800,
   ];
 
-  var description = [
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare."
+  var clothesColors = [
+    "Black",
+    "Light Blue",
+    "Navy Blue",
+    "Light Green",
+    "Light Brown",
+    "Dark Grey",
+    "Green Black",
+    "Light Grey",
+    "Blue Black",
+    "Blue White",
+    "Dark Grey",
+    "Light Purple",
+  ];
+
+  var details = [
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
   ];
 
   goToLoginScreen() {
@@ -327,7 +348,8 @@ class _ClothesState extends State<Clothes> {
                                               var name = clothesName[index];
                                               var image = clothesImage[index];
                                               var prize = clothesPrize[index];
-                                              var descrip = description[index];
+                                              var colors = clothesColors[index];
+                                              var description = details[index];
 
                                               FirebaseFirestore db =
                                                   FirebaseFirestore.instance;
@@ -370,7 +392,8 @@ class _ClothesState extends State<Clothes> {
                                                           "name": name,
                                                           "image": image,
                                                           "price": prize,
-                                                          "description": descrip
+                                                          "color": colors,
+                                                          "details": description
                                                         });
 
                                                         Scaffold.of(context)
@@ -419,8 +442,10 @@ class _ClothesState extends State<Clothes> {
                                                 var name = clothesName[index];
                                                 var image = clothesImage[index];
                                                 var prize = clothesPrize[index];
-                                                var descrip =
-                                                    description[index];
+                                                var colors =
+                                                    clothesColors[index];
+                                                var description =
+                                                    details[index];
 
                                                 FirebaseFirestore db =
                                                     FirebaseFirestore.instance;
@@ -440,7 +465,8 @@ class _ClothesState extends State<Clothes> {
                                                         "name": name,
                                                         "image": image,
                                                         "prize": prize,
-                                                        "description": descrip
+                                                        "color": colors,
+                                                        "details": description
                                                       });
 
                                                 Scaffold.of(context)
@@ -487,7 +513,8 @@ class _ClothesState extends State<Clothes> {
                                               var name = clothesName[index];
                                               var image = clothesImage[index];
                                               var prize = clothesPrize[index];
-                                              var descrip = description[index];
+                                              var colors = clothesColors[index];
+                                              var description = details[index];
 
                                               FirebaseFirestore db =
                                                   FirebaseFirestore.instance;
@@ -506,7 +533,8 @@ class _ClothesState extends State<Clothes> {
                                                       "name": name,
                                                       "image": image,
                                                       "price": prize,
-                                                      "description": descrip,
+                                                      "color": colors,
+                                                      "details": description
                                                     });
                                             },
                                             child: Center(
@@ -519,13 +547,18 @@ class _ClothesState extends State<Clothes> {
                                           ),
                                         ],
                                       ),
-                                      Text(description[index]),
+                                      Text(clothesColors[index]),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Text(details[index]),
                                       TextButton(
                                           onPressed: () async {
                                             var name = clothesName[index];
                                             var image = clothesImage[index];
                                             var prize = clothesPrize[index];
-                                            var descrip = description[index];
+                                            var colors = clothesColors[index];
+                                            var description = details[index];
 
                                             FirebaseFirestore db =
                                                 FirebaseFirestore.instance;
@@ -542,7 +575,8 @@ class _ClothesState extends State<Clothes> {
                                                     "name": name,
                                                     "image": image,
                                                     "prize": prize,
-                                                    "description": descrip
+                                                    "color": colors,
+                                                    "details": description
                                                   });
                                             EasyLoading.showSuccess(
                                                 'Added to your cart!');

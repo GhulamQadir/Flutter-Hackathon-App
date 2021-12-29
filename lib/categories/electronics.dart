@@ -31,7 +31,7 @@ class _ElectronicsState extends State<Electronics> {
     "https://media.croma.com/image/upload/v1628667331/Croma%20Assets/Entertainment/Television/Images/241642_xsetkh.png",
     "https://images.priceoye.pk/dawlance-1-5-ton-enercon-30-series-inverter-ac-pakistan-priceoye-8clmc.jpg",
     "https://salmanelectronics.com/wp-content/uploads/2021/04/Product-Uploading-5.jpg",
-    "https://lh3.googleusercontent.com/proxy/7KNlxB5xucsfnS0P0gJIY08Vi2HtevoYzJGjFqO2lQBK_K7NU5WGWU8dSg6oaA03yRolV8zXhy-us1inRTkt1V26b3al-8b5cRWLwjKv3E1RNPP27h_GZFSyzUU",
+    "https://lh3.googleusercontent.com/proxy/fa-h-KPBSiPmRHsztmXxIwtlIxVg0jKA47wKtghRhtxhJtz8cVt45moK3cHlif0TI-RXO6wlHIe47DZFxZXVEBvEp8OQF500jbSZoxWSKNAPz8BjN2764vscB6A",
     "https://ezmakaan.com/wp-content/uploads/2020/02/1_11_1.png",
     "https://radiotvcentre.pk/wp-content/uploads/2020/01/TB23330GB-Siemens-Steam-Iron.jpg",
     "https://dam.braunhousehold.com/903x677/assets/156177",
@@ -44,16 +44,31 @@ class _ElectronicsState extends State<Electronics> {
   var electronicsColors = [
     "Black",
     "Black",
-    "Light brown",
+    "Light Brown",
     "White",
-    "Off white",
+    "Off White",
     "White",
-    "Light blue",
+    "Light Blue",
     "Grey",
     "Black",
-    "Shaded grey",
+    "Shaded Grey",
     "Black",
     "Black",
+  ];
+
+  var details = [
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
   ];
 
   var electronicsPrizes = [
@@ -69,21 +84,6 @@ class _ElectronicsState extends State<Electronics> {
     7000,
     3000,
     32000
-  ];
-
-  var describedName = [
-    "A smart TV, also known as a connected TV (CTV), is a traditional television set with integrated Internet and interactive Web 2.0 features, which allows users to stream music and videos, browse the internet, and view photos. Smart TVs are a technological convergence of computers, televisions, and digital media players.",
-    "TCL specializes in the research, development and the manufacturing of consumer electronics products ranging from TVs, mobile phones, white goods and smart home products.",
-    "Dirt accumulates on the evaporator of the air conditioner during its operation, the dirty evaporator facilitates bacterial growth and affect the quality of air out and the health of our body, our patent Cold Expansion Technology freezes the surface with moisture in the air and removes the dirt in defrosting.",
-    "Split AC is a blend of design, durability, and convenience. Elegant Glass Design, Low-Voltage Support, and High-Efficiency Compressor make this model a must-have.",
-    "Pak Fan is a blend of design, durability, and convenience. Elegant Glass Design, Low-Voltage Support, and High-Efficiency Compressor make this model a must-have.",
-    "Diamond Fan TCL specializes in the research, development and the manufacturing of consumer electronics products ranging from TVs, mobile phones, white goods and smart home products.",
-    "Siemens Steam Iron is a blend of design, durability, and convenience. Elegant Glass Design, Low-Voltage Support, and High-Efficiency Compressor make this model a must-have.",
-    "TexStyle Steam Iron is a blend of design, durability, and convenience. Elegant Glass Design, Low-Voltage Support, and High-Efficiency Compressor make this model a must-have.",
-    "Honda Generator specializes in the research, development and the manufacturing of consumer electronics products ranging from TVs, mobile phones, white goods and smart home products.",
-    "Juicer is a tool used to extract juice from fruits, herbs, leafy greens and other types of vegetables in a process called juicing.[1] It crushes, grinds, and/or squeezes the juice out of the pulp.",
-    "Sandwich Maker specializes in the research, development and the manufacturing of consumer electronics products ranging from TVs, mobile phones, white goods and smart home products.",
-    "Microwave ovens heat food using microwaves, a form of electromagnetic radiation similar to radio waves. Microwaves have three characteristics that allow them to be used in cooking: they are reflected by metal; they pass through glass, paper, plastic, and similar materials; and they are absorbed by foods."
   ];
 
   goToLoginScreen() {
@@ -349,10 +349,9 @@ class _ElectronicsState extends State<Electronics> {
                                                   electronicsImages[index];
                                               var prize =
                                                   electronicsPrizes[index];
-                                              var fullName =
-                                                  describedName[index];
                                               var color =
                                                   electronicsColors[index];
+                                              var description = details[index];
 
                                               FirebaseFirestore db =
                                                   FirebaseFirestore.instance;
@@ -395,8 +394,8 @@ class _ElectronicsState extends State<Electronics> {
                                                           "name": name,
                                                           "image": image,
                                                           "price": prize,
-                                                          "fullName": fullName,
-                                                          "color": color
+                                                          "color": color,
+                                                          "details": description
                                                         });
 
                                                         Scaffold.of(context)
@@ -448,10 +447,10 @@ class _ElectronicsState extends State<Electronics> {
                                                     electronicsImages[index];
                                                 var prize =
                                                     electronicsPrizes[index];
-                                                var fullName =
-                                                    describedName[index];
                                                 var color =
                                                     electronicsColors[index];
+                                                var description =
+                                                    details[index];
 
                                                 FirebaseFirestore db =
                                                     FirebaseFirestore.instance;
@@ -471,8 +470,8 @@ class _ElectronicsState extends State<Electronics> {
                                                         "name": name,
                                                         "image": image,
                                                         "prize": prize,
-                                                        "fullName": fullName,
-                                                        "color": color
+                                                        "color": color,
+                                                        "details": description
                                                       });
 
                                                 Scaffold.of(context)
@@ -503,10 +502,106 @@ class _ElectronicsState extends State<Electronics> {
                                 child: SingleChildScrollView(
                                   child: Column(
                                     children: [
-                                      Image.network(
-                                        electronicsImages[index],
-                                        height: 250,
-                                        width: 300,
+                                      Stack(
+                                        children: [
+                                          Container(
+                                            height: 300,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            decoration: BoxDecoration(
+                                                color: Colors.green,
+                                                image: DecorationImage(
+                                                    fit: BoxFit.fill,
+                                                    image: NetworkImage(
+                                                        electronicsImages[
+                                                            index]))),
+                                          ),
+                                          Positioned(
+                                            top: 25,
+                                            left: 20,
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                var name =
+                                                    electronicsNames[index];
+                                                var image =
+                                                    electronicsImages[index];
+                                                var prize =
+                                                    electronicsPrizes[index];
+                                                var color =
+                                                    electronicsColors[index];
+                                                var description =
+                                                    details[index];
+
+                                                FirebaseFirestore db =
+                                                    FirebaseFirestore.instance;
+
+                                                FirebaseAuth.instance
+                                                            .currentUser ==
+                                                        null
+                                                    ? goToLoginScreen()
+                                                        .pushNamed("/login")
+                                                    : db
+                                                        .collection("users")
+                                                        .doc(FirebaseAuth
+                                                            .instance
+                                                            .currentUser
+                                                            .uid)
+                                                        .collection("favorites")
+                                                        .where("name",
+                                                            isEqualTo: name)
+                                                        .get()
+                                                        .then((value) {
+                                                        if (value
+                                                            .docs.isNotEmpty) {
+                                                          Scaffold.of(context)
+                                                              .showSnackBar(SnackBar(
+                                                                  backgroundColor:
+                                                                      Colors.purple[
+                                                                          300],
+                                                                  content: Text(
+                                                                      "Already added to favorites")));
+                                                          print(
+                                                              "Already added to favorites");
+                                                        } else {
+                                                          db
+                                                              .collection(
+                                                                  "users")
+                                                              .doc(FirebaseAuth
+                                                                  .instance
+                                                                  .currentUser
+                                                                  .uid)
+                                                              .collection(
+                                                                  "favorites")
+                                                              .add({
+                                                            "name": name,
+                                                            "image": image,
+                                                            "price": prize,
+                                                            "color": color,
+                                                            "details":
+                                                                description
+                                                          });
+
+                                                          Scaffold.of(context)
+                                                              .showSnackBar(SnackBar(
+                                                                  backgroundColor:
+                                                                      Colors.purple[
+                                                                          300],
+                                                                  content: Text(
+                                                                      "Added to favorites")));
+                                                          print(
+                                                              "Added to favorites");
+                                                        }
+                                                      });
+                                              },
+                                              child: Icon(
+                                                Icons.favorite,
+                                                color: Colors.grey,
+                                                size: 17,
+                                              ),
+                                            ),
+                                          )
+                                        ],
                                       ),
                                       SizedBox(
                                         height: 20,
@@ -514,51 +609,13 @@ class _ElectronicsState extends State<Electronics> {
                                       Row(
                                         children: [
                                           Text(electronicsNames[index]),
-                                          GestureDetector(
-                                            onTap: () {
-                                              var name =
-                                                  electronicsNames[index];
-                                              var image =
-                                                  electronicsImages[index];
-                                              var prize =
-                                                  electronicsPrizes[index];
-                                              var fullName =
-                                                  describedName[index];
-                                              var color =
-                                                  electronicsColors[index];
-
-                                              FirebaseFirestore db =
-                                                  FirebaseFirestore.instance;
-
-                                              FirebaseAuth.instance
-                                                          .currentUser ==
-                                                      null
-                                                  ? goToLoginScreen()
-                                                      .pushNamed("/login")
-                                                  : db
-                                                      .collection("users")
-                                                      .doc(FirebaseAuth.instance
-                                                          .currentUser.uid)
-                                                      .collection("favorites")
-                                                      .add({
-                                                      "name": name,
-                                                      "image": image,
-                                                      "price": prize,
-                                                      "fullName": fullName,
-                                                      "color": color
-                                                    });
-                                            },
-                                            child: Center(
-                                              child: Icon(
-                                                Icons.favorite,
-                                                color: Colors.grey,
-                                                size: 15,
-                                              ),
-                                            ),
-                                          ),
                                         ],
                                       ),
-                                      Text(describedName[index]),
+                                      Text(electronicsColors[index]),
+                                      SizedBox(
+                                        height: 30,
+                                      ),
+                                      Text(details[index]),
                                       TextButton(
                                           onPressed: () async {
                                             var name = electronicsNames[index];
@@ -566,9 +623,9 @@ class _ElectronicsState extends State<Electronics> {
                                                 electronicsImages[index];
                                             var prize =
                                                 electronicsPrizes[index];
-                                            var fullName = describedName[index];
                                             var color =
                                                 electronicsColors[index];
+                                            var description = details[index];
 
                                             FirebaseFirestore db =
                                                 FirebaseFirestore.instance;
@@ -585,8 +642,8 @@ class _ElectronicsState extends State<Electronics> {
                                                     "name": name,
                                                     "image": image,
                                                     "prize": prize,
-                                                    "fullName": fullName,
-                                                    "color": color
+                                                    "color": color,
+                                                    "details": description
                                                   });
                                             EasyLoading.showSuccess(
                                                 'Added to your cart!');

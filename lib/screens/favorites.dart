@@ -174,6 +174,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                     SizedBox(
                                       height: 10,
                                     ),
+                                    Text(data["details"])
                                   ],
                                 ),
                               ));

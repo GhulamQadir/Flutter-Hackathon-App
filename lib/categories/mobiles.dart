@@ -27,6 +27,21 @@ class _MobilesState extends State<Mobiles> {
     "Redmi Note 8",
   ];
 
+  var mobilesColors = [
+    "Black",
+    "Grey",
+    "Silver",
+    "Blue",
+    "Light Purple",
+    "Shaded Grey",
+    "Shaded Green",
+    "Shaded Blue",
+    "White",
+    "Pink",
+    "Shaded White",
+    "Shaded Purple",
+  ];
+
   var mobileImage = [
     "https://assets.swappie.com/cdn-cgi/image/width=600,height=600,fit=contain,format=auto/iphone-x-spacegrey-back-2-1-600x828.jpg",
     "https://cdn.dxomark.com/wp-content/uploads/medias/post-61183/iphone-12-pro-blue-hero.jpg",
@@ -57,13 +72,19 @@ class _MobilesState extends State<Mobiles> {
     30000,
   ];
 
-  var description = [
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare."
+  var details = [
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
   ];
 
   goToLoginScreen() {
@@ -326,7 +347,8 @@ class _MobilesState extends State<Mobiles> {
                                               var name = mobileName[index];
                                               var image = mobileImage[index];
                                               var prize = mobilePrize[index];
-                                              var descrip = description[index];
+                                              var colors = mobilesColors[index];
+                                              var description = details[index];
 
                                               FirebaseFirestore db =
                                                   FirebaseFirestore.instance;
@@ -369,7 +391,8 @@ class _MobilesState extends State<Mobiles> {
                                                           "name": name,
                                                           "image": image,
                                                           "price": prize,
-                                                          "description": descrip
+                                                          "color": colors,
+                                                          "details": description
                                                         });
 
                                                         Scaffold.of(context)
@@ -418,8 +441,10 @@ class _MobilesState extends State<Mobiles> {
                                                 var name = mobileName[index];
                                                 var image = mobileImage[index];
                                                 var prize = mobilePrize[index];
-                                                var descrip =
-                                                    description[index];
+                                                var colors =
+                                                    mobilesColors[index];
+                                                var description =
+                                                    details[index];
 
                                                 FirebaseFirestore db =
                                                     FirebaseFirestore.instance;
@@ -439,7 +464,8 @@ class _MobilesState extends State<Mobiles> {
                                                         "name": name,
                                                         "image": image,
                                                         "prize": prize,
-                                                        "description": descrip
+                                                        "color": colors,
+                                                        "details": description
                                                       });
 
                                                 Scaffold.of(context)
@@ -486,7 +512,8 @@ class _MobilesState extends State<Mobiles> {
                                               var name = mobileName[index];
                                               var image = mobileImage[index];
                                               var prize = mobilePrize[index];
-                                              var descrip = description[index];
+                                              var colors = mobilesColors[index];
+                                              var description = details[index];
 
                                               FirebaseFirestore db =
                                                   FirebaseFirestore.instance;
@@ -505,7 +532,8 @@ class _MobilesState extends State<Mobiles> {
                                                       "name": name,
                                                       "image": image,
                                                       "price": prize,
-                                                      "description": descrip,
+                                                      "color": colors,
+                                                      "details": description
                                                     });
                                             },
                                             child: Center(
@@ -518,13 +546,18 @@ class _MobilesState extends State<Mobiles> {
                                           ),
                                         ],
                                       ),
-                                      Text(description[index]),
+                                      Text(mobilesColors[index]),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Text(details[index]),
                                       TextButton(
                                           onPressed: () async {
                                             var name = mobileName[index];
                                             var image = mobileImage[index];
                                             var prize = mobilePrize[index];
-                                            var descrip = description[index];
+                                            var colors = mobilesColors[index];
+                                            var description = details[index];
 
                                             FirebaseFirestore db =
                                                 FirebaseFirestore.instance;
@@ -541,7 +574,8 @@ class _MobilesState extends State<Mobiles> {
                                                     "name": name,
                                                     "image": image,
                                                     "prize": prize,
-                                                    "description": descrip
+                                                    "color": colors,
+                                                    "details": description
                                                   });
                                             EasyLoading.showSuccess(
                                                 'Added to your cart!');

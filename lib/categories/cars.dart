@@ -56,13 +56,34 @@ class _CarsState extends State<Cars> {
     200000
   ];
 
-  var description = [
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare."
+  var carsColors = [
+    "White",
+    "Grey",
+    "Black",
+    "Red",
+    "Silver",
+    "White",
+    "Dark Grey",
+    "White",
+    "Dark Blue",
+    "Light Blue",
+    "Red",
+    "Red",
+  ];
+
+  var details = [
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
   ];
 
   goToLoginScreen() {
@@ -325,7 +346,8 @@ class _CarsState extends State<Cars> {
                                               var name = carsNames[index];
                                               var image = carsImages[index];
                                               var prize = carsPrizes[index];
-                                              var descrip = description[index];
+                                              var colors = carsColors[index];
+                                              var description = details[index];
 
                                               FirebaseFirestore db =
                                                   FirebaseFirestore.instance;
@@ -368,7 +390,8 @@ class _CarsState extends State<Cars> {
                                                           "name": name,
                                                           "image": image,
                                                           "price": prize,
-                                                          "description": descrip
+                                                          "color": colors,
+                                                          "details": description
                                                         });
 
                                                         Scaffold.of(context)
@@ -417,8 +440,9 @@ class _CarsState extends State<Cars> {
                                                 var name = carsNames[index];
                                                 var image = carsImages[index];
                                                 var prize = carsPrizes[index];
-                                                var descrip =
-                                                    description[index];
+                                                var colors = carsColors[index];
+                                                var description =
+                                                    details[index];
 
                                                 FirebaseFirestore db =
                                                     FirebaseFirestore.instance;
@@ -438,7 +462,8 @@ class _CarsState extends State<Cars> {
                                                         "name": name,
                                                         "image": image,
                                                         "prize": prize,
-                                                        "description": descrip
+                                                        "color": colors,
+                                                        "details": description
                                                       });
 
                                                 Scaffold.of(context)
@@ -488,7 +513,8 @@ class _CarsState extends State<Cars> {
                                               var name = carsNames[index];
                                               var image = carsImages[index];
                                               var prize = carsPrizes[index];
-                                              var descrip = description[index];
+                                              var colors = carsColors[index];
+                                              var description = details[index];
 
                                               FirebaseFirestore db =
                                                   FirebaseFirestore.instance;
@@ -507,7 +533,8 @@ class _CarsState extends State<Cars> {
                                                       "name": name,
                                                       "image": image,
                                                       "price": prize,
-                                                      "description": descrip,
+                                                      "color": colors,
+                                                      "details": description
                                                     });
                                             },
                                             child: Center(
@@ -523,13 +550,21 @@ class _CarsState extends State<Cars> {
                                       SizedBox(
                                         height: 20,
                                       ),
-                                      Text(description[index]),
+                                      Text(carsColors[index]),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Text(details[index]),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
                                       TextButton(
                                           onPressed: () async {
                                             var name = carsNames[index];
                                             var image = carsImages[index];
                                             var prize = carsPrizes[index];
-                                            var descrip = description[index];
+                                            var colors = carsColors[index];
+                                            var description = details[index];
 
                                             FirebaseFirestore db =
                                                 FirebaseFirestore.instance;
@@ -546,7 +581,8 @@ class _CarsState extends State<Cars> {
                                                     "name": name,
                                                     "image": image,
                                                     "prize": prize,
-                                                    "description": descrip
+                                                    "color": colors,
+                                                    "details": description
                                                   });
                                             EasyLoading.showSuccess(
                                                 'Added to your cart!');

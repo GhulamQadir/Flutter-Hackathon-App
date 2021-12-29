@@ -43,19 +43,34 @@ class _GroceryState extends State<Grocery> {
 
   var groceryPrize = [150, 90, 250, 130, 100, 70, 50, 200, 700, 30, 110, 140];
 
-  var description = [
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel libero nisi. In at metus at risus tempor suscipit quis sed ex. Suspendisse risus ligula, gravida sed ipsum id, semper pretium erat. Nullam commodo risus purus, non tempor eros tempor non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mollis leo nec leo mattis accumsan. Vivamus id sapien ut ligula luctus ornare."
+  var clothesColors = [
+    "1 kg",
+    "1 pair",
+    "1 kg",
+    "1 kg",
+    "1 kg",
+    "1 kg",
+    "1 kg",
+    "1 kg",
+    "3 kg",
+    "1 packet",
+    "1 kg",
+    "1 kg",
+  ];
+
+  var details = [
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
   ];
 
   goToLoginScreen() {
@@ -318,7 +333,8 @@ class _GroceryState extends State<Grocery> {
                                               var name = groceryName[index];
                                               var image = groceryImage[index];
                                               var prize = groceryPrize[index];
-                                              var descrip = description[index];
+                                              var colors = clothesColors[index];
+                                              var description = details[index];
 
                                               FirebaseFirestore db =
                                                   FirebaseFirestore.instance;
@@ -361,7 +377,8 @@ class _GroceryState extends State<Grocery> {
                                                           "name": name,
                                                           "image": image,
                                                           "price": prize,
-                                                          "description": descrip
+                                                          "color": colors,
+                                                          "details": description
                                                         });
 
                                                         Scaffold.of(context)
@@ -410,8 +427,10 @@ class _GroceryState extends State<Grocery> {
                                                 var name = groceryName[index];
                                                 var image = groceryImage[index];
                                                 var prize = groceryPrize[index];
-                                                var descrip =
-                                                    description[index];
+                                                var colors =
+                                                    clothesColors[index];
+                                                var description =
+                                                    details[index];
 
                                                 FirebaseFirestore db =
                                                     FirebaseFirestore.instance;
@@ -431,7 +450,8 @@ class _GroceryState extends State<Grocery> {
                                                         "name": name,
                                                         "image": image,
                                                         "prize": prize,
-                                                        "description": descrip
+                                                        "color": colors,
+                                                        "details": description
                                                       });
 
                                                 Scaffold.of(context)
@@ -475,7 +495,8 @@ class _GroceryState extends State<Grocery> {
                                               var name = groceryName[index];
                                               var image = groceryImage[index];
                                               var prize = groceryPrize[index];
-                                              var descrip = description[index];
+                                              var colors = clothesColors[index];
+                                              var description = details[index];
 
                                               FirebaseFirestore db =
                                                   FirebaseFirestore.instance;
@@ -494,7 +515,8 @@ class _GroceryState extends State<Grocery> {
                                                       "name": name,
                                                       "image": image,
                                                       "price": prize,
-                                                      "description": descrip,
+                                                      "color": colors,
+                                                      "details": description
                                                     });
                                             },
                                             child: Center(
@@ -507,13 +529,18 @@ class _GroceryState extends State<Grocery> {
                                           ),
                                         ],
                                       ),
-                                      Text(description[index]),
+                                      Text(clothesColors[index]),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Text(details[index]),
                                       TextButton(
                                           onPressed: () async {
                                             var name = groceryName[index];
                                             var image = groceryImage[index];
                                             var prize = groceryPrize[index];
-                                            var descrip = description[index];
+                                            var colors = clothesColors[index];
+                                            var description = details[index];
 
                                             FirebaseFirestore db =
                                                 FirebaseFirestore.instance;
@@ -530,7 +557,8 @@ class _GroceryState extends State<Grocery> {
                                                     "name": name,
                                                     "image": image,
                                                     "prize": prize,
-                                                    "description": descrip
+                                                    "color": colors,
+                                                    "details": description
                                                   });
                                           },
                                           child: Icon(
