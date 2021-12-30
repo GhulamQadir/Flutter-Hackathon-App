@@ -42,6 +42,19 @@ class _ElectronicsState extends State<Electronics> {
   ];
 
   var electronicsColors = [
+    // Colors.black,
+    // Colors.black,
+    // Color(0xffFF5733),
+    // Colors.white,
+    // Color(0xffF8F0E3),
+    // Colors.white,
+    // Color(0xffadd8e6),
+    // Colors.grey,
+    // Colors.black,
+    // Color(0xff696969),
+    // Colors.black,
+    // Colors.black,
+
     "Black",
     "Black",
     "Light Brown",
@@ -57,18 +70,18 @@ class _ElectronicsState extends State<Electronics> {
   ];
 
   var details = [
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   ];
 
   var electronicsPrizes = [
@@ -411,7 +424,7 @@ class _ElectronicsState extends State<Electronics> {
                                                     });
                                             },
                                             child: Icon(
-                                              Icons.favorite,
+                                              Icons.favorite_border_outlined,
                                               color: Colors.grey,
                                               size: 17,
                                             ),
@@ -505,154 +518,305 @@ class _ElectronicsState extends State<Electronics> {
                                       Stack(
                                         children: [
                                           Container(
-                                            height: 300,
+                                            height: MediaQuery.of(context)
+                                                .size
+                                                .height,
                                             width: MediaQuery.of(context)
                                                 .size
                                                 .width,
-                                            decoration: BoxDecoration(
-                                                color: Colors.green,
-                                                image: DecorationImage(
-                                                    fit: BoxFit.fill,
-                                                    image: NetworkImage(
-                                                        electronicsImages[
-                                                            index]))),
                                           ),
                                           Positioned(
-                                            top: 25,
-                                            left: 20,
-                                            child: GestureDetector(
-                                              onTap: () {
-                                                var name =
-                                                    electronicsNames[index];
-                                                var image =
-                                                    electronicsImages[index];
-                                                var prize =
-                                                    electronicsPrizes[index];
-                                                var color =
-                                                    electronicsColors[index];
-                                                var description =
-                                                    details[index];
+                                              top: 0,
+                                              left: 5,
+                                              right: 5,
+                                              child: Container(
+                                                height: 550,
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                        fit: BoxFit.fill,
+                                                        image: NetworkImage(
+                                                            electronicsImages[
+                                                                index]))),
+                                              )),
+                                          Positioned(
+                                            top: 400,
+                                            right: 15,
+                                            left: 10,
+                                            child: Container(
+                                              height: 300,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xfff2f2f2),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(15),
+                                                    topRight:
+                                                        Radius.circular(15),
+                                                    bottomRight:
+                                                        Radius.circular(15),
+                                                    bottomLeft:
+                                                        Radius.circular(15)),
+                                              ),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                      top: 15,
+                                                    ),
+                                                    child: ListTile(
+                                                      title: Text(
+                                                        electronicsNames[index],
+                                                        style: TextStyle(
+                                                            fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600),
+                                                      ),
+                                                      trailing: GestureDetector(
+                                                        onTap: () {
+                                                          var name =
+                                                              electronicsNames[
+                                                                  index];
+                                                          var image =
+                                                              electronicsImages[
+                                                                  index];
+                                                          var prize =
+                                                              electronicsPrizes[
+                                                                  index];
+                                                          var color =
+                                                              electronicsColors[
+                                                                  index];
+                                                          var description =
+                                                              details[index];
 
-                                                FirebaseFirestore db =
-                                                    FirebaseFirestore.instance;
+                                                          FirebaseFirestore db =
+                                                              FirebaseFirestore
+                                                                  .instance;
 
-                                                FirebaseAuth.instance
-                                                            .currentUser ==
-                                                        null
-                                                    ? goToLoginScreen()
-                                                        .pushNamed("/login")
-                                                    : db
-                                                        .collection("users")
-                                                        .doc(FirebaseAuth
-                                                            .instance
-                                                            .currentUser
-                                                            .uid)
-                                                        .collection("favorites")
-                                                        .where("name",
-                                                            isEqualTo: name)
-                                                        .get()
-                                                        .then((value) {
-                                                        if (value
-                                                            .docs.isNotEmpty) {
-                                                          Scaffold.of(context)
-                                                              .showSnackBar(SnackBar(
-                                                                  backgroundColor:
-                                                                      Colors.purple[
-                                                                          300],
-                                                                  content: Text(
-                                                                      "Already added to favorites")));
-                                                          print(
-                                                              "Already added to favorites");
-                                                        } else {
-                                                          db
-                                                              .collection(
-                                                                  "users")
-                                                              .doc(FirebaseAuth
-                                                                  .instance
-                                                                  .currentUser
-                                                                  .uid)
-                                                              .collection(
-                                                                  "favorites")
-                                                              .add({
-                                                            "name": name,
-                                                            "image": image,
-                                                            "price": prize,
-                                                            "color": color,
-                                                            "details":
-                                                                description
-                                                          });
+                                                          FirebaseAuth.instance
+                                                                      .currentUser ==
+                                                                  null
+                                                              ? goToLoginScreen()
+                                                                  .pushNamed(
+                                                                      "/login")
+                                                              : db
+                                                                  .collection(
+                                                                      "users")
+                                                                  .doc(FirebaseAuth
+                                                                      .instance
+                                                                      .currentUser
+                                                                      .uid)
+                                                                  .collection(
+                                                                      "favorites")
+                                                                  .where("name",
+                                                                      isEqualTo:
+                                                                          name)
+                                                                  .get()
+                                                                  .then(
+                                                                      (value) {
+                                                                  if (value.docs
+                                                                      .isNotEmpty) {
+                                                                    Scaffold.of(context).showSnackBar(SnackBar(
+                                                                        backgroundColor:
+                                                                            Colors.purple[
+                                                                                300],
+                                                                        content:
+                                                                            Text("Already added to favorites")));
+                                                                    print(
+                                                                        "Already added to favorites");
+                                                                  } else {
+                                                                    db
+                                                                        .collection(
+                                                                            "users")
+                                                                        .doc(FirebaseAuth
+                                                                            .instance
+                                                                            .currentUser
+                                                                            .uid)
+                                                                        .collection(
+                                                                            "favorites")
+                                                                        .add({
+                                                                      "name":
+                                                                          name,
+                                                                      "image":
+                                                                          image,
+                                                                      "price":
+                                                                          prize,
+                                                                      "color":
+                                                                          color,
+                                                                      "details":
+                                                                          description
+                                                                    });
 
-                                                          Scaffold.of(context)
-                                                              .showSnackBar(SnackBar(
-                                                                  backgroundColor:
-                                                                      Colors.purple[
-                                                                          300],
-                                                                  content: Text(
-                                                                      "Added to favorites")));
-                                                          print(
-                                                              "Added to favorites");
-                                                        }
-                                                      });
-                                              },
-                                              child: Icon(
-                                                Icons.favorite,
-                                                color: Colors.grey,
-                                                size: 17,
+                                                                    Scaffold.of(context).showSnackBar(SnackBar(
+                                                                        backgroundColor:
+                                                                            Colors.purple[
+                                                                                300],
+                                                                        content:
+                                                                            Text("Added to favorites")));
+                                                                    print(
+                                                                        "Added to favorites");
+                                                                  }
+                                                                });
+                                                        },
+                                                        child: Icon(
+                                                          Icons
+                                                              .favorite_border_outlined,
+                                                          color: Colors.grey,
+                                                          size: 20,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                      left: 15,
+                                                    ),
+                                                    child: Text(
+                                                      "${electronicsPrizes[index]} PKR",
+                                                      style: TextStyle(
+                                                          color: Colors.grey,
+                                                          fontWeight:
+                                                              FontWeight.w500),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 10, left: 13),
+                                                    child: Row(
+                                                      children: [
+                                                        Text(
+                                                          "Color: ${electronicsColors[index]}",
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500),
+                                                        ),
+                                                        // Container(
+                                                        //   height: 19,
+                                                        //   width: 20,
+                                                        //   decoration:
+                                                        //       BoxDecoration(
+                                                        //     borderRadius:
+                                                        //         BorderRadius
+                                                        //             .circular(
+                                                        //                 30),
+                                                        //     color:
+                                                        //         electronicsColors[
+                                                        //             index],
+                                                        //   ),
+                                                        // ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 30,
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 10,
+                                                            right: 10),
+                                                    child: Text(
+                                                      details[index],
+                                                      style: TextStyle(
+                                                          color:
+                                                              Colors.grey[600]),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 15,
+                                                  ),
+                                                  Center(
+                                                    child: Container(
+                                                      width: 160,
+                                                      child: TextButton(
+                                                          onPressed: () async {
+                                                            var name =
+                                                                electronicsNames[
+                                                                    index];
+                                                            var image =
+                                                                electronicsImages[
+                                                                    index];
+                                                            var prize =
+                                                                electronicsPrizes[
+                                                                    index];
+                                                            var color =
+                                                                electronicsColors[
+                                                                    index];
+                                                            var description =
+                                                                details[index];
+
+                                                            FirebaseFirestore
+                                                                db =
+                                                                FirebaseFirestore
+                                                                    .instance;
+
+                                                            FirebaseAuth.instance
+                                                                        .currentUser ==
+                                                                    null
+                                                                ? goToLoginScreen()
+                                                                : await db
+                                                                    .collection(
+                                                                        "users")
+                                                                    .doc(FirebaseAuth
+                                                                        .instance
+                                                                        .currentUser
+                                                                        .uid)
+                                                                    .collection(
+                                                                        "myCart")
+                                                                    .add({
+                                                                    "name":
+                                                                        name,
+                                                                    "image":
+                                                                        image,
+                                                                    "prize":
+                                                                        prize,
+                                                                    "color":
+                                                                        color,
+                                                                    "details":
+                                                                        description
+                                                                  });
+                                                            EasyLoading.showSuccess(
+                                                                'Added to your cart!');
+                                                          },
+                                                          child: Text(
+                                                            "Add to Cart",
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 16),
+                                                          ),
+                                                          style: ButtonStyle(
+                                                              backgroundColor:
+                                                                  MaterialStateProperty.all<
+                                                                          Color>(
+                                                                      Color(
+                                                                          0xff696969)),
+                                                              shape: MaterialStateProperty
+                                                                  .all<
+                                                                      RoundedRectangleBorder>(
+                                                                RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            30)),
+                                                              ))),
+                                                    ),
+                                                  )
+                                                ],
                                               ),
                                             ),
                                           )
                                         ],
                                       ),
                                       SizedBox(
-                                        height: 20,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text(electronicsNames[index]),
-                                        ],
-                                      ),
-                                      Text(electronicsColors[index]),
-                                      SizedBox(
                                         height: 30,
                                       ),
-                                      Text(details[index]),
-                                      TextButton(
-                                          onPressed: () async {
-                                            var name = electronicsNames[index];
-                                            var image =
-                                                electronicsImages[index];
-                                            var prize =
-                                                electronicsPrizes[index];
-                                            var color =
-                                                electronicsColors[index];
-                                            var description = details[index];
-
-                                            FirebaseFirestore db =
-                                                FirebaseFirestore.instance;
-
-                                            FirebaseAuth.instance.currentUser ==
-                                                    null
-                                                ? goToLoginScreen()
-                                                : await db
-                                                    .collection("users")
-                                                    .doc(FirebaseAuth.instance
-                                                        .currentUser.uid)
-                                                    .collection("myCart")
-                                                    .add({
-                                                    "name": name,
-                                                    "image": image,
-                                                    "prize": prize,
-                                                    "color": color,
-                                                    "details": description
-                                                  });
-                                            EasyLoading.showSuccess(
-                                                'Added to your cart!');
-                                          },
-                                          child: Icon(
-                                            Icons.add_shopping_cart_outlined,
-                                            color: Colors.purple,
-                                            size: 25,
-                                          ))
                                     ],
                                   ),
                                 ),

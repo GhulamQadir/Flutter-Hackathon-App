@@ -58,6 +58,19 @@ class _ClothesState extends State<Clothes> {
   ];
 
   var clothesColors = [
+    // Colors.black,
+    // Colors.blue[400],
+    // Color(0xff000080),
+    // Colors.green[400],
+    // Colors.brown[200],
+    // Colors.grey,
+    // Color(0xff16b83e),
+    // Colors.grey[400],
+    // Color(0xff605e91),
+    // Color(0xff8b89cc),
+    // Colors.grey,
+    // Colors.purple[200],
+
     "Black",
     "Light Blue",
     "Navy Blue",
@@ -73,18 +86,18 @@ class _ClothesState extends State<Clothes> {
   ];
 
   var details = [
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   ];
 
   goToLoginScreen() {
@@ -409,7 +422,7 @@ class _ClothesState extends State<Clothes> {
                                                     });
                                             },
                                             child: Icon(
-                                              Icons.favorite,
+                                              Icons.favorite_border_outlined,
                                               color: Colors.grey,
                                               size: 17,
                                             ),
@@ -497,95 +510,308 @@ class _ClothesState extends State<Clothes> {
                                 child: SingleChildScrollView(
                                   child: Column(
                                     children: [
-                                      Image.network(
-                                        clothesImage[index],
-                                        height: 250,
-                                        width: 300,
-                                      ),
-                                      SizedBox(
-                                        height: 20,
-                                      ),
-                                      Row(
+                                      Stack(
                                         children: [
-                                          Text(clothesName[index]),
-                                          GestureDetector(
-                                            onTap: () {
-                                              var name = clothesName[index];
-                                              var image = clothesImage[index];
-                                              var prize = clothesPrize[index];
-                                              var colors = clothesColors[index];
-                                              var description = details[index];
+                                          Container(
+                                            height: MediaQuery.of(context)
+                                                .size
+                                                .height,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                          ),
+                                          Positioned(
+                                              top: 0,
+                                              left: 5,
+                                              right: 5,
+                                              child: Container(
+                                                height: 550,
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                        fit: BoxFit.fill,
+                                                        image: NetworkImage(
+                                                            clothesImage[
+                                                                index]))),
+                                              )),
+                                          Positioned(
+                                            top: 400,
+                                            right: 15,
+                                            left: 10,
+                                            child: Container(
+                                              height: 300,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xfff2f2f2),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(15),
+                                                    topRight:
+                                                        Radius.circular(15),
+                                                    bottomRight:
+                                                        Radius.circular(15),
+                                                    bottomLeft:
+                                                        Radius.circular(15)),
+                                              ),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                      top: 15,
+                                                    ),
+                                                    child: ListTile(
+                                                      title: Text(
+                                                        clothesName[index],
+                                                        style: TextStyle(
+                                                            fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600),
+                                                      ),
+                                                      trailing: GestureDetector(
+                                                        onTap: () {
+                                                          var name =
+                                                              clothesName[
+                                                                  index];
+                                                          var image =
+                                                              clothesImage[
+                                                                  index];
+                                                          var prize =
+                                                              clothesPrize[
+                                                                  index];
+                                                          var color =
+                                                              clothesColors[
+                                                                  index];
+                                                          var description =
+                                                              details[index];
 
-                                              FirebaseFirestore db =
-                                                  FirebaseFirestore.instance;
+                                                          FirebaseFirestore db =
+                                                              FirebaseFirestore
+                                                                  .instance;
 
-                                              FirebaseAuth.instance
-                                                          .currentUser ==
-                                                      null
-                                                  ? goToLoginScreen()
-                                                      .pushNamed("/login")
-                                                  : db
-                                                      .collection("users")
-                                                      .doc(FirebaseAuth.instance
-                                                          .currentUser.uid)
-                                                      .collection("favorites")
-                                                      .add({
-                                                      "name": name,
-                                                      "image": image,
-                                                      "price": prize,
-                                                      "color": colors,
-                                                      "details": description
-                                                    });
-                                            },
-                                            child: Center(
-                                              child: Icon(
-                                                Icons.favorite,
-                                                color: Colors.grey,
-                                                size: 15,
+                                                          FirebaseAuth.instance
+                                                                      .currentUser ==
+                                                                  null
+                                                              ? goToLoginScreen()
+                                                                  .pushNamed(
+                                                                      "/login")
+                                                              : db
+                                                                  .collection(
+                                                                      "users")
+                                                                  .doc(FirebaseAuth
+                                                                      .instance
+                                                                      .currentUser
+                                                                      .uid)
+                                                                  .collection(
+                                                                      "favorites")
+                                                                  .where("name",
+                                                                      isEqualTo:
+                                                                          name)
+                                                                  .get()
+                                                                  .then(
+                                                                      (value) {
+                                                                  if (value.docs
+                                                                      .isNotEmpty) {
+                                                                    Scaffold.of(context).showSnackBar(SnackBar(
+                                                                        backgroundColor:
+                                                                            Colors.purple[
+                                                                                300],
+                                                                        content:
+                                                                            Text("Already added to favorites")));
+                                                                    print(
+                                                                        "Already added to favorites");
+                                                                  } else {
+                                                                    db
+                                                                        .collection(
+                                                                            "users")
+                                                                        .doc(FirebaseAuth
+                                                                            .instance
+                                                                            .currentUser
+                                                                            .uid)
+                                                                        .collection(
+                                                                            "favorites")
+                                                                        .add({
+                                                                      "name":
+                                                                          name,
+                                                                      "image":
+                                                                          image,
+                                                                      "price":
+                                                                          prize,
+                                                                      "color":
+                                                                          color,
+                                                                      "details":
+                                                                          description
+                                                                    });
+
+                                                                    Scaffold.of(context).showSnackBar(SnackBar(
+                                                                        backgroundColor:
+                                                                            Colors.purple[
+                                                                                300],
+                                                                        content:
+                                                                            Text("Added to favorites")));
+                                                                    print(
+                                                                        "Added to favorites");
+                                                                  }
+                                                                });
+                                                        },
+                                                        child: Icon(
+                                                          Icons
+                                                              .favorite_border_outlined,
+                                                          color: Colors.grey,
+                                                          size: 20,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                      left: 15,
+                                                    ),
+                                                    child: Text(
+                                                      "${clothesPrize[index]} PKR",
+                                                      style: TextStyle(
+                                                          color: Colors.grey,
+                                                          fontWeight:
+                                                              FontWeight.w500),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 10, left: 13),
+                                                    child: Row(
+                                                      children: [
+                                                        Text(
+                                                          "Color: ${clothesColors[index]}",
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500),
+                                                        ),
+                                                        // Container(
+                                                        //   height: 19,
+                                                        //   width: 20,
+                                                        //   decoration:
+                                                        //       BoxDecoration(
+                                                        //     borderRadius:
+                                                        //         BorderRadius
+                                                        //             .circular(
+                                                        //                 30),
+                                                        //     color:
+                                                        //         clothesColors[
+                                                        //             index],
+                                                        //   ),
+                                                        // ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 30,
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 10,
+                                                            right: 10),
+                                                    child: Text(
+                                                      details[index],
+                                                      style: TextStyle(
+                                                          color:
+                                                              Colors.grey[600]),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 15,
+                                                  ),
+                                                  Center(
+                                                    child: Container(
+                                                      width: 160,
+                                                      child: TextButton(
+                                                          onPressed: () async {
+                                                            var name =
+                                                                clothesName[
+                                                                    index];
+                                                            var image =
+                                                                clothesImage[
+                                                                    index];
+                                                            var prize =
+                                                                clothesPrize[
+                                                                    index];
+                                                            var color =
+                                                                clothesColors[
+                                                                    index];
+                                                            var description =
+                                                                details[index];
+
+                                                            FirebaseFirestore
+                                                                db =
+                                                                FirebaseFirestore
+                                                                    .instance;
+
+                                                            FirebaseAuth.instance
+                                                                        .currentUser ==
+                                                                    null
+                                                                ? goToLoginScreen()
+                                                                : await db
+                                                                    .collection(
+                                                                        "users")
+                                                                    .doc(FirebaseAuth
+                                                                        .instance
+                                                                        .currentUser
+                                                                        .uid)
+                                                                    .collection(
+                                                                        "myCart")
+                                                                    .add({
+                                                                    "name":
+                                                                        name,
+                                                                    "image":
+                                                                        image,
+                                                                    "prize":
+                                                                        prize,
+                                                                    "color":
+                                                                        color,
+                                                                    "details":
+                                                                        description
+                                                                  });
+                                                            EasyLoading.showSuccess(
+                                                                'Added to your cart!');
+                                                          },
+                                                          child: Text(
+                                                            "Add to Cart",
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 16),
+                                                          ),
+                                                          style: ButtonStyle(
+                                                              backgroundColor:
+                                                                  MaterialStateProperty.all<
+                                                                          Color>(
+                                                                      Color(
+                                                                          0xff696969)),
+                                                              shape: MaterialStateProperty
+                                                                  .all<
+                                                                      RoundedRectangleBorder>(
+                                                                RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            30)),
+                                                              ))),
+                                                    ),
+                                                  )
+                                                ],
                                               ),
                                             ),
-                                          ),
+                                          )
                                         ],
                                       ),
-                                      Text(clothesColors[index]),
                                       SizedBox(
-                                        height: 20,
+                                        height: 30,
                                       ),
-                                      Text(details[index]),
-                                      TextButton(
-                                          onPressed: () async {
-                                            var name = clothesName[index];
-                                            var image = clothesImage[index];
-                                            var prize = clothesPrize[index];
-                                            var colors = clothesColors[index];
-                                            var description = details[index];
-
-                                            FirebaseFirestore db =
-                                                FirebaseFirestore.instance;
-
-                                            FirebaseAuth.instance.currentUser ==
-                                                    null
-                                                ? goToLoginScreen()
-                                                : await db
-                                                    .collection("users")
-                                                    .doc(FirebaseAuth.instance
-                                                        .currentUser.uid)
-                                                    .collection("myCart")
-                                                    .add({
-                                                    "name": name,
-                                                    "image": image,
-                                                    "prize": prize,
-                                                    "color": colors,
-                                                    "details": description
-                                                  });
-                                            EasyLoading.showSuccess(
-                                                'Added to your cart!');
-                                          },
-                                          child: Icon(
-                                            Icons.add_shopping_cart_outlined,
-                                            color: Colors.purple,
-                                            size: 25,
-                                          ))
                                     ],
                                   ),
                                 ),

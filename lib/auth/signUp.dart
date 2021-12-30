@@ -270,7 +270,6 @@ class _SignUpState extends State<SignUp> {
                                         borderRadius:
                                             BorderRadius.circular(30)),
                                   )))),
-                      // ElevatedButton(onPressed: signUp, child: Text("Sign Up"))
                     ],
                   ),
                 ),

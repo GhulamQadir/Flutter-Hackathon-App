@@ -43,7 +43,7 @@ class _GroceryState extends State<Grocery> {
 
   var groceryPrize = [150, 90, 250, 130, 100, 70, 50, 200, 700, 30, 110, 140];
 
-  var clothesColors = [
+  var groceryQuantity = [
     "1 kg",
     "1 pair",
     "1 kg",
@@ -59,18 +59,18 @@ class _GroceryState extends State<Grocery> {
   ];
 
   var details = [
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   ];
 
   goToLoginScreen() {
@@ -333,7 +333,8 @@ class _GroceryState extends State<Grocery> {
                                               var name = groceryName[index];
                                               var image = groceryImage[index];
                                               var prize = groceryPrize[index];
-                                              var colors = clothesColors[index];
+                                              var quantity =
+                                                  groceryQuantity[index];
                                               var description = details[index];
 
                                               FirebaseFirestore db =
@@ -377,7 +378,7 @@ class _GroceryState extends State<Grocery> {
                                                           "name": name,
                                                           "image": image,
                                                           "price": prize,
-                                                          "color": colors,
+                                                          "color": quantity,
                                                           "details": description
                                                         });
 
@@ -394,7 +395,7 @@ class _GroceryState extends State<Grocery> {
                                                     });
                                             },
                                             child: Icon(
-                                              Icons.favorite,
+                                              Icons.favorite_border_outlined,
                                               color: Colors.grey,
                                               size: 17,
                                             ),
@@ -427,8 +428,8 @@ class _GroceryState extends State<Grocery> {
                                                 var name = groceryName[index];
                                                 var image = groceryImage[index];
                                                 var prize = groceryPrize[index];
-                                                var colors =
-                                                    clothesColors[index];
+                                                var quantity =
+                                                    groceryQuantity[index];
                                                 var description =
                                                     details[index];
 
@@ -450,7 +451,7 @@ class _GroceryState extends State<Grocery> {
                                                         "name": name,
                                                         "image": image,
                                                         "prize": prize,
-                                                        "color": colors,
+                                                        "color": quantity,
                                                         "details": description
                                                       });
 
@@ -476,60 +477,68 @@ class _GroceryState extends State<Grocery> {
                             },
                             openBuilder: (context, action) {
                               return SafeArea(
-                                child: SingleChildScrollView(
-                                  child: Column(
+                                  child: SingleChildScrollView(
+                                      child: Column(children: [
+                                Image.network(
+                                  groceryImage[index],
+                                  height: 250,
+                                  width: 300,
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Row(
+                                  children: [
+                                    Text(groceryName[index]),
+                                    GestureDetector(
+                                      onTap: () {
+                                        var name = groceryName[index];
+                                        var image = groceryImage[index];
+                                        var prize = groceryPrize[index];
+                                        var quantity = groceryQuantity[index];
+                                        var description = details[index];
+
+                                        FirebaseFirestore db =
+                                            FirebaseFirestore.instance;
+
+                                        FirebaseAuth.instance.currentUser ==
+                                                null
+                                            ? goToLoginScreen()
+                                                .pushNamed("/login")
+                                            : db
+                                                .collection("users")
+                                                .doc(FirebaseAuth
+                                                    .instance.currentUser.uid)
+                                                .collection("favorites")
+                                                .add({
+                                                "name": name,
+                                                "image": image,
+                                                "price": prize,
+                                                "color": quantity,
+                                                "details": description
+                                              });
+                                      },
+                                      child: Center(
+                                        child: Icon(
+                                          Icons.favorite_border_outlined,
+                                          color: Colors.grey,
+                                          size: 15,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                // Text(clothesColors[index]),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 10, left: 13),
+                                  child: Row(
                                     children: [
-                                      Image.network(
-                                        groceryImage[index],
-                                        height: 250,
-                                        width: 300,
+                                      Text(
+                                        "Quantity: ${groceryQuantity[index]}",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w500),
                                       ),
-                                      SizedBox(
-                                        height: 20,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text(groceryName[index]),
-                                          GestureDetector(
-                                            onTap: () {
-                                              var name = groceryName[index];
-                                              var image = groceryImage[index];
-                                              var prize = groceryPrize[index];
-                                              var colors = clothesColors[index];
-                                              var description = details[index];
-
-                                              FirebaseFirestore db =
-                                                  FirebaseFirestore.instance;
-
-                                              FirebaseAuth.instance
-                                                          .currentUser ==
-                                                      null
-                                                  ? goToLoginScreen()
-                                                      .pushNamed("/login")
-                                                  : db
-                                                      .collection("users")
-                                                      .doc(FirebaseAuth.instance
-                                                          .currentUser.uid)
-                                                      .collection("favorites")
-                                                      .add({
-                                                      "name": name,
-                                                      "image": image,
-                                                      "price": prize,
-                                                      "color": colors,
-                                                      "details": description
-                                                    });
-                                            },
-                                            child: Center(
-                                              child: Icon(
-                                                Icons.favorite,
-                                                color: Colors.grey,
-                                                size: 15,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Text(clothesColors[index]),
                                       SizedBox(
                                         height: 20,
                                       ),
@@ -539,7 +548,8 @@ class _GroceryState extends State<Grocery> {
                                             var name = groceryName[index];
                                             var image = groceryImage[index];
                                             var prize = groceryPrize[index];
-                                            var colors = clothesColors[index];
+                                            var quantity =
+                                                groceryQuantity[index];
                                             var description = details[index];
 
                                             FirebaseFirestore db =
@@ -557,7 +567,7 @@ class _GroceryState extends State<Grocery> {
                                                     "name": name,
                                                     "image": image,
                                                     "prize": prize,
-                                                    "color": colors,
+                                                    "color": quantity,
                                                     "details": description
                                                   });
                                           },
@@ -569,7 +579,7 @@ class _GroceryState extends State<Grocery> {
                                     ],
                                   ),
                                 ),
-                              );
+                              ])));
                             }),
                       ),
                     ],
