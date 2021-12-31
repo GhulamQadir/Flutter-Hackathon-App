@@ -19,12 +19,12 @@ class _ClothesState extends State<Clothes> {
     "Light green T-Shirt",
     "Light brown T-Shirt",
     "Dark grey T-Shirt",
-    "Green check Shirt",
-    "Grey check Shirt",
-    "Blue check Shirt",
-    "Purple check Shirt",
-    "Formal grey Shirt",
-    "Formal blue Shirt",
+    "Formal Shirt Green",
+    "Formal Shirt Grey",
+    "Formal Shirt Blue",
+    "Formal Shirt Purple",
+    "Formal Shirt Brown",
+    "Formal Shirt Blue",
   ];
 
   var clothesImage = [
@@ -118,6 +118,10 @@ class _ClothesState extends State<Clothes> {
 
   goToHome() {
     Navigator.of(context).pushNamed("/home");
+  }
+
+  goBack() {
+    Navigator.of(context).pushNamed("/clothes");
   }
 
   final firebaseUser = FirebaseAuth.instance.currentUser;
@@ -521,9 +525,17 @@ class _ClothesState extends State<Clothes> {
                                                 .width,
                                           ),
                                           Positioned(
+                                            top: 9,
+                                            left: 15,
+                                            child: GestureDetector(
+                                                onTap: goBack,
+                                                child:
+                                                    Icon(Icons.arrow_back_ios)),
+                                          ),
+                                          Positioned(
                                               top: 0,
-                                              left: 5,
-                                              right: 5,
+                                              left: 0,
+                                              right: 0,
                                               child: Container(
                                                 height: 550,
                                                 decoration: BoxDecoration(
@@ -777,8 +789,6 @@ class _ClothesState extends State<Clothes> {
                                                                     "details":
                                                                         description
                                                                   });
-                                                            EasyLoading.showSuccess(
-                                                                'Added to your cart!');
                                                           },
                                                           child: Text(
                                                             "Add to Cart",

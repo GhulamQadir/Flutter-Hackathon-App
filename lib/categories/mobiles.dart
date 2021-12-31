@@ -120,6 +120,10 @@ class _MobilesState extends State<Mobiles> {
     Navigator.of(context).pushNamed("/home");
   }
 
+  goBack() {
+    Navigator.of(context).pushNamed("/mobiles");
+  }
+
   final firebaseUser = FirebaseAuth.instance.currentUser;
 
   FirebaseFirestore db = FirebaseFirestore.instance;
@@ -508,6 +512,8 @@ class _MobilesState extends State<Mobiles> {
                               return SafeArea(
                                 child: SingleChildScrollView(
                                   child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Stack(
                                         children: [
@@ -519,10 +525,18 @@ class _MobilesState extends State<Mobiles> {
                                                 .size
                                                 .width,
                                           ),
+                                          // Positioned(
+                                          //   top: 9,
+                                          //   left: 15,
+                                          //   child: GestureDetector(
+                                          //       onTap: goBack,
+                                          //       child:
+                                          //           Icon(Icons.arrow_back_ios)),
+                                          // ),
                                           Positioned(
                                               top: 0,
-                                              left: 5,
-                                              right: 5,
+                                              left: 0,
+                                              right: 0,
                                               child: Container(
                                                 height: 550,
                                                 decoration: BoxDecoration(
@@ -775,8 +789,6 @@ class _MobilesState extends State<Mobiles> {
                                                                     "details":
                                                                         description
                                                                   });
-                                                            EasyLoading.showSuccess(
-                                                                'Added to your cart!');
                                                           },
                                                           child: Text(
                                                             "Add to Cart",

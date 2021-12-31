@@ -93,6 +93,10 @@ class _GroceryState extends State<Grocery> {
     Navigator.of(context).pushNamed("/home");
   }
 
+  goBack() {
+    Navigator.of(context).pushNamed("/grocery");
+  }
+
   final firebaseUser = FirebaseAuth.instance.currentUser;
 
   FirebaseFirestore db = FirebaseFirestore.instance;
@@ -477,109 +481,321 @@ class _GroceryState extends State<Grocery> {
                             },
                             openBuilder: (context, action) {
                               return SafeArea(
-                                  child: SingleChildScrollView(
-                                      child: Column(children: [
-                                Image.network(
-                                  groceryImage[index],
-                                  height: 250,
-                                  width: 300,
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Row(
-                                  children: [
-                                    Text(groceryName[index]),
-                                    GestureDetector(
-                                      onTap: () {
-                                        var name = groceryName[index];
-                                        var image = groceryImage[index];
-                                        var prize = groceryPrize[index];
-                                        var quantity = groceryQuantity[index];
-                                        var description = details[index];
-
-                                        FirebaseFirestore db =
-                                            FirebaseFirestore.instance;
-
-                                        FirebaseAuth.instance.currentUser ==
-                                                null
-                                            ? goToLoginScreen()
-                                                .pushNamed("/login")
-                                            : db
-                                                .collection("users")
-                                                .doc(FirebaseAuth
-                                                    .instance.currentUser.uid)
-                                                .collection("favorites")
-                                                .add({
-                                                "name": name,
-                                                "image": image,
-                                                "price": prize,
-                                                "color": quantity,
-                                                "details": description
-                                              });
-                                      },
-                                      child: Center(
-                                        child: Icon(
-                                          Icons.favorite_border_outlined,
-                                          color: Colors.grey,
-                                          size: 15,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                // Text(clothesColors[index]),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 10, left: 13),
-                                  child: Row(
+                                child: SingleChildScrollView(
+                                  child: Column(
                                     children: [
-                                      Text(
-                                        "Quantity: ${groceryQuantity[index]}",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w500),
+                                      Stack(
+                                        children: [
+                                          Container(
+                                            height: MediaQuery.of(context)
+                                                .size
+                                                .height,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                          ),
+                                          Positioned(
+                                            top: 9,
+                                            left: 15,
+                                            child: GestureDetector(
+                                                onTap: goBack,
+                                                child:
+                                                    Icon(Icons.arrow_back_ios)),
+                                          ),
+                                          Positioned(
+                                              top: 0,
+                                              left: 0,
+                                              right: 0,
+                                              child: Container(
+                                                height: 550,
+                                                decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                        fit: BoxFit.fill,
+                                                        image: NetworkImage(
+                                                            groceryImage[
+                                                                index]))),
+                                              )),
+                                          Positioned(
+                                            top: 400,
+                                            right: 15,
+                                            left: 10,
+                                            child: Container(
+                                              height: 300,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xfff2f2f2),
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(15),
+                                                    topRight:
+                                                        Radius.circular(15),
+                                                    bottomRight:
+                                                        Radius.circular(15),
+                                                    bottomLeft:
+                                                        Radius.circular(15)),
+                                              ),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                      top: 15,
+                                                    ),
+                                                    child: ListTile(
+                                                      title: Text(
+                                                        groceryName[index],
+                                                        style: TextStyle(
+                                                            fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600),
+                                                      ),
+                                                      trailing: GestureDetector(
+                                                        onTap: () {
+                                                          var name =
+                                                              groceryName[
+                                                                  index];
+                                                          var image =
+                                                              groceryImage[
+                                                                  index];
+                                                          var prize =
+                                                              groceryPrize[
+                                                                  index];
+                                                          var quantity =
+                                                              groceryQuantity[
+                                                                  index];
+                                                          var description =
+                                                              details[index];
+
+                                                          FirebaseFirestore db =
+                                                              FirebaseFirestore
+                                                                  .instance;
+
+                                                          FirebaseAuth.instance
+                                                                      .currentUser ==
+                                                                  null
+                                                              ? goToLoginScreen()
+                                                                  .pushNamed(
+                                                                      "/login")
+                                                              : db
+                                                                  .collection(
+                                                                      "users")
+                                                                  .doc(FirebaseAuth
+                                                                      .instance
+                                                                      .currentUser
+                                                                      .uid)
+                                                                  .collection(
+                                                                      "favorites")
+                                                                  .where("name",
+                                                                      isEqualTo:
+                                                                          name)
+                                                                  .get()
+                                                                  .then(
+                                                                      (value) {
+                                                                  if (value.docs
+                                                                      .isNotEmpty) {
+                                                                    Scaffold.of(context).showSnackBar(SnackBar(
+                                                                        backgroundColor:
+                                                                            Colors.purple[
+                                                                                300],
+                                                                        content:
+                                                                            Text("Already added to favorites")));
+                                                                    print(
+                                                                        "Already added to favorites");
+                                                                  } else {
+                                                                    db
+                                                                        .collection(
+                                                                            "users")
+                                                                        .doc(FirebaseAuth
+                                                                            .instance
+                                                                            .currentUser
+                                                                            .uid)
+                                                                        .collection(
+                                                                            "favorites")
+                                                                        .add({
+                                                                      "name":
+                                                                          name,
+                                                                      "image":
+                                                                          image,
+                                                                      "price":
+                                                                          prize,
+                                                                      "color":
+                                                                          quantity,
+                                                                      "details":
+                                                                          description
+                                                                    });
+
+                                                                    Scaffold.of(context).showSnackBar(SnackBar(
+                                                                        backgroundColor:
+                                                                            Colors.purple[
+                                                                                300],
+                                                                        content:
+                                                                            Text("Added to favorites")));
+                                                                    print(
+                                                                        "Added to favorites");
+                                                                  }
+                                                                });
+                                                        },
+                                                        child: Icon(
+                                                          Icons
+                                                              .favorite_border_outlined,
+                                                          color: Colors.grey,
+                                                          size: 20,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                      left: 15,
+                                                    ),
+                                                    child: Text(
+                                                      "${groceryPrize[index]} PKR",
+                                                      style: TextStyle(
+                                                          color: Colors.grey,
+                                                          fontWeight:
+                                                              FontWeight.w500),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 10, left: 13),
+                                                    child: Row(
+                                                      children: [
+                                                        Text(
+                                                          "Quantity: ${groceryQuantity[index]}",
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500),
+                                                        ),
+                                                        // Container(
+                                                        //   height: 19,
+                                                        //   width: 20,
+                                                        //   decoration:
+                                                        //       BoxDecoration(
+                                                        //     borderRadius:
+                                                        //         BorderRadius
+                                                        //             .circular(
+                                                        //                 30),
+                                                        //     color:
+                                                        //         mobilesColors[
+                                                        //             index],
+                                                        //   ),
+                                                        // ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 30,
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 10,
+                                                            right: 10),
+                                                    child: Text(
+                                                      details[index],
+                                                      style: TextStyle(
+                                                          color:
+                                                              Colors.grey[600]),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 15,
+                                                  ),
+                                                  Center(
+                                                    child: Container(
+                                                      width: 160,
+                                                      child: TextButton(
+                                                          onPressed: () async {
+                                                            var name =
+                                                                groceryName[
+                                                                    index];
+                                                            var image =
+                                                                groceryImage[
+                                                                    index];
+                                                            var prize =
+                                                                groceryPrize[
+                                                                    index];
+                                                            var quantity =
+                                                                groceryQuantity[
+                                                                    index];
+                                                            var description =
+                                                                details[index];
+
+                                                            FirebaseFirestore
+                                                                db =
+                                                                FirebaseFirestore
+                                                                    .instance;
+
+                                                            FirebaseAuth.instance
+                                                                        .currentUser ==
+                                                                    null
+                                                                ? goToLoginScreen()
+                                                                : await db
+                                                                    .collection(
+                                                                        "users")
+                                                                    .doc(FirebaseAuth
+                                                                        .instance
+                                                                        .currentUser
+                                                                        .uid)
+                                                                    .collection(
+                                                                        "myCart")
+                                                                    .add({
+                                                                    "name":
+                                                                        name,
+                                                                    "image":
+                                                                        image,
+                                                                    "prize":
+                                                                        prize,
+                                                                    "color":
+                                                                        quantity,
+                                                                    "details":
+                                                                        description
+                                                                  });
+                                                          },
+                                                          child: Text(
+                                                            "Add to Cart",
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 16),
+                                                          ),
+                                                          style: ButtonStyle(
+                                                              backgroundColor:
+                                                                  MaterialStateProperty.all<
+                                                                          Color>(
+                                                                      Color(
+                                                                          0xff696969)),
+                                                              shape: MaterialStateProperty
+                                                                  .all<
+                                                                      RoundedRectangleBorder>(
+                                                                RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            30)),
+                                                              ))),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          )
+                                        ],
                                       ),
                                       SizedBox(
-                                        height: 20,
+                                        height: 30,
                                       ),
-                                      Text(details[index]),
-                                      TextButton(
-                                          onPressed: () async {
-                                            var name = groceryName[index];
-                                            var image = groceryImage[index];
-                                            var prize = groceryPrize[index];
-                                            var quantity =
-                                                groceryQuantity[index];
-                                            var description = details[index];
-
-                                            FirebaseFirestore db =
-                                                FirebaseFirestore.instance;
-
-                                            FirebaseAuth.instance.currentUser ==
-                                                    null
-                                                ? goToLoginScreen()
-                                                : await db
-                                                    .collection("users")
-                                                    .doc(FirebaseAuth.instance
-                                                        .currentUser.uid)
-                                                    .collection("myCart")
-                                                    .add({
-                                                    "name": name,
-                                                    "image": image,
-                                                    "prize": prize,
-                                                    "color": quantity,
-                                                    "details": description
-                                                  });
-                                          },
-                                          child: Icon(
-                                            Icons.add_shopping_cart_outlined,
-                                            color: Colors.purple,
-                                            size: 25,
-                                          ))
                                     ],
                                   ),
                                 ),
-                              ])));
+                              );
                             }),
                       ),
                     ],

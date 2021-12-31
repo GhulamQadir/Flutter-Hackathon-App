@@ -6,11 +6,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterhackathon/auth/login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:scroll_snap_list/scroll_snap_list.dart';
+// import 'package:scroll_snap_list/scroll_snap_list.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+// import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+// import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -41,24 +41,42 @@ class _HomeState extends State<Home> {
   ];
 
   var cardImages = [
-    "http://www.albawaba.com/sites/default/files/styles/default/public/2021-08/Samsung%20Galaxy%20S21%20Ultra.jpg?itok=tHHiXwZ5",
-    "https://i.ytimg.com/vi/LRcQdorxJTw/maxresdefault.jpg",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSybYQQV1Nq_4AzGdP4cGC1v6fViQcMDCsSQQ&usqp=CAU",
+    "https://cdn.dxomark.com/wp-content/uploads/medias/post-61183/iphone-12-pro-blue-hero.jpg",
+    "https://autos.hamariweb.com/images/carimages/car_6916_777434.jpg",
+    "https://cdna.lystit.com/photos/countryhouseoutdoor/adc3d9b5/joules-Sea-Blue-Plain-Tee-Jersey-Mens-T-shirt-w.jpeg",
     "https://www.dawlance.com.pk/wp-content/uploads/2020/02/econo.png",
-    "https://media.istockphoto.com/photos/shopping-basket-with-fresh-food-grocery-supermarket-food-and-eats-picture-id1216828053?k=20&m=1216828053&s=612x612&w=0&h=mMGSO8bG8aN0gP4wyXC17WDIcf9zcqIxBd-WZto-yeg=",
-    "https://images.priceoye.pk/apple-iphone-12-mini-pakistan-priceoye-rukdw.jpg"
+    "https://dlcdnwebimgs.asus.com/gain/c05b6491-6d2b-48f0-81f0-d268840208d6/",
+    "https://media.takealot.com/covers_images/1ac61daf490e4c73ac8d57cdd867b9cb/s-pdpxl.file"
+  ];
+
+  var cardsDetails = [
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
   ];
 
   var cardNames = [
-    "Samsung",
-    "City",
-    "Coat Pant",
-    "AC",
-    "Grocery Pack",
-    "Iphone X"
+    "Iphone 12",
+    "Honda Civic 2020",
+    "Navy blue T-Shirt",
+    "Dawlance AC",
+    "Asus Zenfone 5Z",
+    "Formal Shirt Blue"
   ];
 
-  var cardPrizes = ["15000", "2200000", "15000", "70000", "13000", "145000"];
+  var cardsImgColors = [
+    "Grey",
+    "White",
+    "Navy Blue",
+    "Light Brown",
+    "Silver",
+    "Blue Black"
+  ];
+
+  var cardPrizes = ["176000", "4150000", "1000", "84500", "76100", "2100"];
 
   goToLoginScreen() {
     Navigator.of(context).pushNamed("/login");
@@ -643,8 +661,8 @@ class _HomeState extends State<Home> {
                                 padding: EdgeInsets.only(left: 10, top: 10),
                                 child: Text(cardNames[index],
                                     style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w700)),
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500)),
                               ),
                               Container(
                                 padding: EdgeInsets.only(left: 10, top: 10),

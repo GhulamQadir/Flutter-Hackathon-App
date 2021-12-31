@@ -119,6 +119,10 @@ class _ElectronicsState extends State<Electronics> {
     Navigator.of(context).pushNamed("/home");
   }
 
+  goBack() {
+    Navigator.of(context).pushNamed("/electronics");
+  }
+
   final firebaseUser = FirebaseAuth.instance.currentUser;
 
   FirebaseFirestore db = FirebaseFirestore.instance;
@@ -526,9 +530,17 @@ class _ElectronicsState extends State<Electronics> {
                                                 .width,
                                           ),
                                           Positioned(
+                                            top: 9,
+                                            left: 15,
+                                            child: GestureDetector(
+                                                onTap: goBack,
+                                                child:
+                                                    Icon(Icons.arrow_back_ios)),
+                                          ),
+                                          Positioned(
                                               top: 0,
-                                              left: 5,
-                                              right: 5,
+                                              left: 0,
+                                              right: 0,
                                               child: Container(
                                                 height: 550,
                                                 decoration: BoxDecoration(
@@ -782,8 +794,6 @@ class _ElectronicsState extends State<Electronics> {
                                                                     "details":
                                                                         description
                                                                   });
-                                                            EasyLoading.showSuccess(
-                                                                'Added to your cart!');
                                                           },
                                                           child: Text(
                                                             "Add to Cart",

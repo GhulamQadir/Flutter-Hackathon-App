@@ -77,8 +77,8 @@ class _CarsState extends State<Cars> {
     "Silver",
     "White",
     "Dark Grey",
-    "White",
     "Dark Blue",
+    "White",
     "Light Blue",
     "Red",
     "Red",
@@ -117,6 +117,10 @@ class _CarsState extends State<Cars> {
 
   goToHome() {
     Navigator.of(context).pushNamed("/home");
+  }
+
+  goBack() {
+    Navigator.of(context).pushNamed("/cars");
   }
 
   final firebaseUser = FirebaseAuth.instance.currentUser;
@@ -518,9 +522,17 @@ class _CarsState extends State<Cars> {
                                                 .width,
                                           ),
                                           Positioned(
+                                            top: 9,
+                                            left: 15,
+                                            child: GestureDetector(
+                                                onTap: goBack,
+                                                child:
+                                                    Icon(Icons.arrow_back_ios)),
+                                          ),
+                                          Positioned(
                                               top: 0,
-                                              left: 5,
-                                              right: 5,
+                                              left: 0,
+                                              right: 0,
                                               child: Container(
                                                 height: 550,
                                                 decoration: BoxDecoration(
@@ -769,8 +781,6 @@ class _CarsState extends State<Cars> {
                                                                     "details":
                                                                         description
                                                                   });
-                                                            EasyLoading.showSuccess(
-                                                                'Added to your cart!');
                                                           },
                                                           child: Text(
                                                             "Add to Cart",
