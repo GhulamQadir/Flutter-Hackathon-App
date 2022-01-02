@@ -446,7 +446,8 @@ class _CarsState extends State<Cars> {
                                           child: Text(
                                             "${carsPrizes[index]} PKR",
                                             style: TextStyle(
-                                                color: Color(0xff46eb78)),
+                                                color: Colors.grey,
+                                                fontWeight: FontWeight.w500),
                                           ),
                                         ),
                                         Positioned(
@@ -522,14 +523,6 @@ class _CarsState extends State<Cars> {
                                                 .width,
                                           ),
                                           Positioned(
-                                            top: 9,
-                                            left: 15,
-                                            child: GestureDetector(
-                                                onTap: goBack,
-                                                child:
-                                                    Icon(Icons.arrow_back_ios)),
-                                          ),
-                                          Positioned(
                                               top: 0,
                                               left: 0,
                                               right: 0,
@@ -542,6 +535,14 @@ class _CarsState extends State<Cars> {
                                                             carsImages[
                                                                 index]))),
                                               )),
+                                          Positioned(
+                                            top: 9,
+                                            left: 15,
+                                            child: GestureDetector(
+                                                onTap: goBack,
+                                                child:
+                                                    Icon(Icons.arrow_back_ios)),
+                                          ),
                                           Positioned(
                                             top: 400,
                                             right: 15,

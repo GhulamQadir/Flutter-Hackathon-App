@@ -1,6 +1,7 @@
 // @dart=2.9
-// ignore_for_file: prefer_const_constructors, curly_braces_in_flow_control_structures, avoid_print, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors, avoid_unnecessary_containers, missing_required_param, avoid_function_literals_in_foreach_calls, annotate_overrides
+// ignore_for_file: prefer_const_constructors, curly_braces_in_flow_control_structures, avoid_print, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, use_key_in_widget_constructors, avoid_unnecessary_containers, missing_required_param, avoid_function_literals_in_foreach_calls, annotate_overrides, deprecated_member_use
 
+import 'package:animations/animations.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -19,10 +20,11 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   var swiperImages = [
-    "https://i.ytimg.com/vi/Gjh9FiDnWgc/maxresdefault.jpg",
+    "https://www.stratstone.com/-/media/stratstone/blog/2020/top-5-best-gt-cars-available/best-gt-cars-available-1600x900-2px.ashx",
+    "https://cdn.vox-cdn.com/thumbor/342qpa02oBj5wry-LILlAyKz3qc=/0x0:1306x734/1400x933/filters:focal(549x263:757x471):no_upscale()/cdn.vox-cdn.com/uploads/chorus_image/image/68490964/Best_Phone_Grid_Fall_2021_16x9.10.jpg",
+    "https://i.pinimg.com/736x/f1/f6/c2/f1f6c2ec5f3ae7bff95b025bdcd9a1ff.jpg",
     "https://cdn2.vectorstock.com/i/1000x1000/91/16/food-market-poster-template-grocery-store-vector-30199116.jpg",
-    "https://i.pinimg.com/originals/8d/4b/75/8d4b75b5a4a50f728a3e6313a42b5f52.jpg",
-    "https://www.gizmochina.com/wp-content/uploads/2019/06/Galaxy-A60-featured-546x546.jpg",
+    // "https://i.pinimg.com/originals/8d/4b/75/8d4b75b5a4a50f728a3e6313a42b5f52.jpg",
     "https://media.istockphoto.com/vectors/online-safe-delivery-service-courier-delivery-grocery-order-to-the-vector-id1216649302?k=20&m=1216649302&s=612x612&w=0&h=MD4EQMxwXyf6tVlMt6iJkyg2YH9-Zbk7zA4320dVqX8=",
   ];
   final List<IconData> categIcon = [
@@ -76,7 +78,7 @@ class _HomeState extends State<Home> {
     "Blue Black"
   ];
 
-  var cardPrizes = ["176000", "4150000", "1000", "84500", "76100", "2100"];
+  var cardPrizes = [176000, 4150000, 1000, 84500, 76100, 2100];
 
   goToLoginScreen() {
     Navigator.of(context).pushNamed("/login");
@@ -129,6 +131,10 @@ class _HomeState extends State<Home> {
 
   goToGrocery() {
     Navigator.of(context).pushNamed("/grocery");
+  }
+
+  goBack() {
+    Navigator.of(context).pushNamed("/home");
   }
 
   List<int> data = [1, 2, 3, 4, 5, 6, 7];
@@ -626,59 +632,568 @@ class _HomeState extends State<Home> {
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
                   ),
                 ),
-                GridView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 10, right: 10, top: 5, bottom: 20),
+                  child: GridView.count(
+                    shrinkWrap: true,
                     crossAxisCount: 2,
-                    // crossAxisSpacing: 3,
-                    mainAxisSpacing: 20,
+                    crossAxisSpacing: 7,
+                    mainAxisSpacing: 15,
                     childAspectRatio:
-                        300 / (MediaQuery.of(context).size.height / 1.5),
-                  ),
-                  itemCount: cardImages.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: Container(
-                        height: 300,
-                        child: Card(
-                          elevation: 3,
-                          semanticContainer: true,
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                height: 220,
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        fit: BoxFit.fill,
-                                        image:
-                                            NetworkImage(cardImages[index]))),
-                              ),
-                              Container(
-                                padding: EdgeInsets.only(left: 10, top: 10),
-                                child: Text(cardNames[index],
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500)),
-                              ),
-                              Container(
-                                padding: EdgeInsets.only(left: 10, top: 10),
-                                child: Text("PKR ${cardPrizes[index]}",
-                                    style: TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600)),
-                              )
-                            ],
+                        310 / (MediaQuery.of(context).size.height / 1.5),
+                    physics: NeverScrollableScrollPhysics(),
+                    children: List.generate(cardPrizes.length, (index) {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Center(
+                            child: OpenContainer(
+                                transitionDuration: Duration(seconds: 1),
+                                transitionType:
+                                    ContainerTransitionType.fadeThrough,
+                                closedBuilder: (context, action) {
+                                  return Container(
+                                    decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                            blurRadius: 15,
+                                            color: Colors.white,
+                                            spreadRadius: 15)
+                                      ],
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Stack(
+                                          children: [
+                                            Container(
+                                              height: 260,
+                                            ),
+                                            Positioned(
+                                              child: Container(
+                                                padding:
+                                                    EdgeInsets.only(left: 2),
+                                                height: 180,
+                                                decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                    fit: BoxFit.fill,
+                                                    image: NetworkImage(
+                                                        cardImages[index]),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Positioned(
+                                              top: 10,
+                                              left: 5,
+                                              child: GestureDetector(
+                                                onTap: () {
+                                                  var name = cardNames[index];
+                                                  var image = cardImages[index];
+                                                  var prize = cardPrizes[index];
+                                                  var colors =
+                                                      cardsImgColors[index];
+                                                  var description =
+                                                      cardsDetails[index];
+
+                                                  FirebaseFirestore db =
+                                                      FirebaseFirestore
+                                                          .instance;
+
+                                                  FirebaseAuth.instance
+                                                              .currentUser ==
+                                                          null
+                                                      ? goToLoginScreen()
+                                                          .pushNamed("/login")
+                                                      : db
+                                                          .collection("users")
+                                                          .doc(FirebaseAuth
+                                                              .instance
+                                                              .currentUser
+                                                              .uid)
+                                                          .collection(
+                                                              "favorites")
+                                                          .where("name",
+                                                              isEqualTo: name)
+                                                          .get()
+                                                          .then((value) {
+                                                          if (value.docs
+                                                              .isNotEmpty) {
+                                                            Scaffold.of(context)
+                                                                .showSnackBar(SnackBar(
+                                                                    backgroundColor:
+                                                                        Colors.purple[
+                                                                            300],
+                                                                    content: Text(
+                                                                        "Already added to favorites")));
+                                                            print(
+                                                                "Already added to favorites");
+                                                          } else {
+                                                            db
+                                                                .collection(
+                                                                    "users")
+                                                                .doc(FirebaseAuth
+                                                                    .instance
+                                                                    .currentUser
+                                                                    .uid)
+                                                                .collection(
+                                                                    "favorites")
+                                                                .add({
+                                                              "name": name,
+                                                              "image": image,
+                                                              "price": prize,
+                                                              "color": colors,
+                                                              "details":
+                                                                  description
+                                                            });
+
+                                                            Scaffold.of(context)
+                                                                .showSnackBar(SnackBar(
+                                                                    backgroundColor:
+                                                                        Colors.purple[
+                                                                            300],
+                                                                    content: Text(
+                                                                        "Added to favorites")));
+                                                            print(
+                                                                "Added to favorites");
+                                                          }
+                                                        });
+                                                },
+                                                child: Icon(
+                                                  Icons
+                                                      .favorite_border_outlined,
+                                                  color: Colors.grey,
+                                                  size: 17,
+                                                ),
+                                              ),
+                                            ),
+                                            Positioned(
+                                              top: 215,
+                                              left: 5,
+                                              child: Text(
+                                                cardNames[index],
+                                                style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
+                                            ),
+                                            Positioned(
+                                              left: 5,
+                                              top: 241,
+                                              child: Text(
+                                                "${cardPrizes[index]} PKR",
+                                                style: TextStyle(
+                                                    color: Colors.grey,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
+                                            ),
+                                            Positioned(
+                                              left: 130,
+                                              top: 238,
+                                              child: GestureDetector(
+                                                  onTap: () async {
+                                                    var name = cardNames[index];
+                                                    var image =
+                                                        cardImages[index];
+                                                    var prize =
+                                                        cardPrizes[index];
+                                                    var colors =
+                                                        cardsImgColors[index];
+                                                    var description =
+                                                        cardsDetails[index];
+
+                                                    FirebaseFirestore db =
+                                                        FirebaseFirestore
+                                                            .instance;
+
+                                                    FirebaseAuth.instance
+                                                                .currentUser ==
+                                                            null
+                                                        ? goToLoginScreen()
+                                                        : await db
+                                                            .collection("users")
+                                                            .doc(FirebaseAuth
+                                                                .instance
+                                                                .currentUser
+                                                                .uid)
+                                                            .collection(
+                                                                "myCart")
+                                                            .add({
+                                                            "name": name,
+                                                            "image": image,
+                                                            "prize": prize,
+                                                            "color": colors,
+                                                            "details":
+                                                                description
+                                                          });
+
+                                                    Scaffold.of(context)
+                                                        .showSnackBar(SnackBar(
+                                                            backgroundColor:
+                                                                Colors.purple[
+                                                                    300],
+                                                            content: Text(
+                                                                "Added to your cart")));
+                                                  },
+                                                  child: Center(
+                                                      child: Icon(
+                                                    Icons
+                                                        .add_shopping_cart_outlined,
+                                                    color: Colors.purple,
+                                                  ))),
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 7,
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                                openBuilder: (context, action) {
+                                  return SafeArea(
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Stack(
+                                            children: [
+                                              Container(
+                                                height: MediaQuery.of(context)
+                                                    .size
+                                                    .height,
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                              ),
+                                              Positioned(
+                                                  top: 0,
+                                                  left: 0,
+                                                  right: 0,
+                                                  child: Container(
+                                                    height: 550,
+                                                    decoration: BoxDecoration(
+                                                        image: DecorationImage(
+                                                            fit: BoxFit.fill,
+                                                            image: NetworkImage(
+                                                                cardImages[
+                                                                    index]))),
+                                                  )),
+                                              Positioned(
+                                                top: 9,
+                                                left: 15,
+                                                child: GestureDetector(
+                                                    onTap: goBack,
+                                                    child: Icon(
+                                                        Icons.arrow_back_ios)),
+                                              ),
+                                              Positioned(
+                                                top: 400,
+                                                right: 15,
+                                                left: 10,
+                                                child: Container(
+                                                  height: 300,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(0xfff2f2f2),
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                            topLeft:
+                                                                Radius.circular(
+                                                                    15),
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    15),
+                                                            bottomRight:
+                                                                Radius.circular(
+                                                                    15),
+                                                            bottomLeft:
+                                                                Radius.circular(
+                                                                    15)),
+                                                  ),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(
+                                                          top: 15,
+                                                        ),
+                                                        child: ListTile(
+                                                          title: Text(
+                                                            cardNames[index],
+                                                            style: TextStyle(
+                                                                fontSize: 20,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600),
+                                                          ),
+                                                          trailing:
+                                                              GestureDetector(
+                                                            onTap: () {
+                                                              var name =
+                                                                  cardNames[
+                                                                      index];
+                                                              var image =
+                                                                  cardImages[
+                                                                      index];
+                                                              var prize =
+                                                                  cardPrizes[
+                                                                      index];
+                                                              var color =
+                                                                  cardsImgColors[
+                                                                      index];
+                                                              var description =
+                                                                  cardsDetails[
+                                                                      index];
+
+                                                              FirebaseFirestore
+                                                                  db =
+                                                                  FirebaseFirestore
+                                                                      .instance;
+
+                                                              FirebaseAuth.instance
+                                                                          .currentUser ==
+                                                                      null
+                                                                  ? goToLoginScreen()
+                                                                      .pushNamed(
+                                                                          "/login")
+                                                                  : db
+                                                                      .collection(
+                                                                          "users")
+                                                                      .doc(FirebaseAuth
+                                                                          .instance
+                                                                          .currentUser
+                                                                          .uid)
+                                                                      .collection(
+                                                                          "favorites")
+                                                                      .where(
+                                                                          "name",
+                                                                          isEqualTo:
+                                                                              name)
+                                                                      .get()
+                                                                      .then(
+                                                                          (value) {
+                                                                      if (value
+                                                                          .docs
+                                                                          .isNotEmpty) {
+                                                                        Scaffold.of(context).showSnackBar(SnackBar(
+                                                                            backgroundColor:
+                                                                                Colors.purple[300],
+                                                                            content: Text("Already added to favorites")));
+                                                                        print(
+                                                                            "Already added to favorites");
+                                                                      } else {
+                                                                        db
+                                                                            .collection("users")
+                                                                            .doc(FirebaseAuth.instance.currentUser.uid)
+                                                                            .collection("favorites")
+                                                                            .add({
+                                                                          "name":
+                                                                              name,
+                                                                          "image":
+                                                                              image,
+                                                                          "price":
+                                                                              prize,
+                                                                          "color":
+                                                                              color,
+                                                                          "details":
+                                                                              description
+                                                                        });
+
+                                                                        Scaffold.of(context).showSnackBar(SnackBar(
+                                                                            backgroundColor:
+                                                                                Colors.purple[300],
+                                                                            content: Text("Added to favorites")));
+                                                                        print(
+                                                                            "Added to favorites");
+                                                                      }
+                                                                    });
+                                                            },
+                                                            child: Icon(
+                                                              Icons
+                                                                  .favorite_border_outlined,
+                                                              color:
+                                                                  Colors.grey,
+                                                              size: 20,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(
+                                                          left: 15,
+                                                        ),
+                                                        child: Text(
+                                                          "${cardPrizes[index]} PKR",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.grey,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .only(
+                                                                top: 10,
+                                                                left: 13),
+                                                        child: Row(
+                                                          children: [
+                                                            Text(
+                                                              "Color: ${cardsImgColors[index]}",
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500),
+                                                            ),
+                                                            // Container(
+                                                            //   height: 19,
+                                                            //   width: 20,
+                                                            //   decoration:
+                                                            //       BoxDecoration(
+                                                            //     borderRadius:
+                                                            //         BorderRadius
+                                                            //             .circular(
+                                                            //                 30),
+                                                            //     color:
+                                                            //         mobilesColors[
+                                                            //             index],
+                                                            //   ),
+                                                            // ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 30,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .only(
+                                                                left: 10,
+                                                                right: 10),
+                                                        child: Text(
+                                                          cardsDetails[index],
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .grey[600]),
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 15,
+                                                      ),
+                                                      Center(
+                                                        child: Container(
+                                                          width: 160,
+                                                          child: TextButton(
+                                                              onPressed:
+                                                                  () async {
+                                                                var name =
+                                                                    cardNames[
+                                                                        index];
+                                                                var image =
+                                                                    cardImages[
+                                                                        index];
+                                                                var prize =
+                                                                    cardPrizes[
+                                                                        index];
+                                                                var color =
+                                                                    cardsImgColors[
+                                                                        index];
+                                                                var description =
+                                                                    cardsDetails[
+                                                                        index];
+
+                                                                FirebaseFirestore
+                                                                    db =
+                                                                    FirebaseFirestore
+                                                                        .instance;
+
+                                                                FirebaseAuth.instance
+                                                                            .currentUser ==
+                                                                        null
+                                                                    ? goToLoginScreen()
+                                                                    : await db
+                                                                        .collection(
+                                                                            "users")
+                                                                        .doc(FirebaseAuth
+                                                                            .instance
+                                                                            .currentUser
+                                                                            .uid)
+                                                                        .collection(
+                                                                            "myCart")
+                                                                        .add({
+                                                                        "name":
+                                                                            name,
+                                                                        "image":
+                                                                            image,
+                                                                        "prize":
+                                                                            prize,
+                                                                        "color":
+                                                                            color,
+                                                                        "details":
+                                                                            description
+                                                                      });
+                                                              },
+                                                              child: Text(
+                                                                "Add to Cart",
+                                                                style: TextStyle(
+                                                                    color: Colors
+                                                                        .white,
+                                                                    fontSize:
+                                                                        16),
+                                                              ),
+                                                              style:
+                                                                  ButtonStyle(
+                                                                      backgroundColor: MaterialStateProperty.all<
+                                                                              Color>(
+                                                                          Color(
+                                                                              0xff696969)),
+                                                                      shape: MaterialStateProperty
+                                                                          .all<
+                                                                              RoundedRectangleBorder>(
+                                                                        RoundedRectangleBorder(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(30)),
+                                                                      ))),
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 30,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                }),
                           ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
+                        ],
+                      );
+                    }),
+                  ),
+                )
               ],
             ),
           ),
