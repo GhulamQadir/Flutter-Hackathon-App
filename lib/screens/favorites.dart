@@ -35,7 +35,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                 child: Row(
               children: [
                 Text(
-                  "Favorites",
+                  "Favoritessssss",
                   style: TextStyle(color: Colors.black),
                 ),
                 Icon(
