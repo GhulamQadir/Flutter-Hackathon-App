@@ -400,7 +400,7 @@ class _GroceryState extends State<Grocery> {
                                             },
                                             child: Icon(
                                               Icons.favorite_border_outlined,
-                                              color: Colors.grey,
+                                              color: Colors.black,
                                               size: 17,
                                             ),
                                           ),

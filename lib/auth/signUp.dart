@@ -52,7 +52,7 @@ class _SignUpState extends State<SignUp> {
       final String userName = userNameController.text;
       final String email = emailController.text;
       final String password = passwordController.text;
-      final String phoneNo = phoneNoController.text;
+      // final String phoneNo = phoneNoController.text;
       final String imageName = path.basename(imagePath);
 
       firebase_storage.Reference ref =
@@ -69,7 +69,7 @@ class _SignUpState extends State<SignUp> {
       await db.collection("users").doc(user.user.uid).set({
         "userName": userName,
         "email": email,
-        "phoneNo": phoneNo,
+        // "phoneNo": phoneNo,
         "image": downloadUrl,
       });
 
@@ -216,35 +216,35 @@ class _SignUpState extends State<SignUp> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(top: 15, left: 20, right: 20),
-                        child: TextFormField(
-                          controller: phoneNoController,
-                          keyboardType: TextInputType.phone,
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return "Please enter your phone number";
-                            } else if (value.length < 11 && value.isNotEmpty) {
-                              return "Enter atleast 11 characters";
-                            } else {
-                              return null;
-                            }
-                          },
-                          decoration: InputDecoration(
-                            labelText: "Phone No",
-                            prefixIcon: Icon(
-                              Icons.phone,
-                              color: Colors.purple[500],
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30.0),
-                              borderSide: BorderSide.none,
-                            ),
-                            filled: true,
-                          ),
-                        ),
-                      ),
+                      // Padding(
+                      //   padding:
+                      //       const EdgeInsets.only(top: 15, left: 20, right: 20),
+                      //   child: TextFormField(
+                      //     controller: phoneNoController,
+                      //     keyboardType: TextInputType.phone,
+                      //     validator: (value) {
+                      //       if (value.isEmpty) {
+                      //         return "Please enter your phone number";
+                      //       } else if (value.length < 11 && value.isNotEmpty) {
+                      //         return "Enter atleast 11 characters";
+                      //       } else {
+                      //         return null;
+                      //       }
+                      //     },
+                      //     decoration: InputDecoration(
+                      //       labelText: "Phone No",
+                      //       prefixIcon: Icon(
+                      //         Icons.phone,
+                      //         color: Colors.purple[500],
+                      //       ),
+                      //       border: OutlineInputBorder(
+                      //         borderRadius: BorderRadius.circular(30.0),
+                      //         borderSide: BorderSide.none,
+                      //       ),
+                      //       filled: true,
+                      //     ),
+                      //   ),
+                      // ),
                       SizedBox(
                         height: 20,
                       ),

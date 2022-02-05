@@ -42,19 +42,6 @@ class _ElectronicsState extends State<Electronics> {
   ];
 
   var electronicsColors = [
-    // Colors.black,
-    // Colors.black,
-    // Color(0xffFF5733),
-    // Colors.white,
-    // Color(0xffF8F0E3),
-    // Colors.white,
-    // Color(0xffadd8e6),
-    // Colors.grey,
-    // Colors.black,
-    // Color(0xff696969),
-    // Colors.black,
-    // Colors.black,
-
     "Black",
     "Black",
     "Light Brown",
@@ -429,7 +416,7 @@ class _ElectronicsState extends State<Electronics> {
                                             },
                                             child: Icon(
                                               Icons.favorite_border_outlined,
-                                              color: Colors.grey,
+                                              color: Colors.black,
                                               size: 17,
                                             ),
                                           ),

@@ -427,7 +427,7 @@ class _ClothesState extends State<Clothes> {
                                             },
                                             child: Icon(
                                               Icons.favorite_border_outlined,
-                                              color: Colors.grey,
+                                              color: Colors.black,
                                               size: 17,
                                             ),
                                           ),

@@ -425,7 +425,7 @@ class _CarsState extends State<Cars> {
                                             },
                                             child: Icon(
                                               Icons.favorite_border_outlined,
-                                              color: Colors.grey,
+                                              color: Colors.black,
                                               size: 17,
                                             ),
                                           ),

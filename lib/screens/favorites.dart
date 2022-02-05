@@ -13,6 +13,14 @@ class FavoritesScreen extends StatefulWidget {
 class _FavoritesScreenState extends State<FavoritesScreen> {
   final firebaseUser = FirebaseAuth.instance.currentUser;
 
+  goToHome() {
+    Navigator.of(context).pushNamed("/home");
+  }
+
+  goBack() {
+    Navigator.of(context).pushNamed("/favorites-screen");
+  }
+
   Stream postStream;
 
   void initState() {
@@ -35,7 +43,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                 child: Row(
               children: [
                 Text(
-                  "Favoritessssss",
+                  "Favorites",
                   style: TextStyle(color: Colors.black),
                 ),
                 Icon(
@@ -45,9 +53,12 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                 )
               ],
             )),
-            leading: Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
+            leading: IconButton(
+              onPressed: goToHome,
+              icon: Icon(
+                Icons.arrow_back_ios,
+                color: Colors.black,
+              ),
             ),
             backgroundColor: Colors.white,
           ),
@@ -154,32 +165,72 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                                             15)),
                                                 alignment: Alignment.topLeft,
                                                 child: ListTile(
-                                                  title: Text(
-                                                    data["name"],
-                                                    style: TextStyle(
-                                                        fontSize: 17,
-                                                        fontWeight:
-                                                            FontWeight.w700),
-                                                  ),
-                                                  subtitle: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            top: 3),
-                                                    child: Text(
-                                                      "${data["price"].toString()} PKR",
+                                                    title: Text(
+                                                      data["name"],
                                                       style: TextStyle(
-                                                          fontSize: 16,
-                                                          color: Colors.grey,
+                                                          fontSize: 17,
                                                           fontWeight:
-                                                              FontWeight.w500),
+                                                              FontWeight.w700),
                                                     ),
-                                                  ),
-                                                  trailing: Icon(
-                                                    Icons
-                                                        .shopping_cart_outlined,
-                                                    color: Colors.black,
-                                                  ),
-                                                ),
+                                                    subtitle: Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 3),
+                                                      child: Text(
+                                                        "${data["price"].toString()} PKR",
+                                                        style: TextStyle(
+                                                            fontSize: 16,
+                                                            color: Colors.grey,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w500),
+                                                      ),
+                                                    ),
+                                                    trailing: IconButton(
+                                                        onPressed: () {
+                                                          var name =
+                                                              data["name"];
+                                                          var image =
+                                                              data["image"];
+                                                          var price =
+                                                              data["price"];
+                                                          var color =
+                                                              data["color"];
+                                                          var details =
+                                                              data["details"];
+                                                          FirebaseFirestore db =
+                                                              FirebaseFirestore
+                                                                  .instance;
+                                                          db
+                                                              .collection(
+                                                                  "users")
+                                                              .doc(FirebaseAuth
+                                                                  .instance
+                                                                  .currentUser
+                                                                  .uid)
+                                                              .collection(
+                                                                  "myCart")
+                                                              .add({
+                                                            "name": name,
+                                                            "image": image,
+                                                            "prize": price,
+                                                            "color": color,
+                                                            "details": details
+                                                          });
+
+                                                          Scaffold.of(context)
+                                                              .showSnackBar(SnackBar(
+                                                                  backgroundColor:
+                                                                      Colors.purple[
+                                                                          300],
+                                                                  content: Text(
+                                                                      "Added to your cart")));
+                                                        },
+                                                        icon: Icon(
+                                                          Icons
+                                                              .shopping_cart_outlined,
+                                                          color: Colors.black,
+                                                        ))),
                                               ),
                                             ),
                                           ],
@@ -191,44 +242,190 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                                 openBuilder: (context, action) {
                                   return SafeArea(
                                       child: SingleChildScrollView(
-                                    child: Column(
+                                          child: Column(children: [
+                                    Stack(
                                       children: [
                                         Container(
-                                          height: 250,
+                                          height: MediaQuery.of(context)
+                                              .size
+                                              .height,
                                           width:
                                               MediaQuery.of(context).size.width,
-                                          decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                  image: data["image"] == null
-                                                      ? NetworkImage(
-                                                          "https://www.northampton.ac.uk/wp-content/uploads/2018/11/default-svp_news.jpg",
-                                                        )
-                                                      : NetworkImage(
-                                                          data["image"]))),
                                         ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 15),
-                                          child: ListTile(
-                                            title: Text(
-                                              data["name"] ?? '',
-                                              style: TextStyle(
-                                                  fontSize: 15,
-                                                  color: Colors.red),
+                                        Positioned(
+                                            top: 0,
+                                            left: 0,
+                                            right: 0,
+                                            child: Container(
+                                              height: 550,
+                                              decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                      fit: BoxFit.fill,
+                                                      image: data["image"] ==
+                                                              null
+                                                          ? NetworkImage(
+                                                              "https://www.northampton.ac.uk/wp-content/uploads/2018/11/default-svp_news.jpg",
+                                                            )
+                                                          : NetworkImage(
+                                                              data["image"]))),
+                                            )),
+                                        Positioned(
+                                          top: 9,
+                                          left: 15,
+                                          child: GestureDetector(
+                                              onTap: goBack,
+                                              child:
+                                                  Icon(Icons.arrow_back_ios)),
+                                        ),
+                                        Positioned(
+                                          top: 400,
+                                          right: 15,
+                                          left: 10,
+                                          child: Container(
+                                            height: 300,
+                                            decoration: BoxDecoration(
+                                              color: Color(0xfff2f2f2),
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(15),
+                                                  topRight: Radius.circular(15),
+                                                  bottomRight:
+                                                      Radius.circular(15),
+                                                  bottomLeft:
+                                                      Radius.circular(15)),
                                             ),
-                                            subtitle: Text(
-                                              data["prize"] ?? '',
-                                              style: TextStyle(fontSize: 15),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                    top: 15,
+                                                  ),
+                                                  child: ListTile(
+                                                    title: Text(
+                                                      data["name"],
+                                                      style: TextStyle(
+                                                          fontSize: 20,
+                                                          fontWeight:
+                                                              FontWeight.w600),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                    left: 15,
+                                                  ),
+                                                  child: Text(
+                                                    "${data["price"]} PKR",
+                                                    style: TextStyle(
+                                                        color: Colors.grey,
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 10, left: 13),
+                                                  child: Row(
+                                                    children: [
+                                                      Text(
+                                                        "Color: ${data["color"]}",
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w500),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: 30,
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 10, right: 10),
+                                                  child: Text(
+                                                    data["details"],
+                                                    style: TextStyle(
+                                                        color:
+                                                            Colors.grey[600]),
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: 15,
+                                                ),
+                                                Center(
+                                                  child: Container(
+                                                    width: 160,
+                                                    child: TextButton(
+                                                        onPressed: () async {
+                                                          var name =
+                                                              data["name"];
+                                                          var image =
+                                                              data["image"];
+                                                          var price =
+                                                              data["price"];
+                                                          var color =
+                                                              data["color"];
+                                                          var details =
+                                                              data["details"];
+                                                          FirebaseFirestore db =
+                                                              FirebaseFirestore
+                                                                  .instance;
+                                                          db
+                                                              .collection(
+                                                                  "users")
+                                                              .doc(FirebaseAuth
+                                                                  .instance
+                                                                  .currentUser
+                                                                  .uid)
+                                                              .collection(
+                                                                  "myCart")
+                                                              .add({
+                                                            "name": name,
+                                                            "image": image,
+                                                            "prize": price,
+                                                            "color": color,
+                                                            "details": details
+                                                          });
+                                                        },
+                                                        child: Text(
+                                                          "Add to Cart",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 16),
+                                                        ),
+                                                        style: ButtonStyle(
+                                                            backgroundColor:
+                                                                MaterialStateProperty
+                                                                    .all<Color>(
+                                                                        Color(
+                                                                            0xff696969)),
+                                                            shape: MaterialStateProperty
+                                                                .all<
+                                                                    RoundedRectangleBorder>(
+                                                              RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              30)),
+                                                            ))),
+                                                  ),
+                                                )
+                                              ],
                                             ),
                                           ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(data["details"])
+                                        )
                                       ],
                                     ),
-                                  ));
+                                  ])));
                                 }),
                           )
                         ],

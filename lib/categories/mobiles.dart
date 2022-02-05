@@ -426,7 +426,7 @@ class _MobilesState extends State<Mobiles> {
                                             },
                                             child: Icon(
                                               Icons.favorite_border_outlined,
-                                              color: Colors.grey,
+                                              color: Colors.black,
                                               size: 17,
                                             ),
                                           ),

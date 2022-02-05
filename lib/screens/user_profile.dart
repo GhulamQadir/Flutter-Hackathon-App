@@ -16,7 +16,7 @@ class _UserProfileState extends State<UserProfile> {
   String userName;
   String email;
   String image;
-  String phoneNo;
+  // String phoneNo;
 
   currentUserProfile() async {
     final firebaseUser = FirebaseAuth.instance.currentUser;
@@ -29,7 +29,7 @@ class _UserProfileState extends State<UserProfile> {
         userName = ds.data()['userName'];
         email = ds.data()['email'];
         image = ds.data()['image'];
-        phoneNo = ds.data()['phoneNo'];
+        // phoneNo = ds.data()['phoneNo'];
       }).catchError((e) {
         print(e);
       });
@@ -94,7 +94,7 @@ class _UserProfileState extends State<UserProfile> {
                 children: [
                   Icon(
                     Icons.logout,
-                    color: Colors.red,
+                    color: Colors.purple,
                   ),
                   Text(
                     "  Log Out",
@@ -125,7 +125,7 @@ class _UserProfileState extends State<UserProfile> {
                   TextButton(
                     onPressed: logOut,
                     style: TextButton.styleFrom(
-                        backgroundColor: Colors.red,
+                        backgroundColor: Colors.purple,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8))),
                     child: Text(
@@ -148,14 +148,26 @@ class _UserProfileState extends State<UserProfile> {
         debugShowCheckedModeBanner: false,
         home: Scaffold(
             appBar: AppBar(
-              title: Center(child: Text("Account Details")),
-              backgroundColor: Colors.red,
+              title: Center(
+                  child: Text(
+                "Account Details",
+                style: TextStyle(color: Colors.black),
+              )),
+              backgroundColor: Colors.white,
               leading: IconButton(
-                icon: Icon(Icons.arrow_back),
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: Colors.black,
+                ),
                 onPressed: goToHome,
               ),
               actions: [
-                IconButton(icon: Icon(Icons.logout), onPressed: logOutDialog),
+                IconButton(
+                    icon: Icon(
+                      Icons.logout,
+                      color: Colors.black,
+                    ),
+                    onPressed: logOutDialog),
               ],
             ),
             body: FutureBuilder(
@@ -166,7 +178,7 @@ class _UserProfileState extends State<UserProfile> {
 
                   return SingleChildScrollView(
                     child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.only(top: 20, bottom: 8),
                         child: Column(children: [
                           Center(
                             child: Container(
@@ -190,18 +202,24 @@ class _UserProfileState extends State<UserProfile> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 20),
-                            child: Text(
-                              "Email: $email",
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20),
-                            child: Text(
-                              "Phone: $phoneNo",
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w500),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Center(
+                                  child: Text(
+                                    "Email: ",
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                                Text(
+                                  email,
+                                  style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              ],
                             ),
                           ),
                         ])),

@@ -24,7 +24,6 @@ class _HomeState extends State<Home> {
     "https://cdn.vox-cdn.com/thumbor/342qpa02oBj5wry-LILlAyKz3qc=/0x0:1306x734/1400x933/filters:focal(549x263:757x471):no_upscale()/cdn.vox-cdn.com/uploads/chorus_image/image/68490964/Best_Phone_Grid_Fall_2021_16x9.10.jpg",
     "https://i.pinimg.com/736x/f1/f6/c2/f1f6c2ec5f3ae7bff95b025bdcd9a1ff.jpg",
     "https://cdn2.vectorstock.com/i/1000x1000/91/16/food-market-poster-template-grocery-store-vector-30199116.jpg",
-    // "https://i.pinimg.com/originals/8d/4b/75/8d4b75b5a4a50f728a3e6313a42b5f52.jpg",
     "https://media.istockphoto.com/vectors/online-safe-delivery-service-courier-delivery-grocery-order-to-the-vector-id1216649302?k=20&m=1216649302&s=612x612&w=0&h=MD4EQMxwXyf6tVlMt6iJkyg2YH9-Zbk7zA4320dVqX8=",
   ];
   final List<IconData> categIcon = [
@@ -146,15 +145,6 @@ class _HomeState extends State<Home> {
   int length = 0;
 
   getLength() async {
-    // db
-    //     .collection('users')
-    //     .doc(firebaseUser.uid)
-    //     .collection("myCart")
-    //     .get()
-    //     .then((myDocuments) {
-    //   length = myDocuments.docs.length;
-    // });
-
     CollectionReference reference =
         db.collection('users').doc(firebaseUser.uid).collection("myCart");
     reference.snapshots().listen((querySnapshot) {
@@ -165,6 +155,26 @@ class _HomeState extends State<Home> {
         });
       });
     });
+  }
+
+  String userName;
+  String email;
+  String image;
+  currentUserProfile() async {
+    final firebaseUser = FirebaseAuth.instance.currentUser;
+    if (firebaseUser != null)
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(firebaseUser.uid)
+          .get()
+          .then((ds) {
+        userName = ds.data()['userName'];
+        email = ds.data()['email'];
+        image = ds.data()['image'];
+        // phoneNo = ds.data()['phoneNo'];
+      }).catchError((e) {
+        print(e);
+      });
   }
 
   void initState() {
@@ -195,6 +205,10 @@ class _HomeState extends State<Home> {
         ],
       ),
     );
+  }
+
+  goToUserProfile() {
+    Navigator.of(context).pushNamed("/user-profile");
   }
 
   @override
@@ -248,25 +262,46 @@ class _HomeState extends State<Home> {
                     : logOut,
                 child: Padding(
                   padding: const EdgeInsets.only(
-                    top: 18,
-                    right: 10,
+                    top: 4,
+                    right: 15,
                   ),
-                  child: Text(
-                    FirebaseAuth.instance.currentUser == null
-                        ? "Login"
-                        : "LogOut",
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black),
-                  ),
+                  child: FirebaseAuth.instance.currentUser == null
+                      ? Text("Login")
+                      : FutureBuilder(
+                          future: currentUserProfile(),
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState !=
+                                ConnectionState.done)
+                              return Text("Loading please wait ");
+
+                            return Container(
+                              child: GestureDetector(
+                                onTap: goToUserProfile,
+                                child: CircleAvatar(
+                                  radius: 20,
+                                  backgroundColor: Colors.transparent,
+                                  backgroundImage: NetworkImage(image ?? ''),
+                                ),
+                              ),
+                            );
+                          }),
+
+                  // Text(
+                  //   FirebaseAuth.instance.currentUser == null
+                  //       ? "Login"
+                  //       : "LogOut",
+                  //   style: TextStyle(
+                  //       fontSize: 18,
+                  //       fontWeight: FontWeight.w500,
+                  //       color: Colors.black),
+                  // ),
                 ),
               ),
             ],
           ),
           drawer: Theme(
             data: Theme.of(context).copyWith(
-              canvasColor: Colors.purple[300],
+              canvasColor: Colors.grey[200],
             ),
             child: Drawer(
                 child: SafeArea(
@@ -279,7 +314,7 @@ class _HomeState extends State<Home> {
                       height: 35,
                       width: 140,
                       decoration: BoxDecoration(
-                          color: Colors.black,
+                          color: Colors.purple,
                           borderRadius: BorderRadius.circular(10)),
                       child: Center(
                         child: Text(
@@ -301,12 +336,18 @@ class _HomeState extends State<Home> {
                           child: Padding(
                             padding: const EdgeInsets.only(
                                 top: 5, bottom: 5, left: 10),
-                            child: Text(
-                              "Home",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w400),
+                            child: Row(
+                              children: [
+                                Icon(Icons.home, color: Colors.grey),
+                                SizedBox(width: 20),
+                                Text(
+                                  "Home",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ],
                             ),
                           )),
                     ),
@@ -322,12 +363,18 @@ class _HomeState extends State<Home> {
                           child: Padding(
                             padding: const EdgeInsets.only(
                                 top: 8, bottom: 5, left: 10),
-                            child: Text(
-                              "My Cart",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w400),
+                            child: Row(
+                              children: [
+                                Icon(Icons.shopping_cart, color: Colors.grey),
+                                SizedBox(width: 20),
+                                Text(
+                                  "Cart",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ],
                             ),
                           )),
                     ),
@@ -343,12 +390,18 @@ class _HomeState extends State<Home> {
                           child: Padding(
                             padding: const EdgeInsets.only(
                                 top: 8, bottom: 5, left: 10),
-                            child: Text(
-                              "Favorites",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w400),
+                            child: Row(
+                              children: [
+                                Icon(Icons.favorite, color: Colors.grey),
+                                SizedBox(width: 20),
+                                Text(
+                                  "Favorites",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ],
                             ),
                           )),
                     ),
@@ -365,19 +418,31 @@ class _HomeState extends State<Home> {
                             padding: const EdgeInsets.only(
                                 top: 8, bottom: 5, left: 10),
                             child: FirebaseAuth.instance.currentUser == null
-                                ? Text(
-                                    "Login",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w400),
+                                ? Row(
+                                    children: [
+                                      Icon(Icons.person, color: Colors.grey),
+                                      SizedBox(width: 20),
+                                      Text(
+                                        "Login",
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                    ],
                                   )
-                                : Text(
-                                    "Profile",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w400),
+                                : Row(
+                                    children: [
+                                      Icon(Icons.person, color: Colors.grey),
+                                      SizedBox(width: 20),
+                                      Text(
+                                        "Profile",
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                    ],
                                   ),
                           )),
                     ),
@@ -757,6 +822,7 @@ class _HomeState extends State<Home> {
                                                                             300],
                                                                     content: Text(
                                                                         "Added to favorites")));
+
                                                             print(
                                                                 "Added to favorites");
                                                           }
@@ -765,7 +831,7 @@ class _HomeState extends State<Home> {
                                                 child: Icon(
                                                   Icons
                                                       .favorite_border_outlined,
-                                                  color: Colors.grey,
+                                                  color: Colors.black,
                                                   size: 17,
                                                 ),
                                               ),
@@ -1062,20 +1128,6 @@ class _HomeState extends State<Home> {
                                                                       FontWeight
                                                                           .w500),
                                                             ),
-                                                            // Container(
-                                                            //   height: 19,
-                                                            //   width: 20,
-                                                            //   decoration:
-                                                            //       BoxDecoration(
-                                                            //     borderRadius:
-                                                            //         BorderRadius
-                                                            //             .circular(
-                                                            //                 30),
-                                                            //     color:
-                                                            //         mobilesColors[
-                                                            //             index],
-                                                            //   ),
-                                                            // ),
                                                           ],
                                                         ),
                                                       ),
@@ -1173,7 +1225,7 @@ class _HomeState extends State<Home> {
                                                                                 BorderRadius.circular(30)),
                                                                       ))),
                                                         ),
-                                                      )
+                                                      ),
                                                     ],
                                                   ),
                                                 ),
