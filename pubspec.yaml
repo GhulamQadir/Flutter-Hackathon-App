@@ -47,6 +47,7 @@ dependencies:
 # loading
   flutter_spinkit:
   flutter_easyloading: 
+  cool_alert:
     
 # animations
   animations:  

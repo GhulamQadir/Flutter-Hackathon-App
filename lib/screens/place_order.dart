@@ -5,9 +5,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterhackathon/screens/cart.dart';
+import 'package:flutterhackathon/screens/home.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cool_alert/cool_alert.dart';
 
 class PlaceOrder extends StatefulWidget {
   @override
@@ -18,7 +20,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   String location = "Null, press button";
-  String address = "";
+  String address;
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -112,10 +114,34 @@ class _PlaceOrderState extends State<PlaceOrder> {
       "address ": address,
     });
 
+    nameController.clear();
+    emailController.clear();
+    phoneNoController.clear();
+    addressController.clear();
+
     print("order placed!! congrats");
 
     var snackBar = SnackBar(content: Text('Your order has been placed'));
     ScaffoldMessenger.of(_formKey.currentContext).showSnackBar(snackBar);
+
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => Home()), (route) => false);
+    CoolAlert.show(
+      context: context,
+      type: CoolAlertType.success,
+      text: "Your transaction was successful!",
+    );
+
+    db
+        .collection("users")
+        .doc(FirebaseAuth.instance.currentUser.uid)
+        .collection("myCart")
+        .get()
+        .then((value) {
+      for (DocumentSnapshot ds in value.docs) {
+        ds.reference.delete();
+      }
+    });
   }
   // }
 

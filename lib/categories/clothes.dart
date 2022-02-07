@@ -183,7 +183,7 @@ class _ClothesState extends State<Clothes> {
         ),
         drawer: Theme(
           data: Theme.of(context).copyWith(
-            canvasColor: Colors.purple[300],
+            canvasColor: Colors.grey[200],
           ),
           child: Drawer(
               child: SafeArea(
@@ -196,7 +196,7 @@ class _ClothesState extends State<Clothes> {
                     height: 35,
                     width: 140,
                     decoration: BoxDecoration(
-                        color: Colors.black,
+                        color: Colors.purple,
                         borderRadius: BorderRadius.circular(10)),
                     child: Center(
                       child: Text(
@@ -218,12 +218,18 @@ class _ClothesState extends State<Clothes> {
                         child: Padding(
                           padding: const EdgeInsets.only(
                               top: 5, bottom: 5, left: 10),
-                          child: Text(
-                            "Home",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400),
+                          child: Row(
+                            children: [
+                              Icon(Icons.home, color: Colors.grey),
+                              SizedBox(width: 20),
+                              Text(
+                                "Home",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ],
                           ),
                         )),
                   ),
@@ -239,12 +245,18 @@ class _ClothesState extends State<Clothes> {
                         child: Padding(
                           padding: const EdgeInsets.only(
                               top: 8, bottom: 5, left: 10),
-                          child: Text(
-                            "My Cart",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400),
+                          child: Row(
+                            children: [
+                              Icon(Icons.shopping_cart, color: Colors.grey),
+                              SizedBox(width: 20),
+                              Text(
+                                "Cart",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ],
                           ),
                         )),
                   ),
@@ -260,12 +272,18 @@ class _ClothesState extends State<Clothes> {
                         child: Padding(
                           padding: const EdgeInsets.only(
                               top: 8, bottom: 5, left: 10),
-                          child: Text(
-                            "Favorites",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w400),
+                          child: Row(
+                            children: [
+                              Icon(Icons.favorite, color: Colors.grey),
+                              SizedBox(width: 20),
+                              Text(
+                                "Favorites",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ],
                           ),
                         )),
                   ),
@@ -282,19 +300,31 @@ class _ClothesState extends State<Clothes> {
                           padding: const EdgeInsets.only(
                               top: 8, bottom: 5, left: 10),
                           child: FirebaseAuth.instance.currentUser == null
-                              ? Text(
-                                  "Login",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w400),
+                              ? Row(
+                                  children: [
+                                    Icon(Icons.person, color: Colors.grey),
+                                    SizedBox(width: 20),
+                                    Text(
+                                      "Login",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ],
                                 )
-                              : Text(
-                                  "Profile",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w400),
+                              : Row(
+                                  children: [
+                                    Icon(Icons.person, color: Colors.grey),
+                                    SizedBox(width: 20),
+                                    Text(
+                                      "Profile",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ],
                                 ),
                         )),
                   ),

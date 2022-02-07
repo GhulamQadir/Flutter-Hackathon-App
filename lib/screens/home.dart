@@ -10,6 +10,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 // import 'package:scroll_snap_list/scroll_snap_list.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'cart.dart';
 // import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 // import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -108,7 +110,8 @@ class _HomeState extends State<Home> {
   }
 
   goToCart() {
-    Navigator.of(context).pushNamed("/cart-screen");
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => CartScreen()));
   }
 
   // categories functions
@@ -171,7 +174,6 @@ class _HomeState extends State<Home> {
         userName = ds.data()['userName'];
         email = ds.data()['email'];
         image = ds.data()['image'];
-        // phoneNo = ds.data()['phoneNo'];
       }).catchError((e) {
         print(e);
       });
@@ -256,46 +258,39 @@ class _HomeState extends State<Home> {
               //         ),
               //       );
               //     }),
-              GestureDetector(
-                onTap: FirebaseAuth.instance.currentUser == null
-                    ? goToLoginScreen
-                    : logOut,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    top: 4,
-                    right: 15,
-                  ),
-                  child: FirebaseAuth.instance.currentUser == null
-                      ? Text("Login")
-                      : FutureBuilder(
-                          future: currentUserProfile(),
-                          builder: (context, snapshot) {
-                            if (snapshot.connectionState !=
-                                ConnectionState.done)
-                              return Text("Loading please wait ");
-
-                            return Container(
-                              child: GestureDetector(
-                                onTap: goToUserProfile,
-                                child: CircleAvatar(
-                                  radius: 20,
-                                  backgroundColor: Colors.transparent,
-                                  backgroundImage: NetworkImage(image ?? ''),
-                                ),
-                              ),
-                            );
-                          }),
-
-                  // Text(
-                  //   FirebaseAuth.instance.currentUser == null
-                  //       ? "Login"
-                  //       : "LogOut",
-                  //   style: TextStyle(
-                  //       fontSize: 18,
-                  //       fontWeight: FontWeight.w500,
-                  //       color: Colors.black),
-                  // ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 18,
+                  right: 15,
                 ),
+                child: FirebaseAuth.instance.currentUser == null
+                    ? GestureDetector(
+                        onTap: goToLoginScreen,
+                        child: Text(
+                          "Login",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      )
+                    : FutureBuilder(
+                        future: currentUserProfile(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState != ConnectionState.done)
+                            return Text("Loading please wait ");
+
+                          return Container(
+                            child: GestureDetector(
+                              onTap: goToUserProfile,
+                              child: CircleAvatar(
+                                radius: 20,
+                                backgroundColor: Colors.transparent,
+                                backgroundImage: NetworkImage(image ?? ''),
+                              ),
+                            ),
+                          );
+                        }),
               ),
             ],
           ),

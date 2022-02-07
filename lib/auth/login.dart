@@ -88,7 +88,6 @@ class _LoginState extends State<Login> {
           email: email, password: password);
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => Home()), (route) => false);
-      EasyLoading.showSuccess('Logged in Successfully!');
     } catch (e) {
       setState(() {
         loading = false;
