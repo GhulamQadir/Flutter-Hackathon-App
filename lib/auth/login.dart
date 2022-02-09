@@ -3,10 +3,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutterhackathon/auth/signUp.dart';
 import 'package:flutterhackathon/screens/home.dart';
 import 'package:flutterhackathon/screens/loading_screen.dart';
-import 'dart:io';
 
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -52,7 +51,6 @@ class _LoginState extends State<Login> {
 
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => Home()), (route) => false);
-      EasyLoading.showSuccess('Logged in Successfully!');
     } catch (e) {
       setState(() {
         loading = false;
@@ -104,7 +102,11 @@ class _LoginState extends State<Login> {
   }
 
   goToSignUpScreen() {
-    Navigator.of(context).pushNamed("/sign-up");
+    Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
+  }
+
+  goToHome() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
   }
 
   @override
@@ -117,6 +119,13 @@ class _LoginState extends State<Login> {
               appBar: AppBar(
                 title: Center(child: Text("Login")),
                 backgroundColor: Colors.purple[500],
+                leading: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                  ),
+                  onPressed: goToHome,
+                ),
               ),
               body: SafeArea(
                   child: SingleChildScrollView(

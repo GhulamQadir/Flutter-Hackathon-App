@@ -6,12 +6,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterhackathon/auth/login.dart';
+import 'package:flutterhackathon/categories/cars.dart';
+import 'package:flutterhackathon/categories/clothes.dart';
+import 'package:flutterhackathon/categories/electronics.dart';
+import 'package:flutterhackathon/categories/grocery.dart';
+import 'package:flutterhackathon/categories/mobiles.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 // import 'package:scroll_snap_list/scroll_snap_list.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'cart.dart';
+import 'user_profile.dart';
 // import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 // import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -116,27 +122,28 @@ class _HomeState extends State<Home> {
 
   // categories functions
   goToElectronics() {
-    Navigator.of(context).pushNamed("/electronics");
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => Electronics()));
   }
 
   goToCars() {
-    Navigator.of(context).pushNamed("/cars");
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Cars()));
   }
 
   goToMobiles() {
-    Navigator.of(context).pushNamed("/mobiles");
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Mobiles()));
   }
 
   goToClothes() {
-    Navigator.of(context).pushNamed("/clothes");
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Clothes()));
   }
 
   goToGrocery() {
-    Navigator.of(context).pushNamed("/grocery");
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Grocery()));
   }
 
   goBack() {
-    Navigator.of(context).pushNamed("/home");
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
   }
 
   List<int> data = [1, 2, 3, 4, 5, 6, 7];
@@ -210,7 +217,8 @@ class _HomeState extends State<Home> {
   }
 
   goToUserProfile() {
-    Navigator.of(context).pushNamed("/user-profile");
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => UserProfile()));
   }
 
   @override
@@ -243,35 +251,21 @@ class _HomeState extends State<Home> {
                   style: TextStyle(color: Colors.black),
                 ),
               ),
-              // PURANA coDE HAAA !!!
-              // FutureBuilder(
-              //     future: getLength(),
-              //     builder: (context, snapshot) {
-              //       if (snapshot.connectionState != ConnectionState.done)
-              //         return Text("Loading please wait ");
-
-              //       return Padding(
-              //         padding: const EdgeInsets.only(top: 9, right: 20),
-              //         child: Text(
-              //           '$length',
-              //           style: TextStyle(color: Colors.black),
-              //         ),
-              //       );
-              //     }),
               Padding(
-                padding: const EdgeInsets.only(
-                  top: 18,
-                  right: 15,
-                ),
+                padding: const EdgeInsets.only(),
                 child: FirebaseAuth.instance.currentUser == null
-                    ? GestureDetector(
-                        onTap: goToLoginScreen,
-                        child: Text(
-                          "Login",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500),
+                    ? Padding(
+                        padding: const EdgeInsets.only(
+                            top: 18, bottom: 8, right: 10),
+                        child: GestureDetector(
+                          onTap: goToLoginScreen,
+                          child: Text(
+                            "Login",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500),
+                          ),
                         ),
                       )
                     : FutureBuilder(
@@ -280,13 +274,17 @@ class _HomeState extends State<Home> {
                           if (snapshot.connectionState != ConnectionState.done)
                             return Text("Loading please wait ");
 
-                          return Container(
-                            child: GestureDetector(
-                              onTap: goToUserProfile,
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundColor: Colors.transparent,
-                                backgroundImage: NetworkImage(image ?? ''),
+                          return Padding(
+                            padding: const EdgeInsets.only(
+                                top: 10, bottom: 8, right: 10),
+                            child: Container(
+                              child: GestureDetector(
+                                onTap: goToUserProfile,
+                                child: CircleAvatar(
+                                  radius: 20,
+                                  backgroundColor: Colors.transparent,
+                                  backgroundImage: NetworkImage(image ?? ''),
+                                ),
                               ),
                             ),
                           );

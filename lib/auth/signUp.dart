@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutterhackathon/auth/login.dart';
 import 'package:flutterhackathon/screens/home.dart';
 import 'package:flutterhackathon/screens/loading_screen.dart';
 import 'package:image_picker/image_picker.dart';
@@ -69,7 +70,6 @@ class _SignUpState extends State<SignUp> {
       await db.collection("users").doc(user.user.uid).set({
         "userName": userName,
         "email": email,
-        // "phoneNo": phoneNo,
         "image": downloadUrl,
       });
 
@@ -98,6 +98,10 @@ class _SignUpState extends State<SignUp> {
     }
   }
 
+  goBack() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return loading
@@ -108,6 +112,13 @@ class _SignUpState extends State<SignUp> {
               appBar: AppBar(
                 title: Center(child: Text("Sign Up")),
                 backgroundColor: Colors.purple[500],
+                leading: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                  ),
+                  onPressed: goBack,
+                ),
               ),
               body: SingleChildScrollView(
                 child: Form(

@@ -22,6 +22,8 @@ class _PlaceOrderState extends State<PlaceOrder> {
   String location = "Null, press button";
   String address;
 
+  bool loading = false;
+
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneNoController = TextEditingController();
@@ -73,77 +75,150 @@ class _PlaceOrderState extends State<PlaceOrder> {
     if (!_formKey.currentState.validate()) {
       return;
     }
+    setState(() {
+      loading = true;
+    });
 
     try {
+      User firebaseUser = FirebaseAuth.instance.currentUser;
       FirebaseFirestore db = FirebaseFirestore.instance;
 
-      final String name = nameController.text;
-      final String email = emailController.text;
-      final String phoneNo = phoneNoController.text;
-      final String address = addressController.text;
+      QuerySnapshot userData = await db
+          .collection("users")
+          .doc(firebaseUser.uid)
+          .collection("myCart")
+          .get();
 
-      await db
-          .collection("orders")
-          .doc(FirebaseAuth.instance.currentUser.uid)
-          .collection("currentUserOrder")
-          .doc("user's details")
-          .set({
-        "name ": name,
-        "email ": email,
-        "phone No ": phoneNo,
-        "address ": address,
-      });
+      for (var i = 0; i < userData.docs.length; i++) {
+        Map item = userData.docs[i].data();
+        String itemId = userData.docs[i].id;
+
+        await FirebaseFirestore.instance
+            .collection("orders")
+            .doc(FirebaseAuth.instance.currentUser.uid)
+            .collection("products")
+            .doc(itemId)
+            .set({"name": item["name"], "prize": item["prize"]});
+
+        final String name = nameController.text;
+        final String email = emailController.text;
+        final String phoneNo = phoneNoController.text;
+        final String address = addressController.text;
+
+        await db
+            .collection("orders")
+            .doc(FirebaseAuth.instance.currentUser.uid)
+            .collection("user's details")
+            // .doc()
+            .add({
+          "name ": name,
+          "email ": email,
+          "phone No ": phoneNo,
+          "address ": address,
+        });
+
+        nameController.clear();
+        emailController.clear();
+        phoneNoController.clear();
+        addressController.clear();
+
+        print("order placed!! congrats");
+
+        // var snackBar = SnackBar(content: Text('Your order has been placed'));
+        // ScaffoldMessenger.of(_formKey.currentContext).showSnackBar(snackBar);
+
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => Home()), (route) => false);
+        CoolAlert.show(
+          context: context,
+          type: CoolAlertType.success,
+          text: "Your order has been successfully placed!",
+        );
+
+        db
+            .collection("users")
+            .doc(FirebaseAuth.instance.currentUser.uid)
+            .collection("myCart")
+            .get()
+            .then((value) {
+          for (DocumentSnapshot ds in value.docs) {
+            ds.reference.delete();
+          }
+        });
+      }
     } catch (e) {
       print(e.toString());
     }
-    FirebaseFirestore db = FirebaseFirestore.instance;
-    final String name = nameController.text;
-    final String email = emailController.text;
-    final String phoneNo = phoneNoController.text;
-    final String address = addressController.text;
 
-    await db
-        .collection("orders")
-        .doc(FirebaseAuth.instance.currentUser.uid)
-        .collection("currentUserOrder")
-        .doc("user's details")
-        .set({
-      "name ": name,
-      "email ": email,
-      "phone No ": phoneNo,
-      "address ": address,
-    });
+    // try {
+    //   FirebaseFirestore db = FirebaseFirestore.instance;
 
-    nameController.clear();
-    emailController.clear();
-    phoneNoController.clear();
-    addressController.clear();
+    //   final String name = nameController.text;
+    //   final String email = emailController.text;
+    //   final String phoneNo = phoneNoController.text;
+    //   final String address = addressController.text;
 
-    print("order placed!! congrats");
+    //   await db
+    //       .collection("orders")
+    //       .doc(FirebaseAuth.instance.currentUser.uid)
+    //       .collection("currentUserOrder")
+    //       .doc("user's details")
+    //       .set({
+    //     "name ": name,
+    //     "email ": email,
+    //     "phone No ": phoneNo,
+    //     "address ": address,
+    //   });
+    // } catch (e) {
+    //   print(e.toString());
+    // }
+    // FirebaseFirestore db = FirebaseFirestore.instance;
+    // final String name = nameController.text;
+    // final String email = emailController.text;
+    // final String phoneNo = phoneNoController.text;
+    // final String address = addressController.text;
 
-    var snackBar = SnackBar(content: Text('Your order has been placed'));
-    ScaffoldMessenger.of(_formKey.currentContext).showSnackBar(snackBar);
+    // await db
+    //     .collection("orders")
+    //     .doc(FirebaseAuth.instance.currentUser.uid)
+    //     .collection("currentUserOrder")
+    //     .doc("user's details")
+    //     .set({
+    //   "name ": name,
+    //   "email ": email,
+    //   "phone No ": phoneNo,
+    //   "address ": address,
+    // });
 
-    Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => Home()), (route) => false);
-    CoolAlert.show(
-      context: context,
-      type: CoolAlertType.success,
-      text: "Your transaction was successful!",
-    );
+    // nameController.clear();
+    // emailController.clear();
+    // phoneNoController.clear();
+    // addressController.clear();
 
-    db
-        .collection("users")
-        .doc(FirebaseAuth.instance.currentUser.uid)
-        .collection("myCart")
-        .get()
-        .then((value) {
-      for (DocumentSnapshot ds in value.docs) {
-        ds.reference.delete();
-      }
-    });
+    // print("order placed!! congrats");
+
+    // var snackBar = SnackBar(content: Text('Your order has been placed'));
+    // ScaffoldMessenger.of(_formKey.currentContext).showSnackBar(snackBar);
+
+    // Navigator.of(context).pushAndRemoveUntil(
+    //     MaterialPageRoute(builder: (context) => Home()), (route) => false);
+    // CoolAlert.show(
+    //   context: context,
+    //   type: CoolAlertType.success,
+    //   text: "Your order has been successfully placed!",
+    // );
+
+    // db
+    //     .collection("users")
+    //     .doc(FirebaseAuth.instance.currentUser.uid)
+    //     .collection("myCart")
+    //     .get()
+    //     .then((value) {
+    //   for (DocumentSnapshot ds in value.docs) {
+    //     ds.reference.delete();
+    //   }
+    // });
   }
-  // }
 
   goBack() {
     Navigator.push(

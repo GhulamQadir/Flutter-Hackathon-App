@@ -29,7 +29,6 @@ class _UserProfileState extends State<UserProfile> {
         userName = ds.data()['userName'];
         email = ds.data()['email'];
         image = ds.data()['image'];
-        // phoneNo = ds.data()['phoneNo'];
       }).catchError((e) {
         print(e);
       });
@@ -45,7 +44,7 @@ class _UserProfileState extends State<UserProfile> {
   }
 
   goToHome() {
-    Navigator.of(context).pushNamed("/home");
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
   }
 
   void closeDialog() {
