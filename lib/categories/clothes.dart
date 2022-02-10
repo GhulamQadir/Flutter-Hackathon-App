@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutterhackathon/screens/contact_us.dart';
 
 class Clothes extends StatefulWidget {
   @override
@@ -118,6 +119,11 @@ class _ClothesState extends State<Clothes> {
 
   goToHome() {
     Navigator.of(context).pushNamed("/home");
+  }
+
+  goToContactUs() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => ContactUs()));
   }
 
   goBack() {
@@ -278,6 +284,31 @@ class _ClothesState extends State<Clothes> {
                               SizedBox(width: 20),
                               Text(
                                 "Favorites",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ],
+                          ),
+                        )),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: GestureDetector(
+                    onTap: goToContactUs,
+                    child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              top: 8, bottom: 5, left: 10),
+                          child: Row(
+                            children: [
+                              Icon(Icons.call, color: Colors.grey),
+                              SizedBox(width: 20),
+                              Text(
+                                "Contact Us",
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 17,

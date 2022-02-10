@@ -16,7 +16,7 @@ import 'package:flutterhackathon/screens/home.dart';
 import 'package:flutterhackathon/screens/loading_screen.dart';
 import 'package:flutterhackathon/screens/place_order.dart';
 import 'package:flutterhackathon/screens/user_profile.dart';
-
+import 'package:flutterhackathon/screens/contact_us.dart';
 import 'auth/login.dart';
 
 void main() {
@@ -62,6 +62,8 @@ class MyApp extends StatelessWidget {
               "/clothes": (context) => Clothes(),
               "/grocery": (context) => Grocery(),
               "/place-order": (context) => PlaceOrder(),
+              "/contact-us": (context) => ContactUs(),
+              
             },
           );
         }

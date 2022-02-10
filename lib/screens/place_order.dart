@@ -149,75 +149,6 @@ class _PlaceOrderState extends State<PlaceOrder> {
     } catch (e) {
       print(e.toString());
     }
-
-    // try {
-    //   FirebaseFirestore db = FirebaseFirestore.instance;
-
-    //   final String name = nameController.text;
-    //   final String email = emailController.text;
-    //   final String phoneNo = phoneNoController.text;
-    //   final String address = addressController.text;
-
-    //   await db
-    //       .collection("orders")
-    //       .doc(FirebaseAuth.instance.currentUser.uid)
-    //       .collection("currentUserOrder")
-    //       .doc("user's details")
-    //       .set({
-    //     "name ": name,
-    //     "email ": email,
-    //     "phone No ": phoneNo,
-    //     "address ": address,
-    //   });
-    // } catch (e) {
-    //   print(e.toString());
-    // }
-    // FirebaseFirestore db = FirebaseFirestore.instance;
-    // final String name = nameController.text;
-    // final String email = emailController.text;
-    // final String phoneNo = phoneNoController.text;
-    // final String address = addressController.text;
-
-    // await db
-    //     .collection("orders")
-    //     .doc(FirebaseAuth.instance.currentUser.uid)
-    //     .collection("currentUserOrder")
-    //     .doc("user's details")
-    //     .set({
-    //   "name ": name,
-    //   "email ": email,
-    //   "phone No ": phoneNo,
-    //   "address ": address,
-    // });
-
-    // nameController.clear();
-    // emailController.clear();
-    // phoneNoController.clear();
-    // addressController.clear();
-
-    // print("order placed!! congrats");
-
-    // var snackBar = SnackBar(content: Text('Your order has been placed'));
-    // ScaffoldMessenger.of(_formKey.currentContext).showSnackBar(snackBar);
-
-    // Navigator.of(context).pushAndRemoveUntil(
-    //     MaterialPageRoute(builder: (context) => Home()), (route) => false);
-    // CoolAlert.show(
-    //   context: context,
-    //   type: CoolAlertType.success,
-    //   text: "Your order has been successfully placed!",
-    // );
-
-    // db
-    //     .collection("users")
-    //     .doc(FirebaseAuth.instance.currentUser.uid)
-    //     .collection("myCart")
-    //     .get()
-    //     .then((value) {
-    //   for (DocumentSnapshot ds in value.docs) {
-    //     ds.reference.delete();
-    //   }
-    // });
   }
 
   goBack() {
@@ -430,6 +361,8 @@ class _PlaceOrderState extends State<PlaceOrder> {
                       // ElevatedButton(
                       //     onPressed: placeOrder, child: Text("Place order"))
                       SizedBox(height: 20),
+                      Text(
+                          "If you didn't receive confirmation call in 1 hour after placement of order, you can contact us by telephoning our team."),
                       Container(
                         height: 40,
                         width: 160,

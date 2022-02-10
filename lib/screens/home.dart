@@ -11,6 +11,7 @@ import 'package:flutterhackathon/categories/clothes.dart';
 import 'package:flutterhackathon/categories/electronics.dart';
 import 'package:flutterhackathon/categories/grocery.dart';
 import 'package:flutterhackathon/categories/mobiles.dart';
+import 'package:flutterhackathon/screens/contact_us.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 // import 'package:scroll_snap_list/scroll_snap_list.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -140,6 +141,11 @@ class _HomeState extends State<Home> {
 
   goToGrocery() {
     Navigator.push(context, MaterialPageRoute(builder: (context) => Grocery()));
+  }
+
+  goToContactUs() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => ContactUs()));
   }
 
   goBack() {
@@ -389,6 +395,31 @@ class _HomeState extends State<Home> {
                                 SizedBox(width: 20),
                                 Text(
                                   "Favorites",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ],
+                            ),
+                          )),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: GestureDetector(
+                      onTap: goToContactUs,
+                      child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                top: 8, bottom: 5, left: 10),
+                            child: Row(
+                              children: [
+                                Icon(Icons.call, color: Colors.grey),
+                                SizedBox(width: 20),
+                                Text(
+                                  "Contact Us",
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 17,
