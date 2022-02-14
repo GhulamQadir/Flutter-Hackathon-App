@@ -17,7 +17,7 @@ class ContactUs extends StatefulWidget {
 }
 
 class _ContactUsState extends State<ContactUs> {
-  var number = 03011911223;
+  var number = 03111122222;
 
   goToFavorites() {
     Navigator.of(context).pushNamed("/favorites-screen");

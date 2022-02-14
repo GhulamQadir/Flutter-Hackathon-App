@@ -130,18 +130,30 @@ class _SignUpState extends State<SignUp> {
                       ),
                       GestureDetector(
                         onTap: pickImage,
-                        child: Container(
-                          height: 130,
-                          width: 150,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                            image: imagePath == null
-                                ? NetworkImage(
-                                    "https://www.shareicon.net/data/512x512/2015/09/28/647719_camera_512x512.png")
-                                : FileImage(File(imagePath)),
-                          )),
+                        child: CircleAvatar(
+                          radius: 50,
+                          // child: Icon(Icons.person),
+                          backgroundColor: Colors.transparent,
+                          backgroundImage: imagePath == null
+                              ? NetworkImage(
+                                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9y_Rcs1TiQ9WdMtKV6bFQnU4FTCBvR7I_Sbohgnsxihd-Ju6V_cQz3KtK6ktz1uPykNc&usqp=CAU")
+                              : FileImage(File(imagePath)),
                         ),
                       ),
+                      // GestureDetector(
+                      //   onTap: pickImage,
+                      //   child: Container(
+                      //     height: 130,
+                      //     width: 150,
+                      //     decoration: BoxDecoration(
+                      //         image: DecorationImage(
+                      //       image: imagePath == null
+                      //           ? NetworkImage(
+                      //               "https://www.shareicon.net/data/512x512/2015/09/28/647719_camera_512x512.png")
+                      //           : FileImage(File(imagePath)),
+                      //     )),
+                      //   ),
+                      // ),
                       Padding(
                         padding:
                             const EdgeInsets.only(top: 15, left: 20, right: 20),

@@ -361,8 +361,6 @@ class _PlaceOrderState extends State<PlaceOrder> {
                       // ElevatedButton(
                       //     onPressed: placeOrder, child: Text("Place order"))
                       SizedBox(height: 20),
-                      Text(
-                          "If you didn't receive confirmation call in 1 hour after placement of order, you can contact us by telephoning our team."),
                       Container(
                         height: 40,
                         width: 160,

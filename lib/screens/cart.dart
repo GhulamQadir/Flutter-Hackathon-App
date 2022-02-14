@@ -75,11 +75,13 @@ class _CartScreenState extends State<CartScreen> {
                       return CircularProgressIndicator();
                     }
                     if (snapshot.data.docs.isEmpty) {
-                      return Container(
-                        child: Text(
-                          "No items added yet",
-                          style: TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.w500),
+                      return Center(
+                        child: Container(
+                          child: Text(
+                            "No items added yet",
+                            style: TextStyle(
+                                fontSize: 25, fontWeight: FontWeight.w500),
+                          ),
                         ),
                       );
                     }
@@ -92,39 +94,11 @@ class _CartScreenState extends State<CartScreen> {
                         data["id"] = id;
 
                         placeAnOrder() async {
-                          // try {
-                          // QuerySnapshot userData = await FirebaseFirestore
-                          //     .instance
-                          //     .collection("users")
-                          //     .doc(firebaseUser.uid)
-                          //     .collection("myCart")
-                          //     .get();
-
-                          // for (var i = 0; i < userData.docs.length; i++) {
-                          //   Map item = userData.docs[i].data();
-                          //   String itemId = userData.docs[i].id;
-
-                          //   await FirebaseFirestore.instance
-                          //       .collection("orders")
-                          //       .doc(FirebaseAuth.instance.currentUser.uid)
-                          //       .collection("currentUserOrder")
-                          //       .doc(itemId)
-                          //       .set({
-                          //     "name": item["name"],
-                          //     "prize": item["prize"]
-                          //   });
-                          // }
-                          // userData.docs.forEach((element) {
-                          // });
-                          // print("order place");
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => PlaceOrder()),
                           );
-                          // } catch (e) {
-                          //   print(e.toString());
-                          // }
                         }
 
                         removeProduct() async {
